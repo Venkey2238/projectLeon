@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeongrayJ Game Priority List</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts - Inter for a clean, modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS for additional styling and overrides -->
+    <link rel="stylesheet" href="./assets/css/main.css">
+
+    <style>
+        /* Custom Tailwind Configuration (Optional, can be moved to main.css if preferred) */
+        /* This ensures 'Inter' is the default font and adds subtle shadows */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .text-shadow-lg {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+        .card-shadow {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        .card-shadow-hover:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 antialiased leading-relaxed">
+
+    <!-- Main Container for the entire website -->
+    <div class="min-h-screen flex flex-col">
+
+        <!-- Header Section -->
+        <header class="bg-gray-900 shadow-lg py-4 px-6 md:px-12 fixed w-full z-10">
+            <nav class="container mx-auto flex justify-between items-center">
+                <!-- Logo Placeholder -->
+                <div class="flex items-center space-x-3">
+                    <img src="https://placehold.co/60x60/333333/FFFFFF?text=LOGO" alt="LeongrayJ Logo" class="h-12 w-12 rounded-full border-2 border-purple-600">
+                    <h1 class="text-3xl font-bold text-white tracking-wide">
+                        <span class="text-purple-400">LeongrayJ</span> Game Priority List
+                    </h1>
+                </div>
+                <!-- Navigation Links (Optional - can be anchor links for single page) -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="#high-priority" class="text-gray-300 hover:text-purple-400 transition duration-300">High Priority</a>
+                    <a href="#moderate-priority" class="text-gray-300 hover:text-purple-400 transition duration-300">Moderate Priority</a>
+                    <a href="#low-priority" class="text-gray-300 hover:text-purple-400 transition duration-300">Low Priority</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="relative h-screen flex items-center justify-center text-center overflow-hidden pt-16" style="background-image: url('https://placehold.co/1920x1080/1A1A1A/FFFFFF?text=Gaming+Background'); background-size: cover; background-position: center;">
+            <!-- Overlay for better text readability -->
+            <div class="absolute inset-0 bg-black opacity-70"></div>
+            <div class="relative z-10 p-6 max-w-4xl mx-auto">
+                <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-6 text-shadow-lg leading-tight">
+                    Curating the Future of Gaming
+                </h2>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 text-shadow-lg">
+                    Welcome to my personal chronicle of the most anticipated titles, categorized by the urgency of their call to adventure. Join me as I explore what's next on the horizon.
+                </p>
+                <a href="#high-priority" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+                    Explore My List
+                </a>
+            </div>
+        </section>
+
+        <!-- Main Content Area -->
+        <main class="flex-grow container mx-auto px-6 py-16 md:py-24">
+
+            <!-- High Priority Section -->
+            <section id="high-priority" class="mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center relative pb-4">
+                    High Priority: The Immediate Call
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-purple-600 rounded-full"></span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Game Card 1: High Priority Example -->
+                    <div class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col">
+                        <h3 class="text-2xl font-semibold text-purple-400 mb-3">Clair Obscur: Expedition 03</h3>
+                        <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: TBD</p>
+                        <!-- Responsive YouTube Embed Container -->
+                        <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
+                            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID_1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-gray-300 flex-grow">"This title promises a unique visual style and an intriguing narrative. The expedition concept has me hooked, eager to uncover its secrets."</p>
+                    </div>
+
+                    <!-- Game Card 2: High Priority Example -->
+                    <div class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col">
+                        <h3 class="text-2xl font-semibold text-purple-400 mb-3">Indiana Jones and the Great Circle</h3>
+                        <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: 2025</p>
+                        <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
+                            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID_2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-gray-300 flex-grow">"A new Indiana Jones adventure from Bethesda? Count me in! The promise of exploration and ancient mysteries is irresistible."</p>
+                    </div>
+
+                    <!-- Game Card 3: High Priority Example -->
+                    <div class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col">
+                        <h3 class="text-2xl font-semibold text-purple-400 mb-3">Final Fantasy XVI</h3>
+                        <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: TBD 2025</p>
+                        <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
+                            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID_3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-gray-300 flex-grow">"Witnessing this title's transition to PC is a monumental moment. The dark fantasy narrative and refined combat promise an epic journey, a true benchmark for the genre."</p>
+                    </div>
+                    <!-- Add more High Priority game cards here following the same structure -->
+                </div>
+            </section>
+
+            <!-- Moderate Priority Section -->
+            <section id="moderate-priority" class="mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center relative pb-4">
+                    Moderate Priority: The Horizon's Beckon
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-blue-600 rounded-full"></span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Game Card 1: Moderate Priority Example -->
+                    <div class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col">
+                        <h3 class="text-2xl font-semibold text-blue-400 mb-3">Dead Island 2</h3>
+                        <p class="text-gray-400 text-sm mb-4">Platform: Epic | Release: Out Now</p>
+                        <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
+                            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID_4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-gray-300 flex-grow">"Zombie slaying in a vibrant Los Angeles setting? The combat looks visceral and the humor is right up my alley. Definitely one to get to soon."</p>
+                    </div>
+
+                    <!-- Game Card 2: Moderate Priority Example -->
+                    <div class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col">
+                        <h3 class="text-2xl font-semibold text-blue-400 mb-3">God of War</h3>
+                        <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: Out Now</p>
+                        <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
+                            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID_5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted- piedra; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-gray-300 flex-grow">"Kratos and Atreus's journey is legendary. While I've seen much of it, experiencing the PC version's fidelity is a must-do for its compelling story and combat."</p>
+                    </div>
+
+                    <!-- Game Card 3: Moderate Priority Example -->
+                    <div class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col">
+                        <h3 class="text-2xl font-semibold text-blue-400 mb-3">DREDGE</h3>
+                        <p class="text-gray-400 text-sm mb-4">Platform: PC, Steam | Release: Out Now</p>
+                        <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
+                            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID_6" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-gray-300 flex-grow">"A unique fishing adventure with a dark, unsettling twist. The mystery and exploration elements are very appealing, making it a compelling pick for a chilling experience."</p>
+                    </div>
+                    <!-- Add more Moderate Priority game cards here -->
+                </div>
+            </section>
+
+            <!-- Low Priority Section -->
+            <section id="low-priority" class="mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center relative pb-4">
+                    Low Priority: Future Engagements
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-green-600 rounded-full"></span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Game Card 1: Low Priority Example -->
+                    <div class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col">
+                        <h3 class="text-2xl font-semibold text-green-400 mb-3">The Elder Scrolls VI</h3>
+                        <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: Upcoming</p>
+                        <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
+                            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID_7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-gray-300 flex-grow">"The next chapter in a legendary saga. While far off, the anticipation for a new world to explore in The Elder Scrolls universe is ever-present."</p>
+                    </div>
+
+                    <!-- Game Card 2: Low Priority Example -->
+                    <div class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col">
+                        <h3 class="text-2xl font-semibold text-green-400 mb-3">Star Wars Outlaws</h3>
+                        <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: 2025</p>
+                        <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
+                            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID_8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-gray-300 flex-grow">"A new open-world Star Wars adventure focusing on the underworld. The concept is exciting, but I'll wait to see more gameplay before diving in."</p>
+                    </div>
+
+                    <!-- Game Card 3: Low Priority Example -->
+                    <div class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col">
+                        <h3 class="text-2xl font-semibold text-green-400 mb-3">Cyberpunk 2077</h3>
+                        <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: Out Now</p>
+                        <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
+                            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID_9" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-gray-300 flex-grow">"Night City calls! While it's been out for a while, the recent updates and expansions make it a strong contender for a future deep dive."</p>
+                    </div>
+                    <!-- Add more Low Priority game cards here -->
+                </div>
+            </section>
+
+            <!-- Newsletter Signup Section -->
+            <section class="bg-gray-800 rounded-xl p-10 md:p-16 text-center card-shadow mb-20">
+                <h2 class="text-4xl font-bold text-white mb-6">Stay Ahead of the Game</h2>
+                <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+                    Get the latest updates on LeongrayJ's game priority list, new trailers, and exclusive insights directly in your inbox.
+                </p>
+                <form class="flex flex-col md:flex-row justify-center items-center gap-4 max-w-xl mx-auto">
+                    <input type="email" placeholder="Enter your email address" class="flex-grow bg-gray-700 text-white border border-gray-600 rounded-full py-3 px-6 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-400">
+                    <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+                        Subscribe Now
+                    </button>
+                </form>
+            </section>
+
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="bg-gray-900 py-8 px-6 md:px-12 text-center text-gray-400 text-sm">
+            <div class="container mx-auto">
+                <p class="mb-4">&copy; 2025 LeongrayJ. All Rights Reserved.</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="hover:text-purple-400 transition duration-300">Twitter</a>
+                    <a href="#" class="hover:text-purple-400 transition duration-300">YouTube</a>
+                    <a href="#" class="hover:text-purple-400 transition duration-300">Twitch</a>
+                    <a href="#" class="hover:text-purple-400 transition duration-300">Privacy Policy</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Custom JavaScript (if any interactivity is needed) -->
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
