@@ -36,3 +36,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // - Form submission handling for the newsletter (e.g., displaying a success message)
     // - Animations on scroll (if not using CSS animations for everything)
 });
+
+const heroSection = document.getElementById('hero-section');
+
+    const images = [
+        "https://imgs.search.brave.com/1iX1vg1PRwthNyQgo4Hr4_7lUNxZOgpKJHHeMp1DT-o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDEzMjU4/MzY2LmpwZw", // image 1
+        "https://wallpapercave.com/wp/wp9427087.jpg", // image 2
+        "https://wallpapercave.com/wp/wp11311472.jpg"  // image 3
+    ];
+
+    let index = 0;
+
+    setInterval(() => {
+        index = (index + 1) % images.length;
+        heroSection.style.backgroundImage = `url('${images[index]}')`;
+    }, 2000); // 2000ms = 2 seconds
