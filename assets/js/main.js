@@ -57,4 +57,4 @@ const heroSection = document.getElementById('hero-section');
     setInterval(() => {
         index = (index + 1) % images.length;
         heroSection.style.backgroundImage = `url('${images[index]}')`;
-    }, 2000); // 2000ms = 2 seconds
+    }, 3000); // 2000ms = 2 seconds
