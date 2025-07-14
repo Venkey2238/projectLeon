@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.youtube.com/@LeonGrayJ/live'));
         const text = await response.text();
 
-        const isLive = text.includes('"isLiveNow":true');
+        const isLive = true;
 
         if (isLive) {
             logo.classList.add('live-glow', 'border-red-500');
