@@ -284,3 +284,39 @@ footer a {
         padding-right: 1.5rem;
     }
 }
+/* Style for the glowing red border around the logo */
+.live-glow {
+    /* Initial state of the glow */
+    box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.7), /* Inner glow */
+                0 0 0 8px rgba(255, 0, 0, 0.4), /* Outer glow */
+                0 0 0 12px rgba(255, 0, 0, 0.1); /* Fainter outer glow */
+    /* Animation for the pulsing glow */
+    animation: pulse-glow 1.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    /* Ensure border-radius is maintained for the glow */
+    border-radius: 50%;
+}
+
+/* Keyframe animation for the pulsing glow effect */
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.7),
+                    0 0 0 8px rgba(255, 0, 0, 0.4),
+                    0 0 0 12px rgba(255, 0, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 0 6px rgba(255, 0, 0, 0.9), /* Brighter and slightly larger */
+                    0 0 0 10px rgba(255, 0, 0, 0.6),
+                    0 0 0 14px rgba(255, 0, 0, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.7),
+                    0 0 0 8px rgba(255, 0, 0, 0.4),
+                    0 0 0 12px rgba(255, 0, 0, 0.1);
+    }
+}
+
+/* Styles for the LIVE badge */
+#live-badge {
+    /* Tailwind classes: absolute bottom-0 right-0 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full transform translate-x-1/4 translate-y-1/4 hidden z-20 */
+    white-space: nowrap; /* Prevent "LIVE" from wrapping */
+}
