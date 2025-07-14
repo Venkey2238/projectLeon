@@ -30,67 +30,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Function to fetch and update the latest YouTube livestream link and live indicator
-    async function updateLivestreamStatus() { // Renamed from fetchAndUpdateLivestreamStatus
-        const logo = document.getElementById('leongrayj-logo');
-        const liveBadge = document.getElementById('live-badge');
-        const logoContainer = document.getElementById('logo-container');
+   async function updateLivestreamStatus() {
+    const logo = document.getElementById('leongrayj-logo');
+    const liveBadge = document.getElementById('live-badge');
+    const logoContainer = document.getElementById('logo-container');
 
-        if (!logo || !liveBadge || !logoContainer) {
-            console.warn("One or more required elements for livestream status not found.");
-            return;
-        }
+    if (!logo || !liveBadge || !logoContainer) {
+        console.warn("One or more required elements for livestream status not found.");
+        return;
+    }
 
-        try {
-            // Fetch status from your Netlify Function endpoint
-            // This assumes your function is deployed at /.netlify/functions/live-status
-            const res = await fetch('/.netlify/functions/live-status');
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
-            const { isLive, liveUrl } = await res.json();
+    try {
+        const res = await fetch('/.netlify/functions/live-status');
+        const { isLive, liveUrl } = await res.json();
+        console.log("LIVE STATUS:", isLive, liveUrl); // ✅ Debug line
 
-            if (isLive) {
-                // Add glow and red border
-                logo.classList.add('live-glow', 'border-red-500');
-                logo.classList.remove('border-purple-600'); // Remove default border
-                // Show LIVE badge
-                liveBadge.classList.remove('hidden');
-
-                // Make logo container clickable and redirect to live stream
-                logoContainer.style.cursor = 'pointer';
-                logoContainer.onclick = () => {
-                    if (liveUrl) {
-                        window.open(liveUrl, '_blank');
-                    } else {
-                        // Fallback to channel page if liveUrl somehow isn't set by the backend
-                        // !! IMPORTANT !! Replace with LeongrayJ's actual YouTube Channel ID here as well.
-                        window.open(`http://googleusercontent.com/youtube.com/channel/YOUR_CHANNEL_ID`, '_blank');
-                    }
-                };
-            } else {
-                // Remove live indicators
-                logo.classList.remove('live-glow', 'border-red-500');
-                logo.classList.add('border-purple-600'); // Restore default border
-                // Hide LIVE badge
-                liveBadge.classList.add('hidden');
-                // Remove click functionality
-                logoContainer.style.cursor = 'default';
-                logoContainer.onclick = null;
-            }
-        } catch (error) {
-            console.error("Error fetching livestream status from server:", error);
-            // Fallback to non-live state on error to ensure UI doesn't get stuck
+        if (isLive) {
+            logo.classList.add('live-glow', 'border-red-500');
+            logo.classList.remove('border-purple-600');
+            liveBadge.classList.remove('hidden');
+            logoContainer.style.cursor = 'pointer';
+            logoContainer.onclick = () => {
+                window.open(liveUrl || 'https://www.youtube.com/@LeonGrayJ/live', '_blank');
+            };
+        } else {
             logo.classList.remove('live-glow', 'border-red-500');
             logo.classList.add('border-purple-600');
             liveBadge.classList.add('hidden');
             logoContainer.style.cursor = 'default';
             logoContainer.onclick = null;
         }
+    } catch (error) {
+        console.error("Live status check failed:", error);
     }
+}
+
 
     // Initial check when the DOM is loaded
     updateLivestreamStatus();
-    // Recheck status every 30 seconds (30000 milliseconds)
     setInterval(updateLivestreamStatus, 30000);
 
 
