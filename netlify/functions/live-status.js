@@ -1,19 +1,23 @@
 const fetch = require('node-fetch');
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
 
-exports.handler = async function(event, context) {
+exports.handler = async function (event, context) {
   console.log('---- ✅ CHECKING LIVE STATUS FROM YOUTUBE ----');
 
-  const url = 'https://www.youtube.com/@LeonGrayJ/live';
-
   try {
-    const response = await fetch(url, {
+    const response = await fetch('https://www.youtube.com/@LeonGrayJ/live', {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
-      }
+      },
+      redirect: 'follow' // this follows the redirect to the live stream
     });
 
+    const finalUrl = response.url;
     const html = await response.text();
-    console.log('✅ HTML fetched, length:', html.length);
+
+    console.log('✅ Final URL:', finalUrl);
+    console.log('✅ HTML length:', html.length);
 
     // Match ytInitialPlayerResponse JSON
     const match = html.match(/ytInitialPlayerResponse\s*=\s*(\{.*?\});<\/script>/s);
@@ -30,7 +34,6 @@ exports.handler = async function(event, context) {
 
     const isLive = ytInitialPlayerResponse?.videoDetails?.isLive === true;
     const videoId = ytInitialPlayerResponse?.videoDetails?.videoId;
-
     const liveUrl = isLive ? `https://www.youtube.com/watch?v=${videoId}` : null;
 
     console.log('✅ Final result →', { isLive, liveUrl });
