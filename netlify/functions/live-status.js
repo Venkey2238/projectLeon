@@ -1,23 +1,5 @@
 const fetch = require("node-fetch");
 
-// 🔍 Recursive search with logging
-function findLiveData(obj, path = "") {
-    if (typeof obj !== "object" || obj === null) return null;
-
-    if (obj.isLive === true && obj.videoId) {
-        console.log("🔥 Found isLive === true at path:", path);
-        console.log("👉 Matched object:", JSON.stringify(obj, null, 2));
-        return obj;
-    }
-
-    for (const key in obj) {
-        const result = findLiveData(obj[key], path + "/" + key);
-        if (result) return result;
-    }
-
-    return null;
-}
-
 exports.handler = async (event, context) => {
     const url = "https://www.youtube.com/channel/UCNxPNmokJwOsJANF4BlGbKA/live";
 
@@ -43,28 +25,17 @@ exports.handler = async (event, context) => {
         if (endIndex === -1) throw new Error("ytInitialPlayerResponse block not closed");
 
         const jsonStr = sub.substring(0, endIndex);
-        console.log("Extracted JSON snippet preview:", jsonStr.slice(0, 300));
+        const data = JSON.parse(jsonStr);
 
-        let data;
-        try {
-            data = JSON.parse(jsonStr);
-        } catch (e) {
-            console.error("JSON parsing failed:", e.message);
-            throw new Error("Invalid ytInitialPlayerResponse JSON");
-        }
+        const isLive = data?.videoDetails?.isLiveContent === true;
+        const videoId = data?.videoDetails?.videoId || null;
+        const liveUrl = isLive && videoId ? `https://www.youtube.com/watch?v=${videoId}` : null;
 
-        // 🔍 Try to locate isLive inside the data
-        const liveData = findLiveData(data);
-        const isLive = liveData?.isLive === true;
-        const liveUrl = isLive && liveData?.videoId
-            ? `https://www.youtube.com/watch?v=${liveData.videoId}`
-            : null;
-
-        console.log("✅ Final result →", { isLive, liveUrl });
+        console.log("✅ Detected →", { isLive, videoId });
 
         return {
             statusCode: 200,
-            headers: {    
+            headers: {
                 "Access-Control-Allow-Origin": "*",
                 "Content-Type": "application/json"
             },
