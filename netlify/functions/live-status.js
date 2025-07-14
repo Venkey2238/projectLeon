@@ -1,31 +1,22 @@
 const fetch = require("node-fetch");
 
 exports.handler = async (event, context) => {
-    const url = "https://www.youtube.com/@LeonGrayJ/live";
+    const url = "https://www.youtube.com/channel/UCNxPNmokJwOsJANF4BlGbKA/live";
+
     try {
         const res = await fetch(url, {
             headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
-            }
+                'User-Agent': 'Mozilla/5.0'
+            },
+            redirect: 'manual' // Don't auto-follow redirects
         });
-        const html = await res.text();
 
-        const canonicalMatch = html.match(/<link rel="canonical" href="([^"]+)"/);
-        const ogUrlMatch = html.match(/<meta property="og:url" content="([^"]+)"/);
-        const playerResponseMatch = html.match(/var ytInitialPlayerResponse = (.*?});/);
+        // Check if YouTube redirects to a real /watch?v=... stream
+        const location = res.headers.get('location');
+        const isRedirect = res.status === 302 && location?.includes("/watch?v=");
 
-        const canonical = canonicalMatch?.[1];
-        const ogUrl = ogUrlMatch?.[1];
-
-        const candidate = canonical || ogUrl || "";
-        const videoUrl = candidate.includes("/watch") ? candidate : null;
-
-        // Fallback check using ytInitialPlayerResponse JSON if available
-        let isLive = false;
-        if (playerResponseMatch) {
-            const playerData = JSON.parse(playerResponseMatch[1]);
-            isLive = playerData?.videoDetails?.isLive === true;
-        }
+        const isLive = Boolean(isRedirect);
+        const liveUrl = isLive ? `https://www.youtube.com${location}` : null;
 
         return {
             statusCode: 200,
@@ -33,10 +24,7 @@ exports.handler = async (event, context) => {
                 "Access-Control-Allow-Origin": "*",
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                isLive,
-                liveUrl: isLive ? videoUrl : null
-            })
+            body: JSON.stringify({ isLive, liveUrl })
         };
     } catch (e) {
         console.error("Error fetching live status:", e);
