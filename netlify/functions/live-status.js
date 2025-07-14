@@ -1,38 +1,27 @@
-const fetch = require('node-fetch');
+const { getChannelInfo } = require('yt-channel-info');
 
 exports.handler = async () => {
   const channelId = 'UCNxPNmokJwOsJANF4BlGbKA';
-  const url = `https://www.youtube.com/embed/live_stream?channel=${channelId}`;
-
-  console.log('🔍 Checking embed/live_stream endpoint for live status');
+  console.log('🔍 Checking live status via yt-channel-info');
 
   try {
-    const res = await fetch(url, {
-      headers: { 'User-Agent': 'Mozilla/5.0' },
-    });
-    const html = await res.text();
+    const data = await getChannelInfo(channelId, 1);
+    // library returns whether streaming live:
+    const isLive = data.isLive;
+    const liveId = data.videoId; // ID of live video, if any
+    const liveUrl = isLive ? `https://www.youtube.com/watch?v=${liveId}` : null;
 
-    console.log('✅ Fetched embed HTML length:', html.length);
-
-    // Look for playerMicroformatRenderer.urlCanonical (only present when live)
-    const isLive = html.includes('playerMicroformatRenderer');
-    let liveUrl = null;
-
-    if (isLive) {
-      const match = html.match(/"urlCanonical":"(https:\/\/www\.youtube\.com\/watch\?v=([\w-]{11}))"/);
-      if (match) {
-        liveUrl = match[1].replace(/\\u0026/g, '&');
-      }
-    }
-
-    console.log('🔴 isLive:', isLive, '→', liveUrl);
-
+    console.log({ isLive, liveUrl });
     return {
       statusCode: 200,
-      body: JSON.stringify({ isLive, liveUrl })
+      body: JSON.stringify({ isLive, liveUrl }),
     };
-  } catch(err) {
+
+  } catch (err) {
     console.error('❌ Error:', err.message);
-    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: err.message }),
+    };
   }
 };
