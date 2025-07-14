@@ -7,16 +7,30 @@ exports.handler = async (event, context) => {
         const res = await fetch(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0'
-            },
-            redirect: 'manual' // Don't auto-follow redirects
+            }
         });
 
-        // Check if YouTube redirects to a real /watch?v=... stream
-        const location = res.headers.get('location');
-        const isRedirect = res.status === 302 && location?.includes("/watch?v=");
+        const html = await res.text();
 
-        const isLive = Boolean(isRedirect);
-        const liveUrl = isLive ? `https://www.youtube.com${location}` : null;
+        // Extract ytInitialPlayerResponse JSON
+        const match = html.match(/var ytInitialPlayerResponse = ({.*?});<\/script>/);
+        let isLive = false;
+        let videoId = null;
+
+        if (match) {
+            try {
+                const playerResponse = JSON.parse(match[1]);
+                const details = playerResponse?.videoDetails;
+                isLive = details?.isLive === true;
+                videoId = details?.videoId;
+            } catch (err) {
+                console.error("Failed to parse ytInitialPlayerResponse:", err);
+            }
+        }
+
+        const liveUrl = isLive && videoId
+            ? `https://www.youtube.com/watch?v=${videoId}`
+            : null;
 
         return {
             statusCode: 200,
@@ -27,7 +41,7 @@ exports.handler = async (event, context) => {
             body: JSON.stringify({ isLive, liveUrl })
         };
     } catch (e) {
-        console.error("Error fetching live status:", e);
+        console.error("Live status error:", e);
         return {
             statusCode: 500,
             body: JSON.stringify({ error: e.message })
