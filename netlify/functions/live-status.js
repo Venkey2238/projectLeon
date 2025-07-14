@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
 
-// Recursively find any object with isLive === true
+// Recursively search for any object containing isLive: true and videoId
 function findLiveData(obj) {
     if (typeof obj !== "object" || obj === null) return null;
     if (obj.isLive === true && obj.videoId) return obj;
@@ -8,7 +8,7 @@ function findLiveData(obj) {
     for (const key in obj) {
         const found = findLiveData(obj[key]);
         if (found) return found;
-    }    
+    }
 
     return null;
 }
@@ -26,7 +26,6 @@ exports.handler = async (event, context) => {
         });
 
         const html = await res.text();
-
         console.log("HTML length:", html.length);
         console.log("Contains ytInitialPlayerResponse?", html.includes("ytInitialPlayerResponse"));
 
@@ -41,9 +40,19 @@ exports.handler = async (event, context) => {
         const jsonStr = sub.substring(0, endIndex);
         console.log("Extracted JSON snippet preview:", jsonStr.slice(0, 300));
 
-        const data = JSON.parse(jsonStr);
+        let data;
+        try {
+            data = JSON.parse(jsonStr);
+        } catch (e) {
+            console.error("JSON parsing failed:", e.message);
+            throw new Error("Invalid ytInitialPlayerResponse JSON");
+        }
 
-        // 🔍 Try to find any nested isLive: true
+        // Log structure for debugging
+        console.log("Top-level keys in parsed JSON:", Object.keys(data));
+        console.log("Stringified sample:", JSON.stringify(data).slice(0, 1000));
+
+        // Try to find live stream info
         const liveData = findLiveData(data);
         const isLive = liveData?.isLive === true;
         const liveUrl = isLive && liveData?.videoId
