@@ -1,17 +1,18 @@
 const fetch = require("node-fetch");
 
 exports.handler = async () => {
-  const channelId = "UCNxPNmokJwOsJANF4BlGbKA"; // LeonGrayJ channel ID
-  const apiUrl = `https://yt.lemnoslife.com/channels?part=live&id=${channelId}`;
+  const channelId = "UCNxPNmokJwOsJANF4BlGbKA"; // LeonGrayJ
+  const invidiousInstance = "https://invidious.projectsegfau.lt"; // fallback if needed
 
-  console.log("---- CHECKING LIVE STATUS VIA LEMNOS ----");
+  console.log("---- CHECKING LIVE STATUS VIA INVIDIOUS ----");
+
   try {
-    const res = await fetch(apiUrl);
+    const res = await fetch(`${invidiousInstance}/api/v1/channels/${channelId}`);
     const data = await res.json();
 
-    const isLive = data?.items?.[0]?.live?.status === "live";
-    const videoId = data?.items?.[0]?.live?.videoId;
-    const liveUrl = isLive ? `https://www.youtube.com/watch?v=${videoId}` : null;
+    const latestVideo = data?.latestVideos?.find(v => v.liveNow === true);
+    const isLive = !!latestVideo;
+    const liveUrl = isLive ? `https://youtube.com/watch?v=${latestVideo.videoId}` : null;
 
     console.log("✅ isLive:", isLive);
     console.log("📺 liveUrl:", liveUrl);
