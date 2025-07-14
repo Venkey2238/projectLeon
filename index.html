@@ -44,10 +44,17 @@
             <!-- Logo with Live Indicator -->
             <div class="flex items-center space-x-3">
                 <!-- Wrapper for positioning the LIVE badge -->
-               <div id="logo-container">
-                    <img id="leongrayj-logo" src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" alt="LeongrayJ Logo" class="border-purple-600">
-                    <span id="live-badge" class="hidden">LIVE</span>
-               </div>
+               div class="flex items-center space-x-3">
+    <!-- Wrap the logo container in an <a> tag for redirection -->
+    <a id="logo-livestream-link" href="#" target="_blank" rel="noopener noreferrer" class="relative flex items-center justify-center">
+        <!-- Wrapper for positioning the LIVE badge -->
+        <div id="logo-container" class="relative">
+            <!-- Add id="leongrayj-logo" and object-cover class -->
+            <img id="leongrayj-logo" src="https://placehold.co/60x60/333333/FFFFFF?text=LOGO" alt="LeongrayJ Logo" class="h-12 w-12 rounded-full border-2 border-purple-600 object-cover">
+            <!-- LIVE badge - hidden by default -->
+            <span id="live-badge" class="absolute bottom-0 right-0 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full transform translate-x-1/4 translate-y-1/4 hidden z-20">LIVE</span>
+        </div>
+    </a>
                 <h1 class="text-3xl font-bold text-white tracking-wide">
                     <span class="text-purple-400">LeongrayJ</span> Game Priority List
                 </h1>
