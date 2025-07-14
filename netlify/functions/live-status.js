@@ -1,18 +1,17 @@
-// netlify/functions/live-status.js
 const fetch = require("node-fetch");
 
 exports.handler = async (event, context) => {
-    const channelUrl = "https://www.youtube.com/@LeonGrayJ";
+    const channelLivePage = "https://www.youtube.com/@LeonGrayJ/live";
 
     try {
-        const response = await fetch(`${channelUrl}/live`, {
-            method: "HEAD",
-            redirect: "manual"
-        });
+        const res = await fetch(channelLivePage);
+        const html = await res.text();
 
-        const location = response.headers.get("location");
-        const isLive = response.status === 302 && location && location.includes("watch");
-        const liveUrl = isLive ? location : null;
+        const canonicalMatch = html.match(/<link rel="canonical" href="([^"]+)"/);
+        const canonicalUrl = canonicalMatch ? canonicalMatch[1] : null;
+
+        const isLive = canonicalUrl && canonicalUrl.includes("/watch");
+        const liveUrl = isLive ? canonicalUrl : null;
 
         return {
             statusCode: 200,
