@@ -30,100 +30,46 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Function to fetch and update the latest YouTube livestream link and live indicator
-    async function fetchAndUpdateLivestreamLink() {
-        const livestreamButton = document.getElementById('livestream-button');
-        const leongrayjLogo = document.getElementById('leongrayj-logo'); // Get the logo image
-        const liveBadge = document.getElementById('live-badge');       // Get the LIVE badge
+    async function fetchAndUpdateLivestreamStatus() {
+    const logo = document.getElementById('leongrayj-logo');
+    const liveBadge = document.getElementById('live-badge');
+    const logoContainer = document.getElementById('logo-container');
 
-        if (!livestreamButton || !leongrayjLogo || !liveBadge) {
-            console.error('Required elements for livestream feature not found. Ensure IDs are correct.');
-            return;
-        }
+    if (!logo || !liveBadge || !logoContainer) return;
 
-        // The URL for your Netlify Function
-        // When deployed, this will automatically resolve to your function.
-        const netlifyFunctionUrl = '/.netlify/functions/get-livestream'; // <<< Ensure this matches your Netlify Function path
+    try {
+        const response = await fetch('https://www.youtube.com/@LeonGrayJ/live');
+        const text = await response.text();
 
-        try {
-            const response = await fetch(netlifyFunctionUrl);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
+        const isLive = text.includes('"isLiveNow":true');
 
-            if (data.isLive && data.streamUrl) {
-                // --- Update Livestream Button ---
-                livestreamButton.href = data.streamUrl;
-                livestreamButton.innerHTML = `
-                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M19.812 5.056a3.75 3.75 0 0 0-2.124-2.124C16.322 2.5 12 2.5 12 2.5s-4.322 0-5.688.432a3.75 3.75 0 0 0-2.124 2.124c-.432 1.366-.432 4.225-.432 4.225v2.817c0 2.86.001 4.79.432 6.156a3.75 3.75 0 0 0 2.124 2.124c1.366.432 5.688.432 5.688.432s4.322 0 5.688-.432a3.75 3.75 0 0 0 2.124-2.124c.432-1.366.432-4.225.432-4.225V9.281c0-2.86-.001-4.79-.432-6.156ZM9.75 15.375V8.625L15.375 12l-5.625 3.375Z" clip-rule="evenodd" />
-                    </svg>
-                    Join the Livestream <span class="text-red-300 font-bold">NOW!</span>
-                `;
-                livestreamButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-                livestreamButton.classList.add('bg-red-600', 'hover:bg-red-700', 'animate-pulse');
+        if (isLive) {
+            logo.classList.add('live-glow', 'border-red-500');
+            logo.classList.remove('border-purple-600');
+            liveBadge.classList.remove('hidden');
 
-                // --- Update Logo Live Indicator ---
-                leongrayjLogo.classList.remove('border-purple-600'); // Remove default border
-                leongrayjLogo.classList.add('border-red-500', 'live-glow'); // Add red border and glowing effect
-                liveBadge.classList.remove('hidden'); // Show the LIVE badge
-
-                console.log('Livestream link and logo indicator updated:', data.streamUrl);
-
-            } else {
-                // --- Revert Livestream Button ---
-                livestreamButton.href = 'https://www.youtube.com/@LeongrayJ/streams'; // Fallback to your channel's streams page
-                livestreamButton.innerHTML = `
-                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4 11H8a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2z"/>
-                    </svg>
-                    Check Latest Livestreams
-                `;
-                livestreamButton.classList.remove('bg-red-600', 'hover:bg-red-700', 'animate-pulse');
-                livestreamButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
-
-                // --- Revert Logo Live Indicator ---
-                leongrayjLogo.classList.remove('border-red-500', 'live-glow'); // Remove red border and glowing effect
-                leongrayjLogo.classList.add('border-purple-600'); // Add back default border
-                liveBadge.classList.add('hidden'); // Hide the LIVE badge
-
-                console.log('No active livestream found, reverting logo indicator.');
-            }
-        } catch (error) {
-            console.error('Error fetching livestream link:', error);
-            // Fallback for button (already handled in previous version)
-            livestreamButton.href = 'https://www.youtube.com/@LeongrayJ/streams';
-            livestreamButton.innerHTML = `
-                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4 11H8a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2z"/>
-                </svg>
-                Check Latest Livestreams
-            `;
-            livestreamButton.classList.remove('bg-red-600', 'hover:bg-red-700', 'animate-pulse');
-            livestreamButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
-
-            // Also revert logo indicator on error
-            leongrayjLogo.classList.remove('border-red-500', 'live-glow');
-            leongrayjLogo.classList.add('border-purple-600');
+            logoContainer.style.cursor = 'pointer';
+            logoContainer.onclick = () => {
+                window.open('https://www.youtube.com/@LeonGrayJ/live', '_blank');
+            };
+        } else {
+            logo.classList.remove('live-glow', 'border-red-500');
+            logo.classList.add('border-purple-600');
             liveBadge.classList.add('hidden');
+            logoContainer.style.cursor = 'default';
+            logoContainer.onclick = null;
         }
+    } catch (err) {
+        console.error('Could not determine livestream status:', err);
     }
+}
 
-    // Call the function when the DOM is ready
-    fetchAndUpdateLivestreamLink();
-
-    // Loading Screen Functionality
-    window.addEventListener('load', () => {
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-            loadingScreen.style.opacity = '0';
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-                loadingScreen.remove();
-            }, 500);
-        }
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    fetchAndUpdateLivestreamStatus();
+    // Re-check every 2 minutes
+    setInterval(fetchAndUpdateLivestreamStatus, 2 * 60 * 1000);
 });
+
 
 // Hero Section Image Carousel
 const heroSection = document.getElementById('hero-section'); // Ensure your hero section has this ID
