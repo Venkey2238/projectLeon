@@ -1,13 +1,18 @@
 const fetch = require("node-fetch");
 
-// Recursively search for any object containing isLive: true and videoId
-function findLiveData(obj) {
+// 🔍 Recursive search with logging
+function findLiveData(obj, path = "") {
     if (typeof obj !== "object" || obj === null) return null;
-    if (obj.isLive === true && obj.videoId) return obj;
+
+    if (obj.isLive === true && obj.videoId) {
+        console.log("🔥 Found isLive === true at path:", path);
+        console.log("👉 Matched object:", JSON.stringify(obj, null, 2));
+        return obj;
+    }
 
     for (const key in obj) {
-        const found = findLiveData(obj[key]);
-        if (found) return found;
+        const result = findLiveData(obj[key], path + "/" + key);
+        if (result) return result;
     }
 
     return null;
@@ -48,18 +53,14 @@ exports.handler = async (event, context) => {
             throw new Error("Invalid ytInitialPlayerResponse JSON");
         }
 
-        // Log structure for debugging
-        console.log("Top-level keys in parsed JSON:", Object.keys(data));
-        console.log("Stringified sample:", JSON.stringify(data).slice(0, 1000));
-
-        // Try to find live stream info
+        // 🔍 Try to locate isLive inside the data
         const liveData = findLiveData(data);
         const isLive = liveData?.isLive === true;
         const liveUrl = isLive && liveData?.videoId
             ? `https://www.youtube.com/watch?v=${liveData.videoId}`
             : null;
 
-        console.log("Final result →", { isLive, liveUrl });
+        console.log("✅ Final result →", { isLive, liveUrl });
 
         return {
             statusCode: 200,
@@ -70,7 +71,7 @@ exports.handler = async (event, context) => {
             body: JSON.stringify({ isLive, liveUrl })
         };
     } catch (e) {
-        console.error("Live status error:", e);
+        console.error("❌ Error checking live status:", e);
         return {
             statusCode: 500,
             headers: {
