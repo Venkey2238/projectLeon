@@ -1,52 +1,52 @@
 const fetch = require('node-fetch');
-const jsdom = require('jsdom');
-const { JSDOM } = jsdom;
 
-exports.handler = async function (event, context) {
-  console.log('---- ✅ CHECKING LIVE STATUS FROM YOUTUBE ----');
+exports.handler = async function() {
+  const URL = 'https://www.youtube.com/@LeonGrayJ/live';
+  console.log('---- 🔍 Checking live badge in HTML ----');
 
   try {
-    const response = await fetch('https://www.youtube.com/@LeonGrayJ/live', {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
-      },
-      redirect: 'follow' // this follows the redirect to the live stream
+    const res = await fetch(URL, {
+      headers: { 'User-Agent': 'Mozilla/5.0' },
+      redirect: 'follow'
     });
-
-    const finalUrl = response.url;
-    const html = await response.text();
-
-    console.log('✅ Final URL:', finalUrl);
+    const html = await res.text();
     console.log('✅ HTML length:', html.length);
 
-    // Match ytInitialPlayerResponse JSON
-    const match = html.match(/ytInitialPlayerResponse\s*=\s*(\{.*?\});<\/script>/s);
+    // 1. Look for the Live badge
+    const hasBadge = /<span[^>]*class="yt-badge yt-badge-live"[^>]*>Live now<\/span>/i.test(html);
 
-    if (!match) {
-      console.error('❌ ytInitialPlayerResponse not found');
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ isLive: false, liveUrl: null })
-      };
+    // 2. Look for viewer count
+    const viewerMatch = html.match(/{"text":"\d{1,3}(?:,\d{3})* watching"}/);
+    const hasViewers = !!viewerMatch;
+
+    const isLive = hasBadge || hasViewers;
+    let liveUrl = null;
+
+    if (isLive) {
+      // Pull the videoId from the canonical or player JSON
+      const vidMatch = html.match(/canonical" href="\/watch\?v=([\w-]{11})/);
+      if (vidMatch) {
+        liveUrl = `https://www.youtube.com/watch?v=${vidMatch[1]}`;
+      } else {
+        // fallback: parse the JSON snippet
+        const jsonMatch = html.match(/ytInitialPlayerResponse\s*=\s*(\{.*?\});<\/script>/s);
+        if (jsonMatch) {
+          try {
+            const data = JSON.parse(jsonMatch[1]);
+            const vid = data.videoDetails?.videoId;
+            if (vid) liveUrl = `https://www.youtube.com/watch?v=${vid}`;
+          } catch {}
+        }
+      }
     }
 
-    const ytInitialPlayerResponse = JSON.parse(match[1]);
-
-    const isLive = ytInitialPlayerResponse?.videoDetails?.isLive === true;
-    const videoId = ytInitialPlayerResponse?.videoDetails?.videoId;
-    const liveUrl = isLive ? `https://www.youtube.com/watch?v=${videoId}` : null;
-
-    console.log('✅ Final result →', { isLive, liveUrl });
-
+    console.log('✅ isLive:', isLive, 'liveUrl:', liveUrl);
     return {
       statusCode: 200,
       body: JSON.stringify({ isLive, liveUrl })
     };
-  } catch (err) {
-    console.error('❌ Error:', err.message);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: err.message })
-    };
+  } catch (e) {
+    console.error('❌ Error:', e.message);
+    return { statusCode: 500, body: JSON.stringify({ error: e.message }) };
   }
 };
