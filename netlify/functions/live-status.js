@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 
 exports.handler = async () => {
   const channelId = "UCNxPNmokJwOsJANF4BlGbKA"; // LeonGrayJ
-  const invidiousInstance = "https://invidious.snopyta.org"; // you can change if this breaks
+  const invidiousInstance = "https://yt.artemislena.eu"; // STABLE INSTANCE
 
   console.log("---- ✅ CHECKING LIVE STATUS VIA INVIDIOUS ----");
 
