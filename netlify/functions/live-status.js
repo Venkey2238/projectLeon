@@ -1,5 +1,18 @@
 const fetch = require("node-fetch");
 
+// Recursively find any object with isLive === true
+function findLiveData(obj) {
+    if (typeof obj !== "object" || obj === null) return null;
+    if (obj.isLive === true && obj.videoId) return obj;
+
+    for (const key in obj) {
+        const found = findLiveData(obj[key]);
+        if (found) return found;
+    }
+
+    return null;
+}
+
 exports.handler = async (event, context) => {
     const url = "https://www.youtube.com/channel/UCNxPNmokJwOsJANF4BlGbKA/live";
 
@@ -30,11 +43,12 @@ exports.handler = async (event, context) => {
 
         const data = JSON.parse(jsonStr);
 
-        // 🔥 NEW LOGIC: fallback to nested object
-        const videoDetails = data?.videoDetails || data?.[""] || {};
-        const isLive = videoDetails.isLive === true;
-        const videoId = videoDetails.videoId;
-        const liveUrl = isLive && videoId ? `https://www.youtube.com/watch?v=${videoId}` : null;
+        // 🔍 Try to find any nested isLive: true
+        const liveData = findLiveData(data);
+        const isLive = liveData?.isLive === true;
+        const liveUrl = isLive && liveData?.videoId
+            ? `https://www.youtube.com/watch?v=${liveData.videoId}`
+            : null;
 
         console.log("Final result →", { isLive, liveUrl });
 
