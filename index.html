@@ -38,24 +38,29 @@
     <!-- Main Container for the entire website -->
     <div class="min-h-screen flex flex-col">
 
-        <!-- Header Section -->
-        <header class="bg-gray-900 shadow-lg py-4 px-6 md:px-12 fixed w-full z-10">
-            <nav class="container mx-auto flex justify-between items-center">
-                <!-- Logo Placeholder -->
-                <div class="flex items-center space-x-3">
-                    <img src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" alt="LeongrayJ Logo" class="h-12 w-12 rounded-full border-2 border-purple-600">
-                    <h1 class="text-3xl font-bold text-white tracking-wide">
-                        <span class="text-purple-400">LeongrayJ</span> Gaming Blog
-                    </h1>
+       <!-- Header Section -->
+    <header class="bg-gray-900 shadow-lg py-4 px-6 md:px-12 fixed w-full z-10">
+        <nav class="container mx-auto flex justify-between items-center">
+            <!-- Logo with Live Indicator -->
+            <div class="flex items-center space-x-3">
+                <!-- Wrapper for positioning the LIVE badge -->
+                <div id="logo-container" class="relative">
+                    <img id="leongrayj-logo" src="https://placehold.co/60x60/333333/FFFFFF?text=LOGO" alt="LeongrayJ Logo" class="h-12 w-12 rounded-full border-2 border-purple-600 object-cover">
+                    <!-- LIVE badge - hidden by default -->
+                    <span id="live-badge" class="absolute bottom-0 right-0 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full transform translate-x-1/4 translate-y-1/4 hidden z-20">LIVE</span>
                 </div>
-                <!-- Navigation Links (Optional - can be anchor links for single page) -->
-                <div class="hidden md:flex space-x-6">
-                    <a href="#high-priority" class="text-gray-300 hover:text-purple-400 transition duration-300">High Priority</a>
-                    <a href="#moderate-priority" class="text-gray-300 hover:text-purple-400 transition duration-300">Moderate Priority</a>
-                    <a href="#low-priority" class="text-gray-300 hover:text-purple-400 transition duration-300">Low Priority</a>
-                </div>
-            </nav>
-        </header>
+                <h1 class="text-3xl font-bold text-white tracking-wide">
+                    <span class="text-purple-400">LeongrayJ</span> Game Priority List
+                </h1>
+            </div>
+            <!-- Navigation Links (Optional - can be anchor links for single page) -->
+            <div class="hidden md:flex space-x-6">
+                <a href="#high-priority" class="text-gray-300 hover:text-purple-400 transition duration-300">High Priority</a>
+                <a href="#moderate-priority" class="text-gray-300 hover:text-purple-400 transition duration-300">Moderate Priority</a>
+                <a href="#low-priority" class="text-gray-300 hover:text-purple-400 transition duration-300">Low Priority</a>
+            </div>
+        </nav>
+    </header>
 
         <!-- Hero Section -->
         <section id="hero-section" class="relative h-screen flex items-center justify-center text-center overflow-hidden pt-16" 
