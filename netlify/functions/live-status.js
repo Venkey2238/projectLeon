@@ -4,6 +4,8 @@ exports.handler = async (event, context) => {
     const url = "https://www.youtube.com/channel/UCNxPNmokJwOsJANF4BlGbKA/live";
 
     try {
+        console.log("---- LIVE STATUS FUNCTION CALLED ----");
+
         const res = await fetch(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0'
@@ -12,21 +14,39 @@ exports.handler = async (event, context) => {
 
         const html = await res.text();
 
-        // Snip manually between start marker and </script>
+        console.log("HTML length:", html.length);
+        console.log("Contains ytInitialPlayerResponse?", html.includes("ytInitialPlayerResponse"));
+
         const start = "var ytInitialPlayerResponse = ";
         const startIndex = html.indexOf(start);
-        if (startIndex === -1) throw new Error("ytInitialPlayerResponse not found");
+        if (startIndex === -1) {
+            console.log("ytInitialPlayerResponse NOT FOUND");
+            throw new Error("ytInitialPlayerResponse not found");
+        }
 
         const sub = html.substring(startIndex + start.length);
         const endIndex = sub.indexOf(";</script>");
-        if (endIndex === -1) throw new Error("ytInitialPlayerResponse block not closed");
+        if (endIndex === -1) {
+            console.log("ytInitialPlayerResponse block NOT CLOSED properly");
+            throw new Error("ytInitialPlayerResponse block not closed");
+        }
 
         const jsonStr = sub.substring(0, endIndex);
-        const data = JSON.parse(jsonStr);
+        console.log("Extracted JSON snippet preview:", jsonStr.slice(0, 300));
+
+        let data;
+        try {
+            data = JSON.parse(jsonStr);
+        } catch (err) {
+            console.error("JSON parsing failed!", err);
+            throw new Error("Failed to parse ytInitialPlayerResponse");
+        }
 
         const isLive = data?.videoDetails?.isLive === true;
         const videoId = data?.videoDetails?.videoId;
         const liveUrl = isLive && videoId ? `https://www.youtube.com/watch?v=${videoId}` : null;
+
+        console.log("Final result →", { isLive, liveUrl });
 
         return {
             statusCode: 200,
@@ -40,6 +60,10 @@ exports.handler = async (event, context) => {
         console.error("Live status error:", e);
         return {
             statusCode: 500,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify({ error: e.message })
         };
     }
