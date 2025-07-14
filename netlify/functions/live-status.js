@@ -12,17 +12,20 @@ exports.handler = async (event, context) => {
 
         const html = await res.text();
 
-        // More forgiving regex (not greedy, handles line breaks)
-        const match = html.match(/ytInitialPlayerResponse\s*=\s*(\{.*?\});/s);
-        if (!match) {
-            throw new Error("ytInitialPlayerResponse not found");
-        }
+        // Snip manually between start marker and </script>
+        const start = "var ytInitialPlayerResponse = ";
+        const startIndex = html.indexOf(start);
+        if (startIndex === -1) throw new Error("ytInitialPlayerResponse not found");
 
-        const playerResponse = JSON.parse(match[1]);
-        const details = playerResponse.videoDetails;
+        const sub = html.substring(startIndex + start.length);
+        const endIndex = sub.indexOf(";</script>");
+        if (endIndex === -1) throw new Error("ytInitialPlayerResponse block not closed");
 
-        const isLive = details?.isLive === true;
-        const videoId = details?.videoId;
+        const jsonStr = sub.substring(0, endIndex);
+        const data = JSON.parse(jsonStr);
+
+        const isLive = data?.videoDetails?.isLive === true;
+        const videoId = data?.videoDetails?.videoId;
         const liveUrl = isLive && videoId ? `https://www.youtube.com/watch?v=${videoId}` : null;
 
         return {
