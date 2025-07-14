@@ -1,37 +1,28 @@
 const fetch = require("node-fetch");
 
 exports.handler = async (event, context) => {
-    const channelLivePage = "https://www.youtube.com/@LeonGrayJ/live";
-
+    const url = "https://www.youtube.com/@LeonGrayJ/live";
     try {
-        const res = await fetch(channelLivePage);
+        const res = await fetch(url);
         const html = await res.text();
 
-        const canonicalMatch = html.match(/<link rel="canonical" href="([^"]+)"/);
-        const canonicalUrl = canonicalMatch ? canonicalMatch[1] : null;
+        const canonical = html.match(/<link rel="canonical" href="([^"]+)"/);
+        const ogUrl = html.match(/<meta property="og:url" content="([^"]+)"/);
 
-        const isLive = canonicalUrl && canonicalUrl.includes("/watch");
-        const liveUrl = isLive ? canonicalUrl : null;
+        const candidate = (canonical?.[1] || ogUrl?.[1] || "");
+        const isLive = candidate.includes("/watch");
+        const liveUrl = isLive ? candidate : null;
 
         return {
             statusCode: 200,
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET",
-                "Access-Control-Allow-Headers": "Content-Type"
-            },
+            headers: {/* ...CORS headers... */},
             body: JSON.stringify({ isLive, liveUrl })
         };
-    } catch (error) {
-        console.error("Error in Netlify Function (live-status.js):", error.message);
+    } catch (e) {
+        console.error(e);
         return {
             statusCode: 500,
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                error: "Failed to fetch livestream status from backend.",
-                details: error.message
-            })
+            body: JSON.stringify({ error: e.message })
         };
     }
 };
