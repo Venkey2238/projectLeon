@@ -8,7 +8,7 @@ function findLiveData(obj) {
     for (const key in obj) {
         const found = findLiveData(obj[key]);
         if (found) return found;
-    }
+    }    
 
     return null;
 }
