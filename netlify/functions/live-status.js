@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 
 exports.handler = async () => {
   const channelId = "UCNxPNmokJwOsJANF4BlGbKA"; // LeonGrayJ
-  const invidiousInstance = "https://yt.artemislena.eu"; // STABLE INSTANCE
+  const invidiousInstance = "https://invidious.privacydev.net"; // TLS-compatible
 
   console.log("---- ✅ CHECKING LIVE STATUS VIA INVIDIOUS ----");
 
