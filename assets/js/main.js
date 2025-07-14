@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Function to fetch and update the latest YouTube livestream link and live indicator
-    async function fetchAndUpdateLivestreamStatus() {
+   async function fetchAndUpdateLivestreamStatus() {
     const logo = document.getElementById('leongrayj-logo');
     const liveBadge = document.getElementById('live-badge');
     const logoContainer = document.getElementById('logo-container');
@@ -66,9 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchAndUpdateLivestreamStatus();
-    // Re-check every 2 minutes
-    setInterval(fetchAndUpdateLivestreamStatus, 2 * 60 * 1000);
+    setInterval(fetchAndUpdateLivestreamStatus, 60000); // recheck every 60 seconds
 });
+
 
 
 // Hero Section Image Carousel
