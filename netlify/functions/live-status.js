@@ -1,35 +1,46 @@
-const fetch = require("node-fetch");
+const fetch = require('node-fetch');
 
-exports.handler = async () => {
-  const channelId = "UCNxPNmokJwOsJANF4BlGbKA"; // LeonGrayJ
-  const invidiousInstance = "https://invidious.privacydev.net"; // TLS-compatible
+exports.handler = async function(event, context) {
+  const CHANNEL_URL = 'https://www.youtube.com/@LeonGrayJ/live';
 
-  console.log("---- ✅ CHECKING LIVE STATUS VIA INVIDIOUS ----");
+  console.log('---- ✅ CHECKING LIVE STATUS ----');
 
   try {
-    const res = await fetch(`${invidiousInstance}/api/v1/channels/${channelId}`);
-    const data = await res.json();
+    const response = await fetch(CHANNEL_URL, {
+      headers: { 'User-Agent': 'Mozilla/5.0' }
+    });
+    const html = await response.text();
 
-    const latestVideo = data?.latestVideos?.find(v => v.liveNow === true);
-    const isLive = !!latestVideo;
-    const liveUrl = isLive ? `https://youtube.com/watch?v=${latestVideo.videoId}` : null;
+    console.log('✅ HTML fetched. Length:', html.length);
 
-    console.log("✅ isLive:", isLive);
-    console.log("📺 liveUrl:", liveUrl);
+    // Extract the ytInitialPlayerResponse JSON safely
+    const jsonMatch = html.match(/ytInitialPlayerResponse\s*=\s*({.*?});<\/script>/s);
+    if (!jsonMatch) {
+      console.error('❌ Could not find ytInitialPlayerResponse in the HTML');
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ isLive: false, liveUrl: null })
+      };
+    }
+
+    const jsonRaw = jsonMatch[1];
+    const playerResponse = JSON.parse(jsonRaw);
+
+    const isLive = playerResponse.videoDetails?.isLive === true;
+    const videoId = playerResponse.videoDetails?.videoId || null;
+    const liveUrl = isLive && videoId ? `https://www.youtube.com/watch?v=${videoId}` : null;
+
+    console.log(`✅ Final result → { isLive: ${isLive}, liveUrl: ${liveUrl} }`);
 
     return {
       statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
-      body: JSON.stringify({ isLive, liveUrl }),
+      body: JSON.stringify({ isLive, liveUrl })
     };
-  } catch (error) {
-    console.error("❌ Error checking live status:", error.message);
+  } catch (err) {
+    console.error('❌ Error checking live status:', err.message);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message }),
+      body: JSON.stringify({ error: err.message })
     };
   }
 };
