@@ -12,25 +12,18 @@ exports.handler = async (event, context) => {
 
         const html = await res.text();
 
-        // Extract ytInitialPlayerResponse JSON
-        const match = html.match(/var ytInitialPlayerResponse = ({.*?});<\/script>/);
-        let isLive = false;
-        let videoId = null;
-
-        if (match) {
-            try {
-                const playerResponse = JSON.parse(match[1]);
-                const details = playerResponse?.videoDetails;
-                isLive = details?.isLive === true;
-                videoId = details?.videoId;
-            } catch (err) {
-                console.error("Failed to parse ytInitialPlayerResponse:", err);
-            }
+        // More forgiving regex (not greedy, handles line breaks)
+        const match = html.match(/ytInitialPlayerResponse\s*=\s*(\{.*?\});/s);
+        if (!match) {
+            throw new Error("ytInitialPlayerResponse not found");
         }
 
-        const liveUrl = isLive && videoId
-            ? `https://www.youtube.com/watch?v=${videoId}`
-            : null;
+        const playerResponse = JSON.parse(match[1]);
+        const details = playerResponse.videoDetails;
+
+        const isLive = details?.isLive === true;
+        const videoId = details?.videoId;
+        const liveUrl = isLive && videoId ? `https://www.youtube.com/watch?v=${videoId}` : null;
 
         return {
             statusCode: 200,
