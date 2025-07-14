@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Function to fetch and update the latest YouTube livestream link and live indicator
-    async function fetchAndUpdateLivestreamStatus() {
+    async function updateLivestreamStatus() { // Renamed from fetchAndUpdateLivestreamStatus
         const logo = document.getElementById('leongrayj-logo');
         const liveBadge = document.getElementById('live-badge');
         const logoContainer = document.getElementById('logo-container');
@@ -40,64 +40,71 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const youtubeLiveUrl = 'https://www.youtube.com/@LeonGrayJ/live';
+        try {
+            // Fetch status from your Netlify Function endpoint
+            // This assumes your function is deployed at /.netlify/functions/live-status
+            const res = await fetch('/.netlify/functions/live-status');
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            const { isLive, liveUrl } = await res.json();
 
-        // --- IMPORTANT NOTE REGARDING LIVE STATUS DETECTION ---
-        // Directly checking YouTube's live status from the client-side without
-        // using their official API (which would require an API key and likely a backend)
-        // is highly unreliable and prone to breaking due to YouTube's dynamic page structure.
-        //
-        // As per the user's request to NOT use an API key, we are FORCING the 'isLive'
-        // status to true here to demonstrate the visual effect.
-        // This means the badge will always appear "LIVE" regardless of actual stream status.
-        // For a real-time, accurate live indicator, a server-side solution with the
-        // YouTube Data API would be necessary.
-        const isLive = true; // FORCED TO TRUE FOR DEMONSTRATION PURPOSES
+            if (isLive) {
+                // Add glow and red border
+                logo.classList.add('live-glow', 'border-red-500');
+                logo.classList.remove('border-purple-600'); // Remove default border
+                // Show LIVE badge
+                liveBadge.classList.remove('hidden');
 
-        if (isLive) {
-            // Add glow and red border
-            logo.classList.add('live-glow', 'border-red-500');
-            logo.classList.remove('border-purple-600'); // Remove default border
-            // Show LIVE badge
-            liveBadge.classList.remove('hidden');
-
-            // Make logo container clickable and redirect to live stream
-            logoContainer.style.cursor = 'pointer';
-            logoContainer.onclick = () => {
-                window.open(youtubeLiveUrl, '_blank');
-            };
-        } else {
-            // This 'else' block will currently not be reached due to 'isLive = true'
+                // Make logo container clickable and redirect to live stream
+                logoContainer.style.cursor = 'pointer';
+                logoContainer.onclick = () => {
+                    if (liveUrl) {
+                        window.open(liveUrl, '_blank');
+                    } else {
+                        // Fallback to channel page if liveUrl somehow isn't set by the backend
+                        // !! IMPORTANT !! Replace with LeongrayJ's actual YouTube Channel ID here as well.
+                        window.open(`http://googleusercontent.com/youtube.com/channel/YOUR_CHANNEL_ID`, '_blank');
+                    }
+                };
+            } else {
+                // Remove live indicators
+                logo.classList.remove('live-glow', 'border-red-500');
+                logo.classList.add('border-purple-600'); // Restore default border
+                // Hide LIVE badge
+                liveBadge.classList.add('hidden');
+                // Remove click functionality
+                logoContainer.style.cursor = 'default';
+                logoContainer.onclick = null;
+            }
+        } catch (error) {
+            console.error("Error fetching livestream status from server:", error);
+            // Fallback to non-live state on error to ensure UI doesn't get stuck
             logo.classList.remove('live-glow', 'border-red-500');
-            logo.classList.add('border-purple-600'); // Restore default border
-            // Hide LIVE badge
+            logo.classList.add('border-purple-600');
             liveBadge.classList.add('hidden');
-            // Remove click functionality
             logoContainer.style.cursor = 'default';
             logoContainer.onclick = null;
         }
-        // The try-catch block for fetching is removed as we are no longer relying on it for 'isLive' status
-        // If you re-introduce fetching for other purposes, ensure proper error handling.
     }
 
     // Initial check when the DOM is loaded
-    fetchAndUpdateLivestreamStatus();
-    // Recheck status every 60 seconds (60000 milliseconds)
-    // This interval will now simply re-apply the 'live' state
-    setInterval(fetchAndUpdateLivestreamStatus, 60000);
+    updateLivestreamStatus();
+    // Recheck status every 30 seconds (30000 milliseconds)
+    setInterval(updateLivestreamStatus, 30000);
 
 
-    // Hero Section Image Carousel
+    // Hero Section Image Carousel (existing code, no changes needed here)
     const heroSection = document.getElementById('hero-section'); // Ensure your hero section has this ID
 
     const images = [
         "https://imgs.search.brave.com/1iX1vg1PRwthNyQgo4Hr4_7lUNxZOgpKJHHeMp1DT-o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDEzMjU4/MzY2LmpwZw", // image 1
         "https://imgs.search.brave.com/G8OGEbjJhm8UXQRHEsqU2P4Zf9xFq5jb7lU5ZsYpuVM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXIuZG9nL2xh/cmdlLzE3MTk3NzEy/LmpwZw", // image 2
-        "https://imgs.search.brave.com/0zEdJopYYZnu73JRplm296S1QcfbT0HoqvPRsno9TD8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbS5p/Z24uY29tL3QvaWdu/X2luL3ZpZGVvL2Mv/Y2xhaXItb2JzYy9j/bGFpci1vYnNjdXIt/ZXhwZWRpdGlvbi0z/My00MC1taW51dGVz/LW9mLWdhbWVwbGF5/LTRrLTYwZnBzLXVf/cjlydS4xMjAwLmpw/Zw",  // image 3
-        "https://imgs.search.brave.com/MTzYkiMohlyLxWvusscPdH_10FJOkS0MYEPW3G0I9B0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMwLmdhbWVyYW50/aW1hZ2VzLmNvbS93/b3JkcHJlc3Mvd3At/Y29udGVudC91cGxv/YWRzLzIwMjQvMTIv/aW5kaWFuYS1qb25l/cy1hbmQtdGhlLWdy/ZWF0LWNpcmNsZS1i/ZXN0LXBjLXNldHRp/bmdzLmpwZw", //image 4
-        "https://imgs.search.brave.com/3vqAQlZgAXNcvjzPQ6zBneS2ESNJTpnWmmQtna7_Mww/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cGNvbS90d2lzdGVk/dm94ZWwuY29tL3wp/LWNvbnRlbnQvdXBs/b2Fkcy8yMDI0LzAx/L2ZpbmFsLWZhbnRh/c3kteHZpLmpwZz9y/ZXNpemU9MTE3MCw2/NTkmbWFpbD0x", //image 5
+        "https://imgs.search.brave.com/0zEdJopYYZnu73JRplm296S1QcfbT0HoqvPRsno9TD8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbS5p/Z24uY29tL3QvaWdu/X2luL3ZpZGVvL2Mv/Y2xhaXItb2JzY3Vy/L2NsYWlyLW9ic2N1/ci1leHBlZGl0aW9u/LTMzLTQwLW1pbnV0/ZXMtb2YtZ2FtZXBs/YXktNGstNjBmcHMt/dXJfcjlydS4xMjAw/LmpwZw",  // image 3
+        "https://imgs.search.brave.com/MTzYkiMohlyLxWvusscPdH_10FJOkS0MYEPW3G0I9B0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMwLmdhbWVyYW50/aW1hZ2VzLmNvbS93/b3JkcGFwZXNzL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDI0LzEy/L2luZGlhbmEtam9u/ZXMtYW5kLXRoZS1n/cmVhdC1jaXJjbGUtYm/VzdC1wYy1zZXR0aW5n/cy5qcGc", //image 4
+        "https://imgs.search.brave.com/3vqAQlZgAXNcvjzPQ6zBneS2ESNJTpnWmmQtna7_Mww/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cGNvbS90d2lzdGVk/dm94ZWwuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDI0LTAx/L2ZpbmFsLWZhbnRh/c3kteHZpLmpwZz9y/ZXNpemU9MTE3MCw2/NTkmbWFpbD0x", //image 5
         "https://imgs.search.brave.com/xAGWaIC3R5IOkLnM4e9RrOj7g68SN42Y3jd_yq4f7fw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvZGVh/ZC1pc2xhbmQyLXBv/b2xzaWRlLWNoaWxs/LXlmOG94cG45M3dp/OXp5b24uanBn", //image 6
-        "https://imgs.search.brave.com/jMBsUY2NXaBCfDgiJWdL7YRPz7X22EHPgPCFtfj9zXE0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZS5hcGkucGxheXN0/YXRpb24uY29tL3Z1/bGNhbi9hcC9ybmQv/MjAyMzAzLzAxMTYv/OTA5NjZmOGMzMzky/NmQxZmZkMTQ0YjU2/MDMyMjg3M2Y5NDM1/ZjQ4MGQyOTYwNmQ4/LmpwZw", //image 7
+        "https://imgs.search.brave.com/jMBsUY2NXaBCfDgiJWdL7YRPz7X22EHPgCFtfj9zXE0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZS5hcGkucGxheXN0/YXRpb24uY29tL3Z1/bGNhbi9hcC9ybmQv/MjAyMzAzLzAxMTYv/OTA5NjZmOGMzMzky/NmQxZmZkMTQ0YjU2/MDMyMjg3M2Y5NDM1/ZjQ4MGQyOTYwNmQ4/LmpwZw", //image 7
         "https://imgs.search.brave.com/587RIvVPD-P9r00d0ojl5sSy_bp3Dy-3IGDRniZiVIs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/dG9kYXktdGhlLXRl/cy12aS10cmFpbGVy/LXR1cm5zLTctYW5k/LWlzLWFzLW9sZC1h/cy1za3lyaW0tdjAt/ZWc4cHczcHQyMjZm/MS5qcGVnP3dpZHRo/PTY0MCZjcm9wPXNt/YXJ0JmF1dG89d2Vi/cCZzPWU4ZDA1ZGJl/YTA2NzVhYzE0MjJi/MzZmZjU2ODg2ZjJi/NTk1YmM2NjE1", //image 8
         "https://imgs.search.brave.com/H82RzlGkfiDko26-idG4xFZ4HrSVmisUmO7jGo2hlLw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMxLmNicmltYWdl/cy5jb20vd29yZHBy/ZXNzL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDI0LzA3L3N0YXIt/d2Fycy1vdXRsYXdz/LmpwZw", //image 9
         "https://imgs.search.brave.com/8uivN7SSnpovwzkQ1xDQn9OhvgZvza2z2BwwuVdMuq4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvY3li/ZXJwdW50LTIwNzct/aGQtdHNzcjliM3Fk/bnhldmFtZi5qcGc" //image 10
