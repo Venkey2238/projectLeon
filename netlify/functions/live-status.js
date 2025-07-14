@@ -2,9 +2,9 @@ const fetch = require("node-fetch");
 
 exports.handler = async () => {
   const channelId = "UCNxPNmokJwOsJANF4BlGbKA"; // LeonGrayJ
-  const invidiousInstance = "https://invidious.projectsegfau.lt"; // fallback if needed
+  const invidiousInstance = "https://invidious.snopyta.org"; // you can change if this breaks
 
-  console.log("---- CHECKING LIVE STATUS VIA INVIDIOUS ----");
+  console.log("---- ✅ CHECKING LIVE STATUS VIA INVIDIOUS ----");
 
   try {
     const res = await fetch(`${invidiousInstance}/api/v1/channels/${channelId}`);
