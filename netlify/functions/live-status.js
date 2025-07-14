@@ -5,7 +5,7 @@ exports.handler = async (event, context) => {
     const channelUrl = "https://www.youtube.com/@LeonGrayJ"; // or use the channel ID URL for reliability
 
     try {
-        const response = await fetch(channelUrl);
+        const response = await fetch(`https://www.youtube.com/@LeonGrayJ/live`);
         if (!response.ok) {
             throw new Error(`Failed to fetch channel page: ${response.statusText}`);
         }
