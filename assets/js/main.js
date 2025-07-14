@@ -35,48 +35,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const liveBadge = document.getElementById('live-badge');
     const logoContainer = document.getElementById('logo-container');
 
-    if (!logo || !liveBadge || !logoContainer) return;
+    if (!logo || !liveBadge || !logoContainer) {
+        console.warn("One or more required elements for livestream status not found.");
+        return;
+    }
 
     const youtubeLiveUrl = 'https://www.youtube.com/@LeonGrayJ/live';
-    const corsProxy = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(youtubeLiveUrl);
+    const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(youtubeLiveUrl);
 
     try {
-        const response = await fetch(corsProxy);
+        const response = await fetch(proxyUrl);
         const htmlText = await response.text();
-
         const isLive = htmlText.includes('"isLiveNow":true');
 
         if (isLive) {
-            // Add glow and red border
             logo.classList.add('live-glow', 'border-red-500');
             logo.classList.remove('border-purple-600');
             liveBadge.classList.remove('hidden');
 
-            // Click redirects to stream
             logoContainer.style.cursor = 'pointer';
             logoContainer.onclick = () => {
                 window.open(youtubeLiveUrl, '_blank');
             };
         } else {
-            // Remove glow
             logo.classList.remove('live-glow', 'border-red-500');
             logo.classList.add('border-purple-600');
             liveBadge.classList.add('hidden');
 
-            // Remove click
             logoContainer.style.cursor = 'default';
             logoContainer.onclick = null;
         }
-    } catch (error) {
-        console.error('Failed to check live status:', error);
+    } catch (err) {
+        console.error("Error checking livestream status:", err);
     }
 }
-document.addEventListener('DOMContentLoaded', () => {
-    fetchAndUpdateLivestreamStatus();
-    setInterval(fetchAndUpdateLivestreamStatus, 60000); // Every 60 sec
-    // Keep the hero image carousel code...
-});
 
+
+    // Initial check when the DOM is loaded
+    fetchAndUpdateLivestreamStatus();
+    // Recheck status every 60 seconds (60000 milliseconds)
+    // This interval will now simply re-apply the 'live' state
+    setInterval(fetchAndUpdateLivestreamStatus, 60000);
 
 
     // Hero Section Image Carousel
