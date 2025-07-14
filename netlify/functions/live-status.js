@@ -2,37 +2,37 @@ const fetch = require('node-fetch');
 
 exports.handler = async () => {
   const channelId = 'UCNxPNmokJwOsJANF4BlGbKA';
-  const liveUrl = `https://www.youtube.com/channel/${channelId}/live`;
+  const url = `https://www.youtube.com/embed/live_stream?channel=${channelId}`;
 
-  console.log('🔍 Checking live status via canonical tag');
+  console.log('🔍 Checking embed/live_stream endpoint for live status');
 
   try {
-    // Make request **without auto-redirect**
-    const res = await fetch(liveUrl, {
+    const res = await fetch(url, {
       headers: { 'User-Agent': 'Mozilla/5.0' },
-      redirect: 'manual'
     });
     const html = await res.text();
 
-    // Find the link rel="canonical"
-    const m = html.match(/<link rel="canonical" href="([^"]+)"/);
-    const href = m?.[1] ?? '';
+    console.log('✅ Fetched embed HTML length:', html.length);
 
-    const isLive = href.includes('/watch?v=');
-    const liveVideoUrl = isLive ? href : null;
+    // Look for playerMicroformatRenderer.urlCanonical (only present when live)
+    const isLive = html.includes('playerMicroformatRenderer');
+    let liveUrl = null;
 
-    console.log('✅ canonical href:', href);
-    console.log('🔴 isLive:', isLive, '→', liveVideoUrl);
+    if (isLive) {
+      const match = html.match(/"urlCanonical":"(https:\/\/www\.youtube\.com\/watch\?v=([\w-]{11}))"/);
+      if (match) {
+        liveUrl = match[1].replace(/\\u0026/g, '&');
+      }
+    }
+
+    console.log('🔴 isLive:', isLive, '→', liveUrl);
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ isLive, liveUrl: liveVideoUrl })
+      body: JSON.stringify({ isLive, liveUrl })
     };
-  } catch (err) {
+  } catch(err) {
     console.error('❌ Error:', err.message);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: err.message })
-    };
+    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
   }
 };
