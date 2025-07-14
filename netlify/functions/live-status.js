@@ -19,31 +19,21 @@ exports.handler = async (event, context) => {
 
         const start = "var ytInitialPlayerResponse = ";
         const startIndex = html.indexOf(start);
-        if (startIndex === -1) {
-            console.log("ytInitialPlayerResponse NOT FOUND");
-            throw new Error("ytInitialPlayerResponse not found");
-        }
+        if (startIndex === -1) throw new Error("ytInitialPlayerResponse not found");
 
         const sub = html.substring(startIndex + start.length);
         const endIndex = sub.indexOf(";</script>");
-        if (endIndex === -1) {
-            console.log("ytInitialPlayerResponse block NOT CLOSED properly");
-            throw new Error("ytInitialPlayerResponse block not closed");
-        }
+        if (endIndex === -1) throw new Error("ytInitialPlayerResponse block not closed");
 
         const jsonStr = sub.substring(0, endIndex);
         console.log("Extracted JSON snippet preview:", jsonStr.slice(0, 300));
 
-        let data;
-        try {
-            data = JSON.parse(jsonStr);
-        } catch (err) {
-            console.error("JSON parsing failed!", err);
-            throw new Error("Failed to parse ytInitialPlayerResponse");
-        }
+        const data = JSON.parse(jsonStr);
 
-        const isLive = data?.videoDetails?.isLive === true;
-        const videoId = data?.videoDetails?.videoId;
+        // 🔥 NEW LOGIC: fallback to nested object
+        const videoDetails = data?.videoDetails || data?.[""] || {};
+        const isLive = videoDetails.isLive === true;
+        const videoId = videoDetails.videoId;
         const liveUrl = isLive && videoId ? `https://www.youtube.com/watch?v=${videoId}` : null;
 
         console.log("Final result →", { isLive, liveUrl });
