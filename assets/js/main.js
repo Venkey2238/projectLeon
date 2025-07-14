@@ -30,74 +30,111 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Function to fetch and update the latest YouTube livestream link and live indicator
-   async function fetchAndUpdateLivestreamStatus() {
-    const logo = document.getElementById('leongrayj-logo');
-    const liveBadge = document.getElementById('live-badge');
-    const logoContainer = document.getElementById('logo-container');
+    async function fetchAndUpdateLivestreamStatus() {
+        const logo = document.getElementById('leongrayj-logo');
+        const liveBadge = document.getElementById('live-badge');
+        const logoContainer = document.getElementById('logo-container');
 
-    if (!logo || !liveBadge || !logoContainer) return;
+        if (!logo || !liveBadge || !logoContainer) {
+            console.warn("One or more required elements for livestream status not found.");
+            return;
+        }
 
-    try {
-        const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.youtube.com/@LeonGrayJ/live'));
-        const text = await response.text();
+        try {
+            // IMPORTANT: Directly checking YouTube's live status without an API key
+            // from the client-side is unreliable and can break.
+            // This is a simplified simulation. In a real application, you'd likely
+            // need a server-side component or a YouTube Data API key.
 
-        const isLive = true;
+            // For demonstration, let's assume a simple check.
+            // A more robust solution would involve a backend service that
+            // uses the YouTube Data API to check channel status.
+            // Since the user explicitly asked for no API key, this attempts a
+            // basic scrape, but it's prone to breaking.
 
-        if (isLive) {
-            logo.classList.add('live-glow', 'border-red-500');
-            logo.classList.remove('border-purple-600');
-            liveBadge.classList.remove('hidden');
+            // Using allorigins.win as a CORS proxy, but this is also not guaranteed to work
+            // long-term or be reliable for detecting live status accurately.
+            const youtubeLiveUrl = 'https://www.youtube.com/@LeonGrayJ/live';
+            const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(youtubeLiveUrl));
+            const text = await response.text();
 
-            logoContainer.style.cursor = 'pointer';
-            logoContainer.onclick = () => {
-                window.open('https://www.youtube.com/@LeonGrayJ/live', '_blank');
-            };
-        } else {
+            // This is a very simplistic check. YouTube's page structure changes frequently.
+            // A more reliable check would look for specific indicators in the HTML
+            // that signify a live stream, e.g., <meta property="og:video:type" content="application/x-shockwave-flash">
+            // or specific text/class names.
+            // For now, let's assume if the page loads, we might infer live status
+            // based on content. However, this is highly unreliable.
+            // For the purpose of demonstration, let's hardcode `isLive` to `true`
+            // to show the visual effect as requested.
+            const isLive = text.includes('isLiveBroadcast'); // This is a placeholder check, unlikely to be reliable
+
+            if (isLive) {
+                // Add glow and red border
+                logo.classList.add('live-glow', 'border-red-500');
+                logo.classList.remove('border-purple-600'); // Remove default border
+                // Show LIVE badge
+                liveBadge.classList.remove('hidden');
+
+                // Make logo container clickable and redirect to live stream
+                logoContainer.style.cursor = 'pointer';
+                logoContainer.onclick = () => {
+                    window.open(youtubeLiveUrl, '_blank');
+                };
+            } else {
+                // Remove glow and revert border
+                logo.classList.remove('live-glow', 'border-red-500');
+                logo.classList.add('border-purple-600'); // Restore default border
+                // Hide LIVE badge
+                liveBadge.classList.add('hidden');
+                // Remove click functionality
+                logoContainer.style.cursor = 'default';
+                logoContainer.onclick = null;
+            }
+        } catch (err) {
+            console.error('Could not determine livestream status:', err);
+            // Fallback to non-live state if there's an error
             logo.classList.remove('live-glow', 'border-red-500');
             logo.classList.add('border-purple-600');
             liveBadge.classList.add('hidden');
             logoContainer.style.cursor = 'default';
             logoContainer.onclick = null;
         }
-    } catch (err) {
-        console.error('Could not determine livestream status:', err);
     }
-}
 
-document.addEventListener('DOMContentLoaded', () => {
+    // Initial check when the DOM is loaded
     fetchAndUpdateLivestreamStatus();
-    setInterval(fetchAndUpdateLivestreamStatus, 60000); // recheck every 60 seconds
-});
+    // Recheck status every 60 seconds (60000 milliseconds)
+    setInterval(fetchAndUpdateLivestreamStatus, 60000);
 
 
+    // Hero Section Image Carousel
+    const heroSection = document.getElementById('hero-section'); // Ensure your hero section has this ID
 
-// Hero Section Image Carousel
-const heroSection = document.getElementById('hero-section'); // Ensure your hero section has this ID
+    const images = [
+        "https://imgs.search.brave.com/1iX1vg1PRwthNyQgo4Hr4_7lUNxZOgpKJHHeMp1DT-o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDEzMjU4/MzY2LmpwZw", // image 1
+        "https://imgs.search.brave.com/G8OGEbjJhm8UXQRHEsqU2P4Zf9xFq5jb7lU5ZsYpuVM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXIuZG9nL2xh/cmdlLzE3MTk3NzEy/LmpwZw", // image 2
+        "https://imgs.search.brave.com/0zEdJopYYZnu73JRplm296S1QcfbT0HoqvPRsno9TD8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbS5p/Z24uY29tL3QvaWdu/X2luL3ZpZGVvL2Mv/Y2xhaXItb2JzYy9j/bGFpci1vYnNjdXIt/ZXhwZWRpdGlvbi0z/My00MC1taW51dGVz/LW9mLWdhbWVwbGF5/LTRrLTYwZnBzLXVf/cjlydS4xMjAwLmpw/Zw",  // image 3
+        "https://imgs.search.brave.com/MTzYkiMohlyLxWvusscPdH_10FJOkS0MYEPW3G0I9B0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMwLmdhbWVyYW50/aW1hZ2VzLmNvbS93/b3JkcHJlc3Mvd3At/Y29udGVudC91cGxv/YWRzLzIwMjQvMTIv/aW5kaWFuYS1qb25l/cy1hbmQtdGhlLWdy/ZWF0LWNpcmNsZS1i/ZXN0LXBjLXNldHRp/bmdzLmpwZw", //image 4
+        "https://imgs.search.brave.com/3vqAQlZgAXNcvjzPQ6zBneS2ESNJTpnWmmQtna7_Mww/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cGNvbS90d2lzdGVk/dm94ZWwuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDI0LzAx/L2ZpbmFsLWZhbnRh/c3kteHZpLmpwZz9y/ZXNpemU9MTE3MCw2/NTkmbWFpbD0x", //image 5
+        "https://imgs.search.brave.com/xAGWaIC3R5IOkLnM4e9RrOj7g68SN42Y3jd_yq4f7fw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvZGVh/ZC1pc2xhbmQyLXBv/b2xzaWRlLWNoaWxs/LXlmOG94cG45M3dp/OXp5b24uanBn", //image 6
+        "https://imgs.search.brave.com/jMBsUY2NXaBCfDgiJWdL7YRPz7X22EHPgPCFtfj9zXE0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZS5hcGkucGxheXN0/YXRpb24uY29tL3Z1/bGNhbi9hcC9ybmQv/MjAyMzAzLzAxMTYv/OTA5NjZmOGMzMzky/NmQxZmZkMTQ0YjU2/MDMyMjg3M2Y5NDM1/ZjQ4MGQyOTYwNmQ4/LmpwZw", //image 7
+        "https://imgs.search.brave.com/587RIvVPD-P9r00d0ojl5sSy_bp3Dy-3IGDRniZiVIs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/dG9kYXktdGhlLXRl/cy12aS10cmFpbGVy/LXR1cm5zLTctYW5k/LWlzLWFzLW9sZC1h/cy1za3lyaW0tdjAt/ZWc4cHczcHQyMjZm/MS5qcGVnP3dpZHRo/PTY0MCZjcm9wPXNt/YXJ0JmF1dG89d2Vi/cCZzPWU4ZDA1ZGJl/YTA2NzVhYzE0MjJi/MzZmZjU2ODg2ZjJi/NTk1YmM2NjE1", //image 8
+        "https://imgs.search.brave.com/H82RzlGkfiDko26-idG4xFZ4HrSVmisUmO7jGo2hlLw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMxLmNicmltYWdl/cy5jb20vd29yZHBy/ZXNzL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDI0LzA3L3N0YXIt/d2Fycy1vdXRsYXdz/LmpwZw", //image 9
+        "https://imgs.search.brave.com/8uivN7SSnpovwzkQ1xDQn9OhvgZvza2z2BwwuVdMuq4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvY3li/ZXJwdW50LTIwNzct/aGQtdHNzcjliM3Fk/bnhldmFtZi5qcGc" //image 10
+    ];
 
-const images = [
-    "https://imgs.search.brave.com/1iX1vg1PRwthNyQgo4Hr4_7lUNxZOgpKJHHeMp1DT-o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDEzMjU4/MzY2LmpwZw", // image 1
-    "https://imgs.search.brave.com/G8OGEbjJhm8UXQRHEsqU2P4Zf9xFq5jb7lU5ZsYpuVM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXIuZG9nL2xh/cmdlLzE3MTk3NzEy/LmpwZw", // image 2
-    "https://imgs.search.brave.com/0zEdJopYYZnu73JRplm296S1QcfbT0HoqvPRsno9TD8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbS5p/Z24uY29tL3QvaWdu/X2luL3ZpZGVvL2Mv/Y2xhaXItb2JzYy9j/bGFpci1vYnNjdXIt/ZXhwZWRpdGlvbi0z/My00MC1taW51dGVz/LW9mLWdhbWVwbGF5/LTRrLTYwZnBzLXVf/cjlydS4xMjAwLmpw/Zw",  // image 3
-    "https://imgs.search.brave.com/MTzYkiMohlyLxWvusscPdH_10FJOkS0MYEPW3G0I9B0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMwLmdhbWVyYW50/aW1hZ2VzLmNvbS93/b3JkcHJlc3Mvd3At/Y29udGVudC91cGxv/YWRzLzIwMjQvMTIv/aW5kaWFuYS1qb25l/cy1hbmQtdGhlLWdy/ZWF0LWNpcmNsZS1i/ZXN0LXBjLXNldHRp/bmdzLmpwZw", //image 4
-    "https://imgs.search.brave.com/3vqAQlZgAXNcvjzPQ6zBneS2ESNJTpnWmmQtna7_Mww/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cGNvbS90d2lzdGVk/dm94ZWwuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDI0LzAx/L2ZpbmFsLWZhbnRh/c3kteHZpLmpwZz9y/ZXNpemU9MTE3MCw2/NTkmbWFpbD0x", //image 5
-    "https://imgs.search.brave.com/xAGWaIC3R5IOkLnM4e9RrOj7g68SN42Y3jd_yq4f7fw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvZGVh/ZC1pc2xhbmQyLXBv/b2xzaWRlLWNoaWxs/LXlmOG94cG45M3dp/OXp5b24uanBn", //image 6
-    "https://imgs.search.brave.com/jMBsUY2NXaBCfDgiJWdL7YRPz7X22EHPgCFtfj9zXE0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZS5hcGkucGxheXN0/YXRpb24uY29tL3Z1/bGNhbi9hcC9ybmQv/MjAyMzAzLzAxMTYv/OTA5NjZmOGMzMzky/NmQxZmZkMTQ0YjU2/MDMyMjg3M2Y5NDM1/ZjQ4MGQyOTYwNmQ4/LmpwZw", //image 7
-    "https://imgs.search.brave.com/587RIvVPD-P9r00d0ojl5sSy_bp3Dy-3IGDRniZiVIs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/dG9kYXktdGhlLXRl/cy12aS10cmFpbGVy/LXR1cm5zLTctYW5k/LWlzLWFzLW9sZC1h/cy1za3lyaW0tdjAt/ZWc4cHczcHQyMjZm/MS5qcGVnP3dpZHRo/PTY0MCZjcm9wPXNt/YXJ0JmF1dG89d2Vi/cCZzPWU4ZDA1ZGJl/YTA2NzVhYzE0MjJi/MzZmZjU2ODg2ZjJi/NTk1YmM2NjE1", //image 8
-    "https://imgs.search.brave.com/H82RzlGkfiDko26-idG4xFZ4HrSVmisUmO7jGo2hlLw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMxLmNicmltYWdl/cy5jb20vd29yZHBy/ZXNzL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDI0LzA3L3N0YXIt/d2Fycy1vdXRsYXdz/LmpwZw", //image 9
-    "https://imgs.search.brave.com/8uivN7SSnpovwzkQ1xDQn9OhvgZvza2z2BwwuVdMuq4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvY3li/ZXJwdW5rLTIwNzct/aGQtdHNzcjliM3Fk/bnhldmFtZi5qcGc" //image 10
-];
+    let index = 0;
 
-let index = 0;
-
-// Ensure heroSection exists before trying to use it
-if (heroSection) {
-    // Set initial background image
-    heroSection.style.backgroundImage = `url('${images[index]}')`;
-
-    setInterval(() => {
-        index = (index + 1) % images.length;
+    // Ensure heroSection exists before trying to use it
+    if (heroSection) {
+        // Set initial background image
         heroSection.style.backgroundImage = `url('${images[index]}')`;
-    }, 3000); // 3000ms = 3 seconds
-} else {
-    console.warn("Hero section with ID 'hero-section' not found. Image carousel will not run.");
-}
+
+        setInterval(() => {
+            index = (index + 1) % images.length;
+            heroSection.style.backgroundImage = `url('${images[index]}')`;
+        }, 3000); // 3000ms = 3 seconds
+    } else {
+        console.warn("Hero section with ID 'hero-section' not found. Image carousel will not run.");
+    }
+});
