@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!logo || !liveBadge || !logoContainer) return;
 
     try {
-        const response = await fetch('https://www.youtube.com/@LeonGrayJ/live');
+        const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.youtube.com/@LeonGrayJ/live'));
         const text = await response.text();
 
         const isLive = text.includes('"isLiveNow":true');
