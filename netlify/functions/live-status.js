@@ -1,27 +1,35 @@
-const { getChannelInfo } = require('yt-channel-info');
+const chromium = require('chrome-aws-lambda');
 
 exports.handler = async () => {
-  const channelId = 'UCNxPNmokJwOsJANF4BlGbKA';
-  console.log('🔍 Checking live status via yt-channel-info');
-
+  let browser = null;
   try {
-    const data = await getChannelInfo(channelId, 1);
-    // library returns whether streaming live:
-    const isLive = data.isLive;
-    const liveId = data.videoId; // ID of live video, if any
-    const liveUrl = isLive ? `https://www.youtube.com/watch?v=${liveId}` : null;
+    browser = await chromium.puppeteer.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath,
+      headless: chromium.headless,
+    });
 
-    console.log({ isLive, liveUrl });
+    const page = await browser.newPage();
+    await page.goto('https://www.youtube.com/@LeonGrayJ/live', { waitUntil: 'networkidle2' });
+
+    const result = await page.evaluate(() => {
+      const badge = document.querySelector('span.yt-badge-live');
+      const viewers = document.querySelector('li:has-text("watching")');
+      const canonical = document.querySelector('link[rel=canonical]')?.href;
+      return {
+        isLive: !!badge || !!viewers,
+        liveUrl: canonical?.includes('/watch?v=') ? canonical : null
+      };
+    });
+
     return {
       statusCode: 200,
-      body: JSON.stringify({ isLive, liveUrl }),
+      body: JSON.stringify(result)
     };
-
   } catch (err) {
-    console.error('❌ Error:', err.message);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: err.message }),
-    };
+    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+  } finally {
+    if (browser) await browser.close();
   }
 };
