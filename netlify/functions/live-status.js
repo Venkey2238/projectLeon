@@ -5,15 +5,13 @@ exports.handler = async (event, context) => {
     const channelUrl = "https://www.youtube.com/@LeonGrayJ"; // or use the channel ID URL for reliability
 
     try {
-        const response = await fetch("https://www.youtube.com/@LeonGrayJ");
-        if (!response.ok) {
-            throw new Error(`Failed to fetch channel page: ${response.statusText}`);
-        }
+        const response = await fetch("https://www.youtube.com/@LeonGrayJ/live", {
+    method: "HEAD",
+    redirect: "manual"
+});
 
-        const html = await response.text();
-
-        const isLive = html.includes("hqdefault_live.jpg");
-        const liveUrl = isLive ? `${channelUrl}/live` : null;
+const isLive = response.status === 302 && response.headers.get("location").includes("watch");
+const liveUrl = isLive ? response.headers.get("location") : null;
 
         return {
             statusCode: 200,
