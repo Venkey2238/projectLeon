@@ -9,52 +9,52 @@ document.addEventListener('DOMContentLoaded', () => {
     // --------------------------------------------------------------------------
     // Video Loading Screen Logic
     // --------------------------------------------------------------------------
-    const loadingScreen = document.getElementById('loading-screen');
-    const startupVideo = document.getElementById('startup-video');
+    // const loadingScreen = document.getElementById('loading-screen');
+    // const startupVideo = document.getElementById('startup-video');
 
-    if (startupVideo && loadingScreen) {
-        console.log('Loading screen and video elements found.');
+    // if (startupVideo && loadingScreen) {
+    //     console.log('Loading screen and video elements found.');
 
-        startupVideo.addEventListener('canplaythrough', () => {
-            console.log('Video: canplaythrough event fired. Attempting to play...');
-            startupVideo.play().then(() => {
-                console.log('Video: Play successful!');
-            }).catch(error => {
-                console.warn('Video: Autoplay prevented:', error);
-                loadingScreen.classList.add('hidden'); // Hide immediately if autoplay fails
-            });
-        }, { once: true });
+    //     startupVideo.addEventListener('canplaythrough', () => {
+    //         console.log('Video: canplaythrough event fired. Attempting to play...');
+    //         startupVideo.play().then(() => {
+    //             console.log('Video: Play successful!');
+    //         }).catch(error => {
+    //             console.warn('Video: Autoplay prevented:', error);
+    //             loadingScreen.classList.add('hidden'); // Hide immediately if autoplay fails
+    //         });
+    //     }, { once: true });
 
-        startupVideo.addEventListener('ended', () => {
-            console.log('Video: ended event fired. Hiding loading screen...');
-            loadingScreen.classList.add('hidden');
-            loadingScreen.addEventListener('transitionend', () => {
-                console.log('Loading screen: Transition ended, removing element.');
-                loadingScreen.remove();
-            }, { once: true });
-        });
+    //     startupVideo.addEventListener('ended', () => {
+    //         console.log('Video: ended event fired. Hiding loading screen...');
+    //         loadingScreen.classList.add('hidden');
+    //         loadingScreen.addEventListener('transitionend', () => {
+    //             console.log('Loading screen: Transition ended, removing element.');
+    //             loadingScreen.remove();
+    //         }, { once: true });
+    //     });
 
-        startupVideo.addEventListener('error', (e) => {
-            console.error('Video: Error loading or playing:', e);
-            loadingScreen.classList.add('hidden');
-            loadingScreen.addEventListener('transitionend', () => {
-                loadingScreen.remove();
-            }, { once: true });
-        }, { once: true });
+    //     startupVideo.addEventListener('error', (e) => {
+    //         console.error('Video: Error loading or playing:', e);
+    //         loadingScreen.classList.add('hidden');
+    //         loadingScreen.addEventListener('transitionend', () => {
+    //             loadingScreen.remove();
+    //         }, { once: true });
+    //     }, { once: true });
 
-        // Optional Fallback: A timeout
-        setTimeout(() => {
-            if (loadingScreen && !loadingScreen.classList.contains('hidden')) {
-                console.warn('Loading screen: Timeout fallback triggered. Hiding...');
-                loadingScreen.classList.add('hidden');
-                loadingScreen.addEventListener('transitionend', () => {
-                    loadingScreen.remove();
-                }, { once: true });
-            }
-        }, 5000); // 5 seconds
-    } else {
-        console.error('Loading screen or startup video elements NOT found!');
-    }
+    //     // Optional Fallback: A timeout
+    //     setTimeout(() => {
+    //         if (loadingScreen && !loadingScreen.classList.contains('hidden')) {
+    //             console.warn('Loading screen: Timeout fallback triggered. Hiding...');
+    //             loadingScreen.classList.add('hidden');
+    //             loadingScreen.addEventListener('transitionend', () => {
+    //                 loadingScreen.remove();
+    //             }, { once: true });
+    //         }
+    //     }, 5000); // 5 seconds
+    // } else {
+    //     console.error('Loading screen or startup video elements NOT found!');
+    // }
 
 
     // --------------------------------------------------------------------------
