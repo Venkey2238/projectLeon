@@ -30,45 +30,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Function to fetch and update the latest YouTube livestream link and live indicator
-   async function updateLivestreamStatus() {
+   function checkIfLive() {
+    const iframe = document.getElementById('live-checker');
     const logo = document.getElementById('leongrayj-logo');
     const liveBadge = document.getElementById('live-badge');
     const logoContainer = document.getElementById('logo-container');
 
-    if (!logo || !liveBadge || !logoContainer) {
-        console.warn("One or more required elements for livestream status not found.");
-        return;
-    }
+    const checkLive = () => {
+        try {
+            const currentURL = iframe.contentWindow.location.href;
+            const isLive = currentURL.includes('/watch?v=');
 
-    try {
-        const res = await fetch('/.netlify/functions/live-status');
-        const { isLive, liveUrl } = await res.json();
-        console.log("LIVE STATUS:", isLive, liveUrl); // ✅ Debug line
-
-        if (isLive) {
-            logo.classList.add('live-glow', 'border-red-500');
-            logo.classList.remove('border-purple-600');
-            liveBadge.classList.remove('hidden');
-            logoContainer.style.cursor = 'pointer';
-            logoContainer.onclick = () => {
-                window.open(liveUrl || 'https://www.youtube.com/@LeonGrayJ/live', '_blank');
-            };
-        } else {
-            logo.classList.remove('live-glow', 'border-red-500');
-            logo.classList.add('border-purple-600');
-            liveBadge.classList.add('hidden');
-            logoContainer.style.cursor = 'default';
-            logoContainer.onclick = null;
+            if (isLive) {
+                logo.classList.add('live-glow', 'border-red-500');
+                logo.classList.remove('border-purple-600');
+                liveBadge.classList.remove('hidden');
+                logoContainer.style.cursor = 'pointer';
+                logoContainer.onclick = () => {
+                    window.open(currentURL, '_blank');
+                };
+            } else {
+                logo.classList.remove('live-glow', 'border-red-500');
+                logo.classList.add('border-purple-600');
+                liveBadge.classList.add('hidden');
+                logoContainer.style.cursor = 'default';
+                logoContainer.onclick = null;
+            }
+        } catch (e) {
+            console.warn('Unable to check live status due to cross-origin restrictions');
         }
-    } catch (error) {
-        console.error("Live status check failed:", error);
-    }
+    };
+
+    iframe.onload = () => {
+        setTimeout(checkLive, 3000); // wait for redirect to complete
+    };
 }
 
+// Call it on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+    checkIfLive();
+});
 
-    // Initial check when the DOM is loaded
-    updateLivestreamStatus();
-    setInterval(updateLivestreamStatus, 30000);
 
 
     // Hero Section Image Carousel (existing code, no changes needed here)
