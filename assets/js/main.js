@@ -30,45 +30,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Function to fetch and update the latest YouTube livestream link and live indicator
-   function checkIfLive() {
-    const iframe = document.getElementById('live-checker');
-    const logo = document.getElementById('leongrayj-logo');
-    const liveBadge = document.getElementById('live-badge');
-    const logoContainer = document.getElementById('logo-container');
+   async function updateLivestreamStatus() {
+  const logo = document.getElementById('leongrayj-logo');
+  const liveBadge = document.getElementById('live-badge');
+  const logoContainer = document.getElementById('logo-container');
 
-    const checkLive = () => {
-        try {
-            const currentURL = iframe.contentWindow.location.href;
-            const isLive = currentURL.includes('/watch?v=');
+  try {
+    const res = await fetch('/.netlify/functions/live-status');
+    const { isLive, liveUrl } = await res.json();
 
-            if (isLive) {
-                logo.classList.add('live-glow', 'border-red-500');
-                logo.classList.remove('border-purple-600');
-                liveBadge.classList.remove('hidden');
-                logoContainer.style.cursor = 'pointer';
-                logoContainer.onclick = () => {
-                    window.open(currentURL, '_blank');
-                };
-            } else {
-                logo.classList.remove('live-glow', 'border-red-500');
-                logo.classList.add('border-purple-600');
-                liveBadge.classList.add('hidden');
-                logoContainer.style.cursor = 'default';
-                logoContainer.onclick = null;
-            }
-        } catch (e) {
-            console.warn('Unable to check live status due to cross-origin restrictions');
-        }
-    };
-
-    iframe.onload = () => {
-        setTimeout(checkLive, 3000); // wait for redirect to complete
-    };
+    if (isLive) {
+      logo.classList.add('live-glow', 'border-red-500');
+      logo.classList.remove('border-purple-600');
+      liveBadge.classList.remove('hidden');
+      logoContainer.style.cursor = 'pointer';
+      logoContainer.onclick = () => window.open(liveUrl, '_blank');
+    } else {
+      logo.classList.remove('live-glow', 'border-red-500');
+      logo.classList.add('border-purple-600');
+      liveBadge.classList.add('hidden');
+      logoContainer.style.cursor = 'default';
+      logoContainer.onclick = null;
+    }
+  } catch (error) {
+    console.error("Live status check failed:", error);
+  }
 }
 
-// Call it on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-    checkIfLive();
+  updateLivestreamStatus();
+  setInterval(updateLivestreamStatus, 30000); // every 30 seconds
 });
 
 
