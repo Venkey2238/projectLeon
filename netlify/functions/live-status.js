@@ -1,35 +1,36 @@
 const fetch = require('node-fetch');
+const xml2js = require('xml2js');
+
+const CHANNEL_ID = 'UCNxPNmokJwOsJANF4BlGbKA'; // your actual channel ID
+const FEED_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 
 exports.handler = async () => {
-  const LIVE_URL = 'https://www.youtube.com/@LeonGrayJ/live';
-
   try {
-    const res = await fetch(LIVE_URL, {
-      method: 'GET',
-      headers: { 'User-Agent': 'Mozilla/5.0' },
-      redirect: 'manual'
-    });
+    const res = await fetch(FEED_URL);
+    const xml = await res.text();
 
-    const isLive = [302, 303].includes(res.status);
-    let liveUrl = null;
+    const parsed = await xml2js.parseStringPromise(xml, { explicitArray: false });
 
-    if (isLive) {
-      const location = res.headers.get('location');
-      if (location && location.startsWith('/watch')) {
-        liveUrl = `https://www.youtube.com${location}`;
-      }
+    const entries = parsed.feed.entry;
+    if (!entries) {
+      return { statusCode: 200, body: JSON.stringify({ isLive: false }) };
     }
+
+    const latest = Array.isArray(entries) ? entries[0] : entries;
+    const liveContent = latest['media:group']['yt:liveBroadcastContent'];
+
+    const isLive = liveContent === 'live';
+    const liveUrl = isLive ? latest.link.href : null;
 
     return {
       statusCode: 200,
       body: JSON.stringify({ isLive, liveUrl })
     };
-
   } catch (err) {
-    // fallback to not live
+    console.error('Error checking YouTube live status:', err);
     return {
-      statusCode: 200,
-      body: JSON.stringify({ isLive: false, liveUrl: null })
+      statusCode: 500,
+      body: JSON.stringify({ error: err.message })
     };
   }
 };
