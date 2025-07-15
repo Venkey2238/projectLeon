@@ -4,6 +4,20 @@
     It handles interactive elements, enhances user experience, and fetches
     the latest YouTube livestream link from a Netlify Function.
 */
+document.addEventListener("DOMContentLoaded", () => {
+    const video = document.getElementById("intro-video");
+    const loader = document.getElementById("video-loader");
+
+    if (video && loader) {
+        video.onended = () => {
+            loader.classList.add("fade-out");
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 1000); // Matches the fade-out duration
+        };
+    }
+});
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // Smooth scrolling for navigation links
