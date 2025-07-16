@@ -42,6 +42,26 @@ html {
     Font family 'Inter' is also set globally in index.html for consistency.
 */
 
+/* --- NEW OR MODIFIED STYLES FOR LOGO AND BORDER ALIGNMENT --- */
+
+/* Target the logo image specifically to ensure it fills its parent container */
+#leongrayj-logo {
+    /* Previous: width: 100%; height: 100%; */
+    /* Adjust these values slightly to make the image visually fill the border */
+    width: 110%; /* Experiment with values like 105%, 110%, 115% */
+    height: 110%; /* Match width */
+    object-fit: cover;
+    border-radius: 50%; /* Ensure the border-radius is also applied to the image for a perfect circle */
+
+    /* Position it slightly to center after oversizing */
+    position: absolute; /* Add this */
+    top: 50%; /* Add this */
+    left: 50%; /* Add this */
+    transform: translate(-50%, -50%); /* Add this to truly center it */
+}
+
+/* You already have the .live-glow styles for the box-shadow */
+
 /* -------------------------------------------------------------------------- */
 /* 2. Header & Navigation */
 /* -------------------------------------------------------------------------- */
