@@ -1,7 +1,9 @@
 const fetch = require('node-fetch');
 const xml2js = require('xml2js');
 
-const CHANNEL_ID = 'UCNxPNmokJwOsJANF4BlGbKA'; // your actual channel ID
+// Corrected YouTube Channel ID
+const CHANNEL_ID = 'UCp1YTK3TMMKGE6F6U_IYlsQ';
+// Correct YouTube Atom Feed URL
 const FEED_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 
 exports.handler = async () => {
@@ -17,14 +19,14 @@ exports.handler = async () => {
     }
 
     const latest = Array.isArray(entries) ? entries[0] : entries;
-    const liveContent = latest['media:group']['yt:liveBroadcastContent'];
-
-    const isLive = liveContent === 'live';
-    const liveUrl = isLive ? latest.link.href : null;
+    const isLive = latest['yt:channelId'] === CHANNEL_ID && latest['yt:videoId'] && latest['media:group']['yt:liveBroadcastContent'] === 'live';
+    const videoId = latest['yt:videoId'] || null;
+    const liveUrl = latest.link.href || null;
+    const title = latest.title || 'Latest Stream';
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ isLive, liveUrl })
+      body: JSON.stringify({ isLive, liveUrl, videoId, title })
     };
   } catch (err) {
     console.error('Error checking YouTube live status:', err);
