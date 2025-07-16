@@ -178,7 +178,6 @@ section h2 span {
 }
 
 
-
 /* Game Card Styling */
 .game-card {
     /* Tailwind classes apply bg-gray-800, rounded-xl, p-6, flex, flex-col */
@@ -327,4 +326,31 @@ footer a {
 #live-badge {
     /* Tailwind classes: absolute bottom-0 right-0 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full transform translate-x-1/4 translate-y-1/4 hidden z-20 */
     white-space: nowrap; /* Prevent "LIVE" from wrapping */
+}
+
+/* --- NEW OR MODIFIED STYLES FOR LOGO AND BORDER ALIGNMENT --- */
+
+/* Target the logo image specifically to ensure it fills its parent container */
+#leongrayj-logo {
+    /* Existing: w-[95%] h-[95%] object-cover rounded-full */
+    /* Change to 100% to fill the container completely */
+    width: 100%;
+    height: 100%;
+    /* Keep object-cover to maintain aspect ratio and prevent distortion */
+    object-fit: cover;
+    /* Ensure the border-radius is also applied to the image for a perfect circle */
+    border-radius: 50%;
+}
+
+/* Adjust the logo's parent container border if needed */
+/* The existing border-2 on the 'a' tag already handles the purple border. */
+/* No changes needed here unless you want to make the initial purple border smaller or larger. */
+a.relative.block.w-16.h-16.md\:w-20.md\:h-20.rounded-full.border-2.border-purple-600 {
+    /* The border on the container itself */
+    /* This border will now perfectly frame the 100% width/height image. */
+    /* If you want the glow to appear *outside* of this border,
+       then the current setup is good. If you want the glow to replace or
+       be part of this border, you might remove 'border-2' from the HTML
+       and manage it purely via box-shadow or a pseudo-element on the 'a' tag.
+       For now, let's assume the purple border is distinct from the red glow. */
 }
