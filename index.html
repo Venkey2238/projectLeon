@@ -28,15 +28,52 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
             transform: translateY(-5px);
         }
+        /* Styles for the AI Dialogue Box */
+        .ai-dialogue-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #1a202c; /* gray-900 */
+            border: 2px solid #6b46c1; /* purple-600 */
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 350px;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            display: none; /* Hidden by default */
+            color: #e2e8f0; /* gray-200 */
+        }
+        .ai-dialogue-box.show {
+            display: block;
+        }
+        .ai-dialogue-box h3 {
+            color: #a78bfa; /* purple-400 */
+            margin-bottom: 10px;
+        }
+        .ai-dialogue-box p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .ai-dialogue-box .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #cbd5e0; /* gray-400 */
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        .ai-dialogue-box iframe {
+            border-radius: 8px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
 
 <body class="bg-gray-950 text-gray-100 antialiased leading-relaxed">
-<!--     <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; display: flex; justify-content: center; align-items: center; z-index: 9999;">
-        <video id="startup-video" src="./assets/videos/generated-image-71e9041e-d80d-477a-9d69-25657ce75f25.mp4" preload="auto" muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
-    </div>
- -->
+
     <div class="min-h-screen flex flex-col">
 
     <header class="bg-gray-900 shadow-lg py-4 px-6 md:px-12 fixed w-full z-10">
@@ -50,7 +87,7 @@
             </div>
           </a>
           <h1 class="text-3xl font-bold text-white tracking-wide">
-            <span class="text-purple-400">LeonGrayJ</span> 
+            <span class="text-purple-400">LeongrayJ</span> Game Priority List
           </h1>
         </div>
 
@@ -61,14 +98,6 @@
         </div>
       </nav>
     </header>
-        <div id="stream-dialog" class="fixed bottom-5 right-5 z-50 hidden bg-gray-800 text-white p-4 rounded-lg shadow-2xl border border-purple-600 w-[350px]">
-  <h3 id="stream-title" class="font-bold text-lg mb-2 text-purple-400">🎮 Live Now!</h3>
-  <div class="aspect-w-16 aspect-h-9 mb-2">
-    <iframe id="stream-video" class="w-full h-48 rounded" src="" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <p id="stream-summary" class="text-sm text-gray-300">...</p>
-</div>
-
 
         <section id="hero-section" class="relative h-screen flex items-center justify-center text-center overflow-hidden pt-16" 
     style="background-image: url('https://imgs.search.brave.com/1iX1vg1PRwthNyQgo4Hr4_7lUNxZOgpKJHHeMp1DT-o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDEzMjU4/MzY2LmpwZw'); background-size: contain; background-repeat: no-repeat; background-position: center;">
@@ -264,6 +293,14 @@
                 </div>
             </div>
         </footer>
+    </div>
+    <div id="ai-dialogue-box" class="ai-dialogue-box">
+        <button class="close-btn" id="ai-dialogue-close-btn">&times;</button>
+        <h3 id="ai-dialogue-title">Greetings, Gamer! 👋</h3>
+        <p id="ai-dialogue-content"></p>
+        <div id="ai-video-container" class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mt-4 hidden">
+            <iframe id="ai-video-iframe" class="absolute top-0 left-0 w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
     </div>
     <iframe id="live-checker" src="https://www.youtube.com/@LeonGrayJ/live" style="display:none;"></iframe>
     <script src="./assets/js/main.js"></script>
