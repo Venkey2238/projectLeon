@@ -85,35 +85,44 @@ document.addEventListener('DOMContentLoaded', () => {
     // --------------------------------------------------------------------------
     // Function to fetch and update the latest YouTube livestream link and live indicator
     // --------------------------------------------------------------------------
-    async function updateLivestreamStatus() {
-        const logo = document.getElementById('leongrayj-logo');
-        const liveBadge = document.getElementById('live-badge');
-        const logoContainer = document.getElementById('logo-container');
+    async function updateStreamDialog() {
+  const dialog = document.getElementById('stream-dialog');
+  const titleEl = document.getElementById('stream-title');
+  const videoEl = document.getElementById('stream-video');
+  const summaryEl = document.getElementById('stream-summary');
 
-        try {
-            const res = await fetch('/.netlify/functions/live-status');
-            const { isLive, liveUrl } = await res.json();
+  try {
+    const res = await fetch('/.netlify/functions/live-status');
+    const { isLive, videoId, title } = await res.json();
 
-            if (isLive) {
-                logo.classList.add('live-glow', 'border-red-500');
-                logo.classList.remove('border-purple-600');
-                liveBadge.classList.remove('hidden');
-                logoContainer.style.cursor = 'pointer';
-                logoContainer.onclick = () => window.open(liveUrl, '_blank');
-            } else {
-                logo.classList.remove('live-glow', 'border-red-500');
-                logo.classList.add('border-purple-600');
-                liveBadge.classList.add('hidden');
-                logoContainer.style.cursor = 'default';
-                logoContainer.onclick = null;
-            }
-        } catch (error) {
-            console.error("Live status check failed:", error);
-        }
-    }
+    if (!videoId) return;
 
-    updateLivestreamStatus();
-    setInterval(updateLivestreamStatus, 30000); // every 30 seconds
+    dialog.classList.remove('hidden');
+
+    titleEl.textContent = isLive ? '🔴 LIVE Now!' : '🕹️ Last Streamed';
+    videoEl.src = `https://www.youtube.com/embed/${videoId}`;
+    
+    // Optional: Fetch AI summary
+    const prompt = `Write a fun 1-liner about a gaming stream titled "${title}".`;
+    const aiResponse = await fetch("https://api-inference.huggingface.co/models/gpt2", {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer YOUR_AI_API_KEY",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ inputs: prompt })
+    });
+
+    const aiData = await aiResponse.json();
+    summaryEl.textContent = aiData[0]?.generated_text?.replace(prompt, "").trim() || title;
+  } catch (error) {
+    console.error("Stream dialog update failed:", error);
+  }
+}
+
+updateStreamDialog();
+setInterval(updateStreamDialog, 60000); // every 60 seconds
+ // every 30 seconds
 
 
     // --------------------------------------------------------------------------
