@@ -90,33 +90,14 @@
     <!-- Hero                                                          -->
     <!-- Uses local asset from original; inline fallback background    -->
     <!-- ============================================================= -->
-    <section id="hero-section" class="relative h-screen flex items-center justify-center text-center overflow-hidden pt-16 bg-cover bg-center bg-no-repeat" data-hero-bg="./assets/img/hero.jpg" style="background-image:url('https://imgs.search.brave.com/1iX1vg1PRwthNyQgo4Hr4_7lUNxZOgpKJHHeMp1DT-o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxscGFwZXJjYXZlLmNvbS93cC93cDEzMjU4MzY2LmpwZw');">
-      <div class="absolute inset-0 bg-black/70"></div>
-      <div class="relative z-10 p-6 max-w-4xl mx-auto">
-        <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-6 text-shadow-lg leading-tight">Curating the Future of Gaming</h2>
-        <p class="text-xl md:text-2xl text-gray-300 mb-8 text-shadow-lg">Welcome to my personal chronicle of the most anticipated titles, categorized by the urgency of their call to adventure. Join me as I explore what's next on the horizon.</p>
-        <a href="#featured-spotlight" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">Explore My List</a>
-      </div>
-    </section>
-
-    <!-- ============================================================= -->
-    <!-- Main Content                                                   -->
-    <!-- ============================================================= -->
-    <main id="main-content" class="flex-grow container mx-auto px-6 py-16 md:py-24" role="main">
-      <!-- Featured Game Spotlight (JS-populated) -->
-      <section id="featured-spotlight" class="mb-20 section-fade-in" aria-labelledby="featured-spotlight-heading">
-        <h2 id="featured-spotlight-heading" class="text-4xl md:text-5xl font-bold text-white mb-12 text-center relative pb-4">
-          Featured Pick of the Month
-          <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-purple-600 rounded-full"></span>
-        </h2>
-        <section class="container mx-auto px-6 py-16 md:py-24">
+    <section id="featured-streams-vods" class="container mx-auto px-6 py-16 md:py-24 mb-20">
     <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center relative pb-4">
         Featured Streams & VODs
-        <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-red-600 rounded-full"></span>
+        <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-red-600 rounded-full animate-expand-line"></span>
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-        <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.03] transition-all duration-300 border border-transparent hover:border-red-600 flex flex-col">
+        <div class="rounded-xl overflow-hidden shadow-2xl flex flex-col featured-card card-hover-effect">
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden">
                 <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/of2reY8GzDo" title="The Walking Dead – Part 1 | LeonGrayJ Gaming" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
@@ -128,7 +109,7 @@
             </div>
         </div>
 
-        <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.03] transition-all duration-300 border border-transparent hover:border-red-600 flex flex-col">
+        <div class="rounded-xl overflow-hidden shadow-2xl flex flex-col featured-card card-hover-effect">
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden">
                 <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/Hcw0cDpE1T0" title="The Walking Dead – Part 2 | LeonGrayJ Gaming" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
@@ -140,7 +121,7 @@
             </div>
         </div>
 
-        <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.03] transition-all duration-300 border border-transparent hover:border-red-600 flex flex-col">
+        <div class="rounded-xl overflow-hidden shadow-2xl flex flex-col featured-card card-hover-effect">
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden">
                 <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/l8hCzJyo4DY" title="The Walking Dead – Part 3 | LeonGrayJ Gaming" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
@@ -154,15 +135,14 @@
     </div>
 
     <div class="mt-16 text-center">
-        <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white text-xl font-extrabold rounded-full shadow-xl transform hover:scale-105 hover:translate-y-[-2px] transition-all duration-300 ease-out animate-pulse-once">
+        <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white text-xl font-extrabold rounded-full shadow-xl transform hover:scale-105 hover:translate-y-[-2px] transition-all duration-300 ease-out live-button-pulse">
             <svg class="w-7 h-7 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill-rule="evenodd" d="M19.812 5.056a3.75 3.75 0 0 0-2.124-2.124C16.322 2.5 12 2.5 12 2.5s-4.322 0-5.688.432a3.75 3.75 0 0 0-2.124 2.124c-.432 1.366-.432 4.225-.432 4.225v2.817c0 2.86.001 4.79.432 6.156a3.75 3.75 0 0 0 2.124 2.124c1.366.432 5.688.432 5.688.432s4.322 0 5.688-.432a3.75 3.75 0 0 0 2.124-2.124c.432-1.366.432-4.225.432-4.225V9.281c0-2.86-.001-4.79-.432-6.156ZM9.75 15.375V8.625L15.375 12l-5.625 3.375Z" clip-rule="evenodd" />
+                <path fill-rule="evenodd" d="M19.812 5.056a3.75 3.75 0 0 0-2.124-2.124C16.322 2.5 12 2.5 12 2.5s-4.322 0-5.688.432a3.75 3.75 0 0 0-2.124 2.124c-.432 1.366-.432 4.225-.432 4.225v2.817c0 2.86.001 4.79.432 6.156a3.75 3.75 0 0 0 2.124 2.124c1.366.432 5.688.432 5.688.432s4.322 0 5.688-.432a3.75 3.75 0 0 0 2.124-2.124c-.432-1.366-.432-4.225-.432-4.225V9.281c0-2.86-.001-4.79-.432-6.156ZM9.75 15.375V8.625L15.375 12l-5.625 3.375Z" clip-rule="evenodd" />
             </svg>
             Watch LeonGrayJ Live Now!
         </a>
     </div>
 </section>
-      </section>
 
 <!--      
       <section class="mb-16 section-fade-in" aria-label="Search games">
