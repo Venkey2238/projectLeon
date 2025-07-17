@@ -105,76 +105,275 @@
 <section class="mt-20"> <!-- margin-top -->
 
 
-        <!-- Featured Game Spotlight (JS-populated) -->
-      <!-- Featured Game Parts Only -->
-<section id="featured-spotlight" class="mb-20 section-fade-in" aria-labelledby="featured-spotlight-heading">
-  <h2 id="featured-spotlight-heading" class="text-4xl md:text-5xl font-bold text-white mb-12 text-center relative pb-4">
-          Featured Pick of the Month
-          <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-purple-600 rounded-full"></span>
-        </h2>
-  <div id="featured-spotlight-wrapper" class="bg-gray-900 rounded-xl p-6 md:p-10 shadow-2xl featured-game-spotlight border border-purple-700">
-    <div class="lg:w-full w-full space-y-6">
-      <h4 class="text-2xl font-bold text-white mb-4 border-b border-purple-700 pb-2 text-center">Live Stream Parts:</h4>
+<!-- =============================================== -->
+<!-- PREMIUM FEATURED SPOTLIGHT (LeonGrayJ)          -->
+<!-- Drop-in replacement for your current section.   -->
+<!-- TailwindCSS + accessible + data-rich + SEO.     -->
+<!-- =============================================== -->
+<section id="featured-spotlight" class="relative mb-24 section-fade-in" aria-labelledby="featured-spotlight-heading">
+  <!-- Decorative BG / Hero Layer -->
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
+    <!-- gradient wash -->
+    <div class="absolute inset-0 bg-gradient-to-b from-purple-900/70 via-gray-900/90 to-black/95"></div>
+    <!-- dynamic hero thumbnail (swap from JS) -->
+    <img id="featured-spotlight-hero-img" src="https://img.youtube.com/vi/of2reY8GzDo/maxresdefault.jpg" alt="" class="w-full h-full object-cover opacity-40 transition-opacity duration-700 group-[.loaded]:opacity-60"/>
+    <!-- subtle grid texture -->
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 40 40\'%3E%3Crect width=\'1\' height=\'1\' fill=\'%236b21a8\'/%3E%3C/svg%3E')] opacity-[0.08]"></div>
+  </div>
 
-      <!-- Part 1 Video Card -->
-      <div class="bg-gray-800 rounded-lg p-4 shadow-md flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 border border-purple-500 hover:border-purple-400 transition duration-300 group">
-        <div class="relative w-full sm:w-2/5 pb-[31.5%] sm:pb-[22.5%] h-0 overflow-hidden rounded-md flex-shrink-0">
-          <iframe class="absolute top-0 left-0 w-full h-full"
-                  src="https://www.youtube.com/embed/of2reY8GzDo?controls=1"
-                  title="The Walking Dead Part 1"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen></iframe>
-        </div>
-        <div class="flex-grow text-center sm:text-left">
-          <h5 class="text-xl font-semibold text-white">Part 1 (Playtime 0~9h) 🧟</h5>
-          <p class="text-gray-400 text-sm">My First Playthrough</p>
-          <p class="text-gray-400 text-sm">Published: 2025-07-14 | Views: 199</p>
-          <a href="https://www.youtube.com/live/of2reY8GzDo?si=lKvrfz0mpX9bLZ2w" target="_blank" class="text-purple-400 hover:text-purple-300 text-sm mt-1 inline-block">Watch on YouTube</a>
-        </div>
+  <div class="relative px-4 sm:px-6 lg:px-10 pt-16 pb-20">
+    <h2 id="featured-spotlight-heading" class="text-center text-white font-black tracking-tight mb-10 text-4xl md:text-5xl lg:text-6xl">
+      Featured Pick of the Month
+    </h2>
+    <p class="max-w-2xl mx-auto text-center text-gray-300 mb-14 text-lg">
+      Catch up on the **full The Walking Dead stream marathon** — neatly broken into binge-friendly parts with chapters, choice recaps, and spoiler flags. Start where you left off! 🧟‍♂️
+    </p>
+
+    <!-- Quick Actions Row -->
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16">
+      <a href="#featured-part-1" class="px-5 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm shadow-lg shadow-purple-900/40 focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-400/60 transition">Start at Part 1</a>
+      <button type="button" id="resume-last-watch" class="px-5 py-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white font-semibold text-sm shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-400/60 transition" data-last-watch="of2reY8GzDo">Resume Where I Stopped</button>
+    </div>
+
+    <!-- Meta Summary Panel -->
+    <div class="max-w-4xl mx-auto mb-16 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+      <div class="p-4 rounded-xl bg-gray-900/70 border border-purple-700/50 backdrop-blur-md">
+        <p class="text-xs uppercase tracking-wider text-purple-400">Total Hours</p>
+        <p class="text-2xl font-bold text-white" id="fs-total-hours">~25h</p>
       </div>
-
-      <!-- Part 2 Video Card -->
-      <div class="bg-gray-800 rounded-lg p-4 shadow-md flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 border border-purple-500 hover:border-purple-400 transition duration-300 group">
-        <div class="relative w-full sm:w-2/5 pb-[31.5%] sm:pb-[22.5%] h-0 overflow-hidden rounded-md flex-shrink-0">
-          <iframe class="absolute top-0 left-0 w-full h-full"
-                  src="https://www.youtube.com/embed/Hcw0cDpE1T0?controls=1"
-                  title="The Walking Dead Part 2"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen></iframe>
-        </div>
-        <div class="flex-grow text-center sm:text-left">
-          <h5 class="text-xl font-semibold text-white">Part 2 (Playtime 9~15h) 🧟</h5>
-          <p class="text-gray-400 text-sm">My First Playthrough</p>
-          <p class="text-gray-400 text-sm">Published: 2025-07-15 | Views: 138</p>
-          <a href="https://www.youtube.com/live/Hcw0cDpE1T0?si=cOJwCw2N" target="_blank" class="text-purple-400 hover:text-purple-300 text-sm mt-1 inline-block">Watch on YouTube</a>
-        </div>
+      <div class="p-4 rounded-xl bg-gray-900/70 border border-purple-700/50 backdrop-blur-md">
+        <p class="text-xs uppercase tracking-wider text-purple-400">Episodes</p>
+        <p class="text-2xl font-bold text-white" id="fs-total-episodes">3</p>
       </div>
-
-      <!-- Part 3 Video Card -->
-      <div class="bg-gray-800 rounded-lg p-4 shadow-md flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 border border-purple-500 hover:border-purple-400 transition duration-300 group">
-        <div class="relative w-full sm:w-2/5 pb-[31.5%] sm:pb-[22.5%] h-0 overflow-hidden rounded-md flex-shrink-0">
-          <iframe class="absolute top-0 left-0 w-full h-full"
-                  src="https://www.youtube.com/embed/l8hCzJyo4DY?controls=1"
-                  title="The Walking Dead Part 3"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen></iframe>
-        </div>
-        <div class="flex-grow text-center sm:text-left">
-          <h5 class="text-xl font-semibold text-white">Part 3 (Playtime 15~25h) 🧟</h5>
-          <p class="text-gray-400 text-sm">My First Playthrough</p>
-          <p class="text-gray-400 text-sm">Published: 2025-07-17 | Views: 160</p>
-          <a href="https://www.youtube.com/live/l8hCzJyo4DY?si=dLshh-hW4kPlGaC1" target="_blank" class="text-purple-400 hover:text-purple-300 text-sm mt-1 inline-block">Watch on YouTube</a>
-        </div>
+      <div class="p-4 rounded-xl bg-gray-900/70 border border-purple-700/50 backdrop-blur-md">
+        <p class="text-xs uppercase tracking-wider text-purple-400">Avg Length</p>
+        <p class="text-2xl font-bold text-white" id="fs-avg-length">~8h</p>
+      </div>
+      <div class="p-4 rounded-xl bg-gray-900/70 border border-purple-700/50 backdrop-blur-md">
+        <p class="text-xs uppercase tracking-wider text-purple-400">Spoiler Safety</p>
+        <p class="text-2xl font-bold text-white" id="fs-spoiler-level">⚠️ Mild</p>
       </div>
     </div>
+
+    <!-- Parts Wrapper -->
+    <div id="featured-spotlight-wrapper" class="relative bg-gray-900/80 rounded-2xl p-6 sm:p-10 shadow-2xl featured-game-spotlight border border-purple-700/70 backdrop-blur-xl">
+      <h3 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center flex items-center justify-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse" aria-hidden="true"></span>
+        Live Stream Parts
+      </h3>
+
+      <ul class="space-y-8" role="list">
+        <!-- ================= Part Card (Template pattern) ================= -->
+        <!-- Use data-* attributes so JS can hydrate metrics (views, duration, chapters). -->
+
+        <!-- Part 1 -->
+        <li id="featured-part-1" class="group">
+          <article class="bg-gray-800/80 rounded-xl p-5 sm:p-6 shadow-md flex flex-col sm:flex-row items-center gap-5 border border-purple-500/60 hover:border-purple-400/90 transition duration-300">
+            <!-- Video -->
+            <div class="relative w-full sm:w-2/5 pb-[56.25%] sm:pb-[22.5%] h-0 overflow-hidden rounded-lg flex-shrink-0 ring-2 ring-purple-700/50 group-hover:ring-purple-400/80 transition">
+              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/of2reY8GzDo?controls=1" title="The Walking Dead Part 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <!-- Copy -->
+            <div class="flex-grow text-center sm:text-left space-y-2" data-videoid="of2reY8GzDo" data-part="1" data-playtime="0-9" data-hours="9" data-published="2025-07-14" data-views="199">
+              <header>
+                <h4 class="text-xl font-semibold text-white flex items-center justify-center sm:justify-start gap-2">Part 1 <span class="text-sm text-gray-400">(0–9h)</span> <span class="text-lg">🧟</span></h4>
+              </header>
+              <p class="text-gray-300 text-sm">Blind first-time playthrough from the very start. Tutorial area + Episode 1 narrative beats.</p>
+              <dl class="grid grid-cols-2 sm:grid-cols-3 gap-y-1 text-xs text-gray-400 max-w-xs sm:max-w-none mx-auto sm:mx-0">
+                <div><dt class="sr-only">Published</dt><dd>📅 2025-07-14</dd></div>
+                <div><dt class="sr-only">Views</dt><dd>👁️ <span class="fs-views" data-field="views">199</span></dd></div>
+                <div class="hidden sm:block"><dt class="sr-only">Hours</dt><dd>⏱️ ~9h</dd></div>
+              </dl>
+              <!-- Chapters Pills -->
+              <ul class="flex flex-wrap justify-center sm:justify-start gap-1 text-[11px] leading-5">
+                <li class="px-2 py-0.5 rounded-full bg-purple-700/60 text-white">Intro</li>
+                <li class="px-2 py-0.5 rounded-full bg-purple-700/60 text-white">Episode 1</li>
+                <li class="px-2 py-0.5 rounded-full bg-purple-700/60 text-white">Big Choice 1</li>
+              </ul>
+              <a href="https://www.youtube.com/live/of2reY8GzDo?si=lKvrfz0mpX9bLZ2w" target="_blank" class="inline-flex items-center gap-1 text-purple-400 hover:text-purple-300 text-sm font-medium mt-2">Watch on YouTube<span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        </li>
+
+        <!-- Part 2 -->
+        <li id="featured-part-2" class="group">
+          <article class="bg-gray-800/80 rounded-xl p-5 sm:p-6 shadow-md flex flex-col sm:flex-row items-center gap-5 border border-purple-500/60 hover:border-purple-400/90 transition duration-300">
+            <!-- Video -->
+            <div class="relative w-full sm:w-2/5 pb-[56.25%] sm:pb-[22.5%] h-0 overflow-hidden rounded-lg flex-shrink-0 ring-2 ring-purple-700/50 group-hover:ring-purple-400/80 transition">
+              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/Hcw0cDpE1T0?controls=1" title="The Walking Dead Part 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <!-- Copy -->
+            <div class="flex-grow text-center sm:text-left space-y-2" data-videoid="Hcw0cDpE1T0" data-part="2" data-playtime="9-15" data-hours="6" data-published="2025-07-15" data-views="138">
+              <header>
+                <h4 class="text-xl font-semibold text-white flex items-center justify-center sm:justify-start gap-2">Part 2 <span class="text-sm text-gray-400">(9–15h)</span> <span class="text-lg">🧟</span></h4>
+              </header>
+              <p class="text-gray-300 text-sm">Continuing the story: major survival decisions; we meet new allies + Episode 2 twists.</p>
+              <dl class="grid grid-cols-2 sm:grid-cols-3 gap-y-1 text-xs text-gray-400 max-w-xs sm:max-w-none mx-auto sm:mx-0">
+                <div><dt class="sr-only">Published</dt><dd>📅 2025-07-15</dd></div>
+                <div><dt class="sr-only">Views</dt><dd>👁️ <span class="fs-views" data-field="views">138</span></dd></div>
+                <div class="hidden sm:block"><dt class="sr-only">Hours</dt><dd>⏱️ ~6h</dd></div>
+              </dl>
+              <!-- Chapters Pills -->
+              <ul class="flex flex-wrap justify-center sm:justify-start gap-1 text-[11px] leading-5">
+                <li class="px-2 py-0.5 rounded-full bg-purple-700/60 text-white">Episode 2</li>
+                <li class="px-2 py-0.5 rounded-full bg-purple-700/60 text-white">Farm Arc</li>
+                <li class="px-2 py-0.5 rounded-full bg-purple-700/60 text-white">Choice Fallout</li>
+              </ul>
+              <a href="https://www.youtube.com/live/Hcw0cDpE1T0?si=cOJwCw2N" target="_blank" class="inline-flex items-center gap-1 text-purple-400 hover:text-purple-300 text-sm font-medium mt-2">Watch on YouTube<span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        </li>
+
+        <!-- Part 3 -->
+        <li id="featured-part-3" class="group">
+          <article class="bg-gray-800/80 rounded-xl p-5 sm:p-6 shadow-md flex flex-col sm:flex-row items-center gap-5 border border-purple-500/60 hover:border-purple-400/90 transition duration-300">
+            <!-- Video -->
+            <div class="relative w-full sm:w-2/5 pb-[56.25%] sm:pb-[22.5%] h-0 overflow-hidden rounded-lg flex-shrink-0 ring-2 ring-purple-700/50 group-hover:ring-purple-400/80 transition">
+              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/l8hCzJyo4DY?controls=1" title="The Walking Dead Part 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <!-- Copy -->
+            <div class="flex-grow text-center sm:text-left space-y-2" data-videoid="l8hCzJyo4DY" data-part="3" data-playtime="15-25" data-hours="10" data-published="2025-07-17" data-views="160">
+              <header>
+                <h4 class="text-xl font-semibold text-white flex items-center justify-center sm:justify-start gap-2">Part 3 <span class="text-sm text-gray-400">(15–25h)</span> <span class="text-lg">🧟</span></h4>
+              </header>
+              <p class="text-gray-300 text-sm">Deep story dive — late‑game emotional beats. Big spoilers if you haven’t watched Part 1 & 2!</p>
+              <dl class="grid grid-cols-2 sm:grid-cols-3 gap-y-1 text-xs text-gray-400 max-w-xs sm:max-w-none mx-auto sm:mx-0">
+                <div><dt class="sr-only">Published</dt><dd>📅 2025-07-17</dd></div>
+                <div><dt class="sr-only">Views</dt><dd>👁️ <span class="fs-views" data-field="views">160</span></dd></div>
+                <div class="hidden sm:block"><dt class="sr-only">Hours</dt><dd>⏱️ ~10h</dd></div>
+              </dl>
+              <!-- Chapters Pills -->
+              <ul class="flex flex-wrap justify-center sm:justify-start gap-1 text-[11px] leading-5">
+                <li class="px-2 py-0.5 rounded-full bg-purple-700/60 text-white">Episode 3+</li>
+                <li class="px-2 py-0.5 rounded-full bg-purple-700/60 text-white">Emotional Peak</li>
+                <li class="px-2 py-0.5 rounded-full bg-purple-700/60 text-white">Ending Choices</li>
+              </ul>
+              <a href="https://www.youtube.com/live/l8hCzJyo4DY?si=dLshh-hW4kPlGaC1" target="_blank" class="inline-flex items-center gap-1 text-purple-400 hover:text-purple-300 text-sm font-medium mt-2">Watch on YouTube<span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        </li>
+      </ul>
+
+      <!-- Mini Playlist Navigator (scroll spy) -->
+      <nav aria-label="Episode navigation" class="mt-12">
+        <ol class="flex flex-wrap justify-center gap-3 text-xs text-gray-300">
+          <li><a href="#featured-part-1" class="px-3 py-1 rounded-full border border-purple-600/50 hover:border-purple-400 hover:text-white transition">Part 1</a></li>
+          <li><a href="#featured-part-2" class="px-3 py-1 rounded-full border border-purple-600/50 hover:border-purple-400 hover:text-white transition">Part 2</a></li>
+          <li><a href="#featured-part-3" class="px-3 py-1 rounded-full border border-purple-600/50 hover:border-purple-400 hover:text-white transition">Part 3</a></li>
+        </ol>
+      </nav>
+    </div>
+
+    <!-- SEO: Structured data for search engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "The Walking Dead Stream Parts",
+      "itemListElement": [
+        {
+          "@type": "VideoObject",
+          "position": 1,
+          "name": "The Walking Dead Part 1 (0-9h)",
+          "description": "Blind first-time playthrough from the very start. Tutorial area + Episode 1 narrative beats.",
+          "thumbnailUrl": "https://img.youtube.com/vi/of2reY8GzDo/maxresdefault.jpg",
+          "uploadDate": "2025-07-14",
+          "duration": "PT9H",
+          "url": "https://www.youtube.com/live/of2reY8GzDo"
+        },
+        {
+          "@type": "VideoObject",
+          "position": 2,
+          "name": "The Walking Dead Part 2 (9-15h)",
+          "description": "Continuing the story: major survival decisions; we meet new allies + Episode 2 twists.",
+          "thumbnailUrl": "https://img.youtube.com/vi/Hcw0cDpE1T0/maxresdefault.jpg",
+          "uploadDate": "2025-07-15",
+          "duration": "PT6H",
+          "url": "https://www.youtube.com/live/Hcw0cDpE1T0"
+        },
+        {
+          "@type": "VideoObject",
+          "position": 3,
+          "name": "The Walking Dead Part 3 (15-25h)",
+          "description": "Deep story dive — late-game emotional beats. Big spoilers if you haven’t watched Part 1 & 2!",
+          "thumbnailUrl": "https://img.youtube.com/vi/l8hCzJyo4DY/maxresdefault.jpg",
+          "uploadDate": "2025-07-17",
+          "duration": "PT10H",
+          "url": "https://www.youtube.com/live/l8hCzJyo4DY"
+        }
+      ]
+    }
+    </script>
   </div>
 </section>
+
+<!-- ========================================================== -->
+<!-- OPTIONAL JS ENHANCEMENTS (paste into your main.js or inline) -->
+<!-- ========================================================== -->
+<script>
+  (function(){
+    const parts = [...document.querySelectorAll('#featured-spotlight-wrapper [data-videoid]')];
+    if(!parts.length) return;
+
+    // Compute totals from data-* so you don't have to update in two places.
+    const totalHours = parts.reduce((acc,el)=>acc + Number(el.dataset.hours||0),0);
+    const totalEpisodes = parts.length;
+    const avgLength = totalEpisodes ? Math.round(totalHours/totalEpisodes) : 0;
+    const totalViews = parts.reduce((acc,el)=>acc + Number(el.dataset.views||0),0);
+
+    const $ = id => document.getElementById(id);
+    if($("fs-total-hours")) $("fs-total-hours").textContent = `~${totalHours}h`;
+    if($("fs-total-episodes")) $("fs-total-episodes").textContent = totalEpisodes;
+    if($("fs-avg-length")) $("fs-avg-length").textContent = `~${avgLength}h`;
+    // Quick heuristic spoiler level: if final part > 70% of total hours mark -> heavy spoilers.
+    const lastPct = parts.reduce((acc,el)=>Math.max(acc,Number(el.dataset.playtime?.split('-')[1]||0)),0) / totalHours;
+    if($("fs-spoiler-level")) {
+      $("fs-spoiler-level").textContent = lastPct > 0.7 ? '⚠️ Heavy' : '⚠️ Mild';
+    }
+
+    // Resume button: scroll to last part stored in localStorage.
+    const resumeBtn = document.getElementById('resume-last-watch');
+    if(resumeBtn){
+      const saved = localStorage.getItem('lgj_last_part_id');
+      if(saved){
+        resumeBtn.dataset.lastWatch = saved;
+      }
+      resumeBtn.addEventListener('click',()=>{
+        const id = resumeBtn.dataset.lastWatch;
+        if(id){
+          const el = document.querySelector(`[data-videoid="${id}"]`);
+          if(el){
+            el.scrollIntoView({behavior:'smooth',block:'center'});
+            // optional: flash highlight
+            el.closest('article')?.classList.add('ring-4','ring-yellow-400');
+            setTimeout(()=>el.closest('article')?.classList.remove('ring-4','ring-yellow-400'),2000);
+          }
+        }
+      });
+    }
+
+    // Track clicks on YouTube links to remember progress.
+    parts.forEach(el=>{
+      const link = el.querySelector('a[href*="youtube"]');
+      if(!link) return;
+      link.addEventListener('click',()=>{
+        localStorage.setItem('lgj_last_part_id',el.dataset.videoid);
+      });
+    });
+
+    // Optional: dynamically swap hero image to currently hovered part.
+    const heroImg = document.getElementById('featured-spotlight-hero-img');
+    if(heroImg){
+      parts.forEach(el=>{
+        const vid = el.dataset.videoid;
+        const thumb = `https://img.youtube.com/vi/${vid}/maxresdefault.jpg`;
+        el.closest('li').addEventListener('mouseenter',()=>{
+          heroImg.src = thumb;
+        });
+      });
+    }
+  })();
+</script>
 
 
       <!--      
