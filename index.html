@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="LeongrayJ's personal gaming blog tracking high-priority and exciting titles. Watch live, read highlights, and join the journey." />
   <meta property="og:title" content="LeongrayJ Gaming Blog" />
-  <meta property="og:description" content="Explore game priorities, live streams, and more with LeongrayJ." />
+  <meta property="og:description" content="Explore game priorities, live streams, and more with LeonGrayJ." />
   <meta property="og:image" content="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -90,69 +90,110 @@
     <!-- Hero                                                          -->
     <!-- Uses local asset from original; inline fallback background    -->
     <!-- ============================================================= -->
-   <section id="featured-spotlight" class="mb-20 section-fade-in" aria-labelledby="featured-spotlight-heading">
-  <h2 id="featured-spotlight-heading" class="text-4xl md:text-5xl font-bold text-white mb-12 text-center relative pb-4">
-    Featured Pick of the Month
-    <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-purple-600 rounded-full"></span>
-  </h2>
-  <div id="featured-spotlight-wrapper" class="bg-gray-900 rounded-xl p-6 md:p-10 shadow-2xl featured-game-spotlight border border-purple-700">
-    <div class="flex flex-col lg:flex-row items-center lg:items-start space-y-8 lg:space-y-0 lg:space-x-10">
-      <div class="lg:w-1/2 w-full">
-        <div class="relative rounded-lg overflow-hidden shadow-xl border border-purple-600">
-          <img src="https://i.ytimg.com/vi/0/hqdefault.jpg" alt="The Walking Dead: The Telltale Definitive Series" class="w-full h-auto object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
-          <div class="absolute bottom-4 left-4 text-white">
-            <h3 class="text-3xl font-bold">The Walking Dead: The Telltale Definitive Series</h3>
-            <p class="text-lg text-gray-300">Currently Streaming by LeonGrayJ</p>
-          </div>
-          <div class="absolute top-4 right-4 bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full animate-pulse">LIVE</div>
-        </div>
-        <p class="text-gray-300 mt-6 text-lg leading-relaxed">
-          Join LeonGrayJ on his thrilling first playthrough of "The Walking Dead: The Telltale Definitive Series." Experience the gripping story, make tough decisions, and survive the zombie apocalypse alongside beloved characters. This definitive edition brings together all four seasons, 400 Days, and The Walking Dead: Michonne.
-        </p>
-      </div>
-      <div class="lg:w-1/2 w-full space-y-6">
-        <h4 class="text-2xl font-bold text-white mb-4 border-b border-purple-700 pb-2">Live Stream Parts:</h4>
-        <div class="bg-gray-800 rounded-lg p-4 shadow-md flex items-center space-x-4 border border-purple-500">
-          <img src="https://i.ytimg.com/vi/0/hqdefault.jpg" alt="Part 1 Thumbnail" class="w-24 h-auto rounded-md object-cover">
-          <div>
-            <h5 class="text-xl font-semibold text-white">Part 1 (Playtime 0~9h) 🧟The Walking Dead: The Telltale Definitive Series - My First Playthrough</h5>
-            <p class="text-gray-400 text-sm">Channel: LeonGrayJ</p>
-            <p class="text-gray-400 text-sm">Published: 2025-07-14 | Views: 199</p>
-            <a href="http://www.youtube.com/watch?v=of2reY8GzDo" target="_blank" class="text-purple-400 hover:text-purple-300 text-sm mt-1 inline-block">Watch Part 1</a>
-          </div>
-        </div>
-        <div class="bg-gray-800 rounded-lg p-4 shadow-md flex items-center space-x-4 border border-purple-500">
-          <img src="https://i.ytimg.com/vi/1/hqdefault.jpg" alt="Part 2 Thumbnail" class="w-24 h-auto rounded-md object-cover">
-          <div>
-            <h5 class="text-xl font-semibold text-white">Part 2 (Playtime 9~15h) 🧟The Walking Dead: The Telltale Definitive Series- My First Playthrough</h5>
-            <p class="text-gray-400 text-sm">Channel: LeonGrayJ</p>
-            <p class="text-gray-400 text-sm">Published: 2025-07-15 | Views: 138</p>
-            <a href="http://www.youtube.com/watch?v=Hcw0cDpE1T0" target="_blank" class="text-purple-400 hover:text-purple-300 text-sm mt-1 inline-block">Watch Part 2</a>
-          </div>
-        </div>
-        <div class="bg-gray-800 rounded-lg p-4 shadow-md flex items-center space-x-4 border border-purple-500">
-          <img src="https://i.ytimg.com/vi/2/hqdefault.jpg" alt="Part 3 Thumbnail" class="w-24 h-auto rounded-md object-cover">
-          <div>
-            <h5 class="text-xl font-semibold text-white">Part 3 (Playtime 15~25h) 🧟The Walking Dead: The Telltale Definitive Series - My First Playthrough</h5>
-            <p class="text-gray-400 text-sm">Channel: LeonGrayJ</p>
-            <p class="text-gray-400 text-sm">Published: 2025-07-17 | Views: 160</p>
-            <a href="http://www.youtube.com/watch?v=l8hCzJyo4DY" target="_blank" class="text-purple-400 hover:text-purple-300 text-sm mt-1 inline-block">Watch Part 3</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <main id="main-content" class="container mx-auto px-6 py-24 flex-grow">
+        <!-- Featured Game Spotlight (JS-populated) -->
+        <section id="featured-spotlight" class="mb-20 section-fade-in" aria-labelledby="featured-spotlight-heading">
+          <h2 id="featured-spotlight-heading" class="text-4xl md:text-5xl font-bold text-white mb-12 text-center relative pb-4">
+            Currently Streaming: The Walking Dead
+            <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-purple-600 rounded-full"></span>
+          </h2>
+          <div id="featured-spotlight-wrapper" class="bg-gray-900 rounded-xl p-6 md:p-10 shadow-2xl featured-game-spotlight border border-purple-700">
+            <div class="flex flex-col lg:flex-row items-center lg:items-start space-y-8 lg:space-y-0 lg:space-x-10">
+              <div class="lg:w-1/2 w-full">
+                <div class="relative rounded-lg overflow-hidden shadow-xl border border-purple-600 group">
+                  <!-- Main featured video embed (Part 1) -->
+                  <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg">
+                    <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/of2reY8GzDo?controls=1"
+                            title="The Walking Dead: The Telltale Definitive Series - Part 1 Live Stream"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen></iframe>
+                  </div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300"></div>
+                  <div class="absolute bottom-4 left-4 text-white">
+                    <h3 class="text-3xl font-bold">The Walking Dead: The Telltale Definitive Series</h3>
+                    <p class="text-lg text-gray-300">A gripping journey with LeonGrayJ</p>
+                  </div>
+                  <div class="absolute top-4 right-4 bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full animate-pulse">LIVE</div>
+                </div>
+                <p class="text-gray-300 mt-6 text-lg leading-relaxed">
+                  Dive into the emotional and thrilling world of "The Walking Dead: The Telltale Definitive Series" with LeonGrayJ. Experience every tough decision and intense moment in this critically acclaimed narrative adventure. This definitive edition compiles all four seasons, 400 Days, and The Walking Dead: Michonne, offering the complete story.
+                </p>
+              </div>
+              <div class="lg:w-1/2 w-full space-y-6">
+                <h4 class="text-2xl font-bold text-white mb-4 border-b border-purple-700 pb-2">Live Stream Parts:</h4>
 
-<!--      
-      <section class="mb-16 section-fade-in" aria-label="Search games">
-        <div class="bg-gray-800 rounded-xl p-6 search-bar-container flex flex-col md:flex-row items-center gap-4">
-          <label for="game-search-input" class="sr-only">Search for games</label>
-          <input type="text" id="game-search-input" placeholder="Search for games..." class="flex-grow bg-gray-700 text-white border border-gray-600 rounded-full py-3 px-6 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-400" />
-          <button id="game-search-button" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">Search</button>
-        </div>
-      </section> -->
+                <!-- Part 1 Video Card -->
+                <div class="bg-gray-800 rounded-lg p-4 shadow-md flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 border border-purple-500 hover:border-purple-400 transition duration-300 group">
+                  <div class="relative w-full sm:w-2/5 pb-[31.5%] sm:pb-[22.5%] h-0 overflow-hidden rounded-md flex-shrink-0">
+                    <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/of2reY8GzDo?controls=1"
+                            title="The Walking Dead Part 1"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen></iframe>
+                  </div>
+                  <div class="flex-grow text-center sm:text-left">
+                    <h5 class="text-xl font-semibold text-white">Part 1 (Playtime 0~9h) 🧟</h5>
+                    <p class="text-gray-400 text-sm">My First Playthrough</p>
+                    <p class="text-gray-400 text-sm">Published: 2025-07-14 | Views: 199</p>
+                    <a href="https://www.youtube.com/live/of2reY8GzDo?si=lKvrfz0mpX9bLZ2w" target="_blank" class="text-purple-400 hover:text-purple-300 text-sm mt-1 inline-block">Watch on YouTube</a>
+                  </div>
+                </div>
+
+                <!-- Part 2 Video Card -->
+                <div class="bg-gray-800 rounded-lg p-4 shadow-md flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 border border-purple-500 hover:border-purple-400 transition duration-300 group">
+                  <div class="relative w-full sm:w-2/5 pb-[31.5%] sm:pb-[22.5%] h-0 overflow-hidden rounded-md flex-shrink-0">
+                    <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/Hcw0cDpE1T0?controls=1"
+                            title="The Walking Dead Part 2"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen></iframe>
+                  </div>
+                  <div class="flex-grow text-center sm:text-left">
+                    <h5 class="text-xl font-semibold text-white">Part 2 (Playtime 9~15h) 🧟</h5>
+                    <p class="text-gray-400 text-sm">My First Playthrough</p>
+                    <p class="text-gray-400 text-sm">Published: 2025-07-15 | Views: 138</p>
+                    <a href="https://www.youtube.com/live/Hcw0cDpE1T0?si=cOJwCw2N" target="_blank" class="text-purple-400 hover:text-purple-300 text-sm mt-1 inline-block">Watch on YouTube</a>
+                  </div>
+                </div>
+
+                <!-- Part 3 Video Card -->
+                <div class="bg-gray-800 rounded-lg p-4 shadow-md flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 border border-purple-500 hover:border-purple-400 transition duration-300 group">
+                  <div class="relative w-full sm:w-2/5 pb-[31.5%] sm:pb-[22.5%] h-0 overflow-hidden rounded-md flex-shrink-0">
+                    <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/l8hCzJyo4DY?controls=1"
+                            title="The Walking Dead Part 3"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen></iframe>
+                  </div>
+                  <div class="flex-grow text-center sm:text-left">
+                    <h5 class="text-xl font-semibold text-white">Part 3 (Playtime 15~25h) 🧟</h5>
+                    <p class="text-gray-400 text-sm">My First Playthrough</p>
+                    <p class="text-gray-400 text-sm">Published: 2025-07-17 | Views: 160</p>
+                    <a href="https://www.youtube.com/live/l8hCzJyo4DY?si=dLshh-hW4kPlGaC1" target="_blank" class="text-purple-400 hover:text-purple-300 text-sm mt-1 inline-block">Watch on YouTube</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      <!--      
+            <section class="mb-16 section-fade-in" aria-label="Search games">
+              <div class="bg-gray-800 rounded-xl p-6 search-bar-container flex flex-col md:flex-row items-center gap-4">
+                <label for="game-search-input" class="sr-only">Search for games</label>
+                <input type="text" id="game-search-input" placeholder="Search for games..." class="flex-grow bg-gray-700 text-white border border-gray-600 rounded-full py-3 px-6 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-400" />
+                <button id="game-search-button" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">Search</button>
+              </div>
+            </section> -->
 
       <!-- =========================================================== -->
       <!-- High Priority (static sample cards; can be replaced by JS)  -->
