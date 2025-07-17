@@ -90,58 +90,59 @@
     <!-- Hero                                                          -->
     <!-- Uses local asset from original; inline fallback background    -->
     <!-- ============================================================= -->
-    <section id="featured-streams-vods" class="container mx-auto px-6 py-16 md:py-24 mb-20">
-    <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center relative pb-4">
-        Featured Streams & VODs
-        <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-red-600 rounded-full animate-expand-line"></span>
-    </h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-        <div class="rounded-xl overflow-hidden shadow-2xl flex flex-col featured-card card-hover-effect">
-            <div class="relative w-full pb-[56.25%] h-0 overflow-hidden">
-                <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/of2reY8GzDo" title="The Walking Dead – Part 1 | LeonGrayJ Gaming" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-            <div class="p-6 flex-grow flex flex-col justify-between">
-                <div>
-                    <h3 class="text-2xl font-bold text-red-400 mb-2">The Walking Dead – Part 1</h3>
-                    <p class="text-gray-300 text-base leading-relaxed">LeonGrayJ begins his journey in the zombie apocalypse. Tense choices, shocking moments, and emotional depth — it all starts here.</p>
-                </div>
-            </div>
+   <section id="featured-spotlight" class="mb-20 section-fade-in" aria-labelledby="featured-spotlight-heading">
+  <h2 id="featured-spotlight-heading" class="text-4xl md:text-5xl font-bold text-white mb-12 text-center relative pb-4">
+    Featured Pick of the Month
+    <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-purple-600 rounded-full"></span>
+  </h2>
+  <div id="featured-spotlight-wrapper" class="bg-gray-900 rounded-xl p-6 md:p-10 shadow-2xl featured-game-spotlight border border-purple-700">
+    <div class="flex flex-col lg:flex-row items-center lg:items-start space-y-8 lg:space-y-0 lg:space-x-10">
+      <div class="lg:w-1/2 w-full">
+        <div class="relative rounded-lg overflow-hidden shadow-xl border border-purple-600">
+          <img src="https://i.ytimg.com/vi/3/hqdefault.jpg" alt="The Walking Dead: The Telltale Definitive Series" class="w-full h-auto object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+          <div class="absolute bottom-4 left-4 text-white">
+            <h3 class="text-3xl font-bold">The Walking Dead: The Telltale Definitive Series</h3>
+            <p class="text-lg text-gray-300">Currently Streaming by LeonGrayJ</p>
+          </div>
+          <div class="absolute top-4 right-4 bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full animate-pulse">LIVE</div>
         </div>
-
-        <div class="rounded-xl overflow-hidden shadow-2xl flex flex-col featured-card card-hover-effect">
-            <div class="relative w-full pb-[56.25%] h-0 overflow-hidden">
-                <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/Hcw0cDpE1T0" title="The Walking Dead – Part 2 | LeonGrayJ Gaming" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-            <div class="p-6 flex-grow flex flex-col justify-between">
-                <div>
-                    <h3 class="text-2xl font-bold text-red-400 mb-2">The Walking Dead – Part 2</h3>
-                    <p class="text-gray-300 text-base leading-relaxed">Tensions rise as Leon faces betrayal and loss. Every decision feels heavier as the group struggles to survive.</p>
-                </div>
-            </div>
+        <p class="text-gray-300 mt-6 text-lg leading-relaxed">
+          Join LeonGrayJ on his thrilling first playthrough of "The Walking Dead: The Telltale Definitive Series." Experience the gripping story, make tough decisions, and survive the zombie apocalypse alongside beloved characters. This definitive edition brings together all four seasons, 400 Days, and The Walking Dead: Michonne.
+        </p>
+      </div>
+      <div class="lg:w-1/2 w-full space-y-6">
+        <h4 class="text-2xl font-bold text-white mb-4 border-b border-purple-700 pb-2">Live Stream Parts:</h4>
+        <div class="bg-gray-800 rounded-lg p-4 shadow-md flex items-center space-x-4 border border-purple-500">
+          <img src="https://i.ytimg.com/vi/3/hqdefault.jpg" alt="Part 1 Thumbnail" class="w-24 h-auto rounded-md object-cover">
+          <div>
+            <h5 class="text-xl font-semibold text-white">Part 1 (Playtime 0~9h) 🧟The Walking Dead: The Telltale Definitive Series - My First Playthrough</h5>
+            <p class="text-gray-400 text-sm">Channel: LeonGrayJ</p>
+            <p class="text-gray-400 text-sm">Published: 2025-07-14 | Views: 199</p>
+            <a href="http://www.youtube.com/watch?v=of2reY8GzDo" target="_blank" class="text-purple-400 hover:text-purple-300 text-sm mt-1 inline-block">Watch Part 1</a>
+          </div>
         </div>
-
-        <div class="rounded-xl overflow-hidden shadow-2xl flex flex-col featured-card card-hover-effect">
-            <div class="relative w-full pb-[56.25%] h-0 overflow-hidden">
-                <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/l8hCzJyo4DY" title="The Walking Dead – Part 3 | LeonGrayJ Gaming" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-            <div class="p-6 flex-grow flex flex-col justify-between">
-                <div>
-                    <h3 class="text-2xl font-bold text-red-400 mb-2">The Walking Dead – Part 3</h3>
-                    <p class="text-gray-300 text-base leading-relaxed">As hope fades and danger closes in, will LeonGrayJ’s choices lead to salvation or sacrifice? Don’t miss the gripping finale.</p>
-                </div>
-            </div>
+        <div class="bg-gray-800 rounded-lg p-4 shadow-md flex items-center space-x-4 border border-purple-500">
+          <img src="https://i.ytimg.com/vi/4/hqdefault.jpg" alt="Part 2 Thumbnail" class="w-24 h-auto rounded-md object-cover">
+          <div>
+            <h5 class="text-xl font-semibold text-white">Part 2 (Playtime 9~15h) 🧟The Walking Dead: The Telltale Definitive Series- My First Playthrough</h5>
+            <p class="text-gray-400 text-sm">Channel: LeonGrayJ</p>
+            <p class="text-gray-400 text-sm">Published: 2025-07-15 | Views: 138</p>
+            <a href="http://www.youtube.com/watch?v=Hcw0cDpE1T0" target="_blank" class="text-purple-400 hover:text-purple-300 text-sm mt-1 inline-block">Watch Part 2</a>
+          </div>
         </div>
+        <div class="bg-gray-800 rounded-lg p-4 shadow-md flex items-center space-x-4 border border-purple-500">
+          <img src="https://i.ytimg.com/vi/5/hqdefault.jpg" alt="Part 3 Thumbnail" class="w-24 h-auto rounded-md object-cover">
+          <div>
+            <h5 class="text-xl font-semibold text-white">Part 3 (Playtime 15~25h) 🧟The Walking Dead: The Telltale Definitive Series - My First Playthrough</h5>
+            <p class="text-gray-400 text-sm">Channel: LeonGrayJ</p>
+            <p class="text-gray-400 text-sm">Published: 2025-07-17 | Views: 160</p>
+            <a href="http://www.youtube.com/watch?v=l8hCzJyo4DY" target="_blank" class="text-purple-400 hover:text-purple-300 text-sm mt-1 inline-block">Watch Part 3</a>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="mt-16 text-center">
-        <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white text-xl font-extrabold rounded-full shadow-xl transform hover:scale-105 hover:translate-y-[-2px] transition-all duration-300 ease-out live-button-pulse">
-            <svg class="w-7 h-7 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill-rule="evenodd" d="M19.812 5.056a3.75 3.75 0 0 0-2.124-2.124C16.322 2.5 12 2.5 12 2.5s-4.322 0-5.688.432a3.75 3.75 0 0 0-2.124 2.124c-.432 1.366-.432 4.225-.432 4.225v2.817c0 2.86.001 4.79.432 6.156a3.75 3.75 0 0 0 2.124 2.124c1.366.432 5.688.432 5.688.432s4.322 0 5.688-.432a3.75 3.75 0 0 0 2.124-2.124c-.432-1.366-.432-4.225-.432-4.225V9.281c0-2.86-.001-4.79-.432-6.156ZM9.75 15.375V8.625L15.375 12l-5.625 3.375Z" clip-rule="evenodd" />
-            </svg>
-            Watch LeonGrayJ Live Now!
-        </a>
-    </div>
+  </div>
 </section>
 
 <!--      
