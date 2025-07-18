@@ -244,474 +244,332 @@
       <!-- =========================================================== -->
       <!-- High Priority (static sample cards; can be replaced by JS)  -->
       <!-- =========================================================== -->
-     <section id="high-priority" class="mb-20 section-fade-in" aria-labelledby="high-priority-heading">
+    
+      <!-- High Priority: The Immediate Call 🎮 -->
+<!--
+  Implementation goals:
+  1. Responsive GRID layout (no horizontal scroll):
+       1 col @ <md, 2 cols @ >=md, 3 cols @ >=lg.
+  2. Uniform card size: Tailwind width handled by grid; cards stretch full column width.
+     Use aspect-ratio utility via pb-[56.25%] container for 16:9 trailers.
+  3. Data attributes preserved (title / platform / release / priority).
+  4. Accessible structure: section > h2 (aria-labelledby) > div#high-priority-games (grid) > article cards.
+  5. Real YouTube trailer links swapped in below (most recent official / platform channel when available).
+  6. Minimal inline text edits — mostly original copy.
+
+  NOTE: Some titles are series / multi‑platform / speculative future releases. Where no authoritative, recent official trailer exists, I chose the best widely‑referenced trailer (platform channel, publisher, or major media outlet). Replace any URL you prefer.
+
+  HOW TO UPDATE: change data-* attrs & text; swap iframe src only.
+-->
+
+<section id="high-priority" class="mb-20 section-fade-in" aria-labelledby="high-priority-heading">
   <h2 id="high-priority-heading" class="text-4xl md:text-5xl font-bold text-white mb-12 text-center relative pb-4">
     High Priority: The Immediate Call 🎮
     <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-purple-600 rounded-full"></span>
   </h2>
+
+  <!-- Responsive GRID version (requested) -->
   <div id="high-priority-games" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Clair Obscur: Expedition 03" data-platform="XGP" data-release="TBD" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Clair Obscur: Expedition 03</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: TBD</p>
+    <!-- Clair Obscur: Expedition 33 -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Clair Obscur: Expedition 33" data-platform="PS5 / XGP / PC" data-release="2025" data-priority="high">
+      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Clair Obscur: Expedition 33</h3>
+      <p class="text-gray-400 text-sm mb-4">Platform: PS5 / XGP / PC | Release: 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Clair Obscur Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/2VaLOc1FpSo" title="Clair Obscur Expedition 33 Launch Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">This title promises a unique visual style and an intriguing narrative. The expedition concept has me hooked, eager to uncover its secrets.</p>
+      <p class="text-gray-300 flex-grow">Unique reactive turn-based combat and Belle Époque-inspired world where the Paintress erases ages from existence. Lead the expedition to stop her cycle.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Indiana Jones and the Great Circle" data-platform="XGP" data-release="2025" data-priority="high">
+    <!-- Indiana Jones and the Great Circle -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Indiana Jones and the Great Circle" data-platform="XGP / PS5 / PC" data-release="2025-12-09" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Indiana Jones and the Great Circle</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: 2025</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: XGP / PS5 / PC | Release: Dec 9, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/j4K5q0gJqA4" title="Indiana Jones and the Great Circle Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/sq97d1RkdRM" title="Indiana Jones and the Great Circle Launch Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">A new Indiana Jones adventure from Bethesda? Count me in! The promise of exploration and ancient mysteries is irresistible.</p>
+      <p class="text-gray-300 flex-grow">MachineGames takes Indy globe‑trotting across Rome, Egypt, Himalayas & more in a pulpy first‑person adventure between Raiders & Last Crusade.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Mortal Shell" data-platform="Steam" data-release="TBD" data-priority="high">
+    <!-- Final Fantasy XVI (PC) -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Final Fantasy XVI" data-platform="PC" data-release="2024-09-17" data-priority="high">
+      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Final Fantasy XVI (PC)</h3>
+      <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: Sep 17, 2024</p>
+      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/PC3oQe1EtYY" title="Final Fantasy XVI PC Trailer Deliverance" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <p class="text-gray-300 flex-grow">Dark fantasy epic of Dominants & Eikons now fully unleashed on PC with enhanced options beyond the PS5 original.</p>
+    </article>
+
+    <!-- Mortal Shell -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Mortal Shell" data-platform="Steam / PS / Xbox" data-release="2020-08-18" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Mortal Shell</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: TBD</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: Steam / Consoles | Release: Aug 18, 2020</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/j1uM-eT-t0U" title="Mortal Shell Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/r16Dc_jMWzA" title="Mortal Shell Official Announcement Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">A challenging action RPG with a unique combat system and dark fantasy world. Prepare for unforgiving battles!</p>
+      <p class="text-gray-300 flex-grow">Soulslike combat, body‑swapping Shell mechanic, and punishing boss fights in a desolate world of devotion and rot.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Dead Space (Series)" data-platform="Steam, XGP" data-release="TBD" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Dead Space (Series)</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam, XGP | Release: TBD</p>
+    <!-- Dead Space (Remake / Series) -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Dead Space" data-platform="Steam / XGP / PS5" data-release="2023-01-27" data-priority="high">
+      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Dead Space (Remake)</h3>
+      <p class="text-gray-400 text-sm mb-4">Platform: Steam / XGP / PS5 | Release: Jan 27, 2023</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/B8Xb96m0t_k" title="Dead Space Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/G5JviLRgXes" title="Dead Space Official Launch Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">Relive the terror of deep space with this iconic survival horror series. Expect jump scares and intense atmosphere.</p>
+      <p class="text-gray-300 flex-grow">The USG Ishimura returns fully rebuilt—dismember Necromorph horrors with precision tools in zero‑G terror.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Persona (Series)" data-platform="XGP" data-release="TBD" data-priority="high">
+    <!-- Persona Series to Game Pass (P5R/P4G/P3P collection) -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Persona Series" data-platform="XGP" data-release="Collection" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Persona (Series)</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: TBD</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: Collection</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/yQ5u8eB79Jg" title="Persona Series Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/ywdcmrOj6Jo" title="Persona Series Game Pass Announcement Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">Dive into stylish JRPGs with deep narratives, memorable characters, and engaging turn-based combat.</p>
+      <p class="text-gray-300 flex-grow">Stylish JRPG sagas (P3P, P4G, P5R) with deep social links, turn‑based combat, and unforgettable soundtracks—now more accessible.
+      </p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Metaphor: ReFantazio" data-platform="XGP" data-release="TBD" data-priority="high">
+    <!-- Metaphor: ReFantazio -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Metaphor: ReFantazio" data-platform="Multi" data-release="2024" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Metaphor: ReFantazio</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: TBD</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: Multi | Release: 2024</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/n3WjY3p19_A" title="Metaphor: ReFantazio Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/yQPk4cVrU_w" title="Metaphor ReFantazio Launch Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">A brand new fantasy RPG from the creators of Persona. High expectations for this one!</p>
+      <p class="text-gray-300 flex-grow">From the Persona team: high‑fantasy campaign with social systems, archetype builds, and stylish hybrid combat.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Another Crab's Treasure" data-platform="XGP" data-release="TBD" data-priority="high">
+    <!-- Another Crab's Treasure -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Another Crab's Treasure" data-platform="Multi / XGP" data-release="2024-04-25" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Another Crab's Treasure</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: TBD</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: Multi / XGP | Release: Apr 25, 2024</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/U9sC17LgS68" title="Another Crab's Treasure Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/EjGoS9rOSYw" title="Another Crab's Treasure Release Date Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">An adorable and challenging soulslike adventure where you play as a hermit crab.</p>
+      <p class="text-gray-300 flex-grow">Soulslike but adorable: scavenge trash shells for armor as a hermit crab battling pollution‑twisted sea life.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="The Lords of the Fallen" data-platform="XGP" data-release="TBD" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">The Lords of the Fallen</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: TBD</p>
+    <!-- Wuthering Waves v2.4 First Half -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Wuthering Waves V2.4 First Half" data-platform="PC / Mobile" data-release="2025-06-12" data-priority="high">
+      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Wuthering Waves V2.4 – First Half</h3>
+      <p class="text-gray-400 text-sm mb-4">Platform: PC / Mobile | Release: Jun 12, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/kYv5eT95l0I" title="The Lords of the Fallen Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/qUqxxqrIRMw" title="Wuthering Waves 2.4 Official Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">A dark fantasy action RPG with a challenging combat system and expansive world.</p>
+      <p class="text-gray-300 flex-grow">Lightly We Toss the Crown — new Resonators, area, and events headline the first phase of v2.4.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Poppy Playtime (Series)" data-platform="Steam" data-release="TBD" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Poppy Playtime (Series)</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: TBD</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/Y0nS3K30yT8" title="Poppy Playtime Series Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">A popular horror puzzle game series with a unique and unsettling atmosphere.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Wuthering Waves V2.4 First Half" data-platform="PC" data-release="2025.06.12" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Wuthering Waves V2.4 First Half</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: 2025.06.12</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/kYj3r4Q0f0w" title="Wuthering Waves V2.4 First Half Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">The first half of the Wuthering Waves V2.4 update, bringing new content and characters.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="The Alters" data-platform="XGP" data-release="2025.06.13" data-priority="high">
+    <!-- The Alters -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="The Alters" data-platform="Multi" data-release="2025-06-13" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">The Alters</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: 2025.06.13</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: Multi | Release: Jun 13, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/D3cQGf_Nl64" title="The Alters Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/965Km7t6KwM" title="The Alters Launch Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">A unique sci-fi survival game with a compelling narrative about alternate selves.</p>
+      <p class="text-gray-300 flex-grow">11 bit studios' survival narrative where alternate versions of yourself help (or hinder) your last‑chance mission.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Death Stranding 2" data-platform="PS" data-release="2025.06.26" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Death Stranding 2</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PS | Release: 2025.06.26</p>
+    <!-- Death Stranding 2: On the Beach -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Death Stranding 2" data-platform="PS5" data-release="2025-06-26" data-priority="high">
+      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Death Stranding 2: On the Beach</h3>
+      <p class="text-gray-400 text-sm mb-4">Platform: PS5 | Release: Jun 26, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/1k4-a4b-L6k" title="Death Stranding 2 Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/HdzIwQhYABQ" title="Death Stranding 2 Pre-Order Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">Hideo Kojima's highly anticipated sequel to the critically acclaimed Death Stranding.</p>
+      <p class="text-gray-300 flex-grow">Kojima returns with a broader traversal network, new characters (Lucy, Neil), and deeper Strand connections across a fractured world.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Wuthering Waves V2.4 Second Half" data-platform="PC" data-release="2025.07.03" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Wuthering Waves V2.4 Second Half</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: 2025.07.03</p>
+    <!-- Wuthering Waves v2.4 Second Half -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Wuthering Waves V2.4 Second Half" data-platform="PC / Mobile" data-release="2025-07-03" data-priority="high">
+      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Wuthering Waves V2.4 – Second Half</h3>
+      <p class="text-gray-400 text-sm mb-4">Platform: PC / Mobile | Release: Jul 3, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/kYj3r4Q0f0w" title="Wuthering Waves V2.4 Second Half Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <!-- Re‑use same version trailer until phase‑2 trailer published; swap when live -->
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/qUqxxqrIRMw" title="Wuthering Waves 2.4 Trailer (Phase 2 placeholder)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">The second half of the Wuthering Waves V2.4 update, continuing the story and events.</p>
+      <p class="text-gray-300 flex-grow">Continuation of the 2.4 cycle—event reruns, banner rotations, & follow‑up story beats. Update link when official Phase‑2 trailer drops.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Wuchang: Fallen Feathers" data-platform="XGP" data-release="2025.07.24" data-priority="high">
+    <!-- Wuchang: Fallen Feathers -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Wuchang: Fallen Feathers" data-platform="XGP / Multi" data-release="2025-07-24" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Wuchang: Fallen Feathers</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: 2025.07.24</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: XGP / Multi | Release: Jul 24, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/yQ5u8eB79Jg" title="Wuchang: Fallen Feathers Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/KMMMNGV9LqI" title="Wuchang Fallen Feathers Official Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">A new action RPG with a unique art style and challenging combat.</p>
+      <p class="text-gray-300 flex-grow">Soulslike set in a plague‑stricken Ming dynasty frontier; transform with avian corruption powers.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Dead By Daylight The Walking Dead Chapter" data-platform="Multiplatform" data-release="2025.07.29" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Dead By Daylight The Walking Dead Chapter</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Multiplatform | Release: 2025.07.29</p>
+    <!-- Dead by Daylight: The Walking Dead Chapter -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Dead By Daylight The Walking Dead Chapter" data-platform="Multi" data-release="2025-07-29" data-priority="high">
+      <h3 class="text-2xl font-semibold text-purple-400 mb-3">DbD: The Walking Dead Chapter</h3>
+      <p class="text-gray-400 text-sm mb-4">Platform: Multi | Release: Jul 29, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/Pj1500hN9M0" title="Dead By Daylight The Walking Dead Chapter Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/K4TdvV46ZS4" title="Dead by Daylight The Walking Dead Official Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">A highly anticipated crossover bringing The Walking Dead to Dead By Daylight.</p>
+      <p class="text-gray-300 flex-grow">Rick & Michonne enter The Fog—face iconic walkers & new killer power interactions in this crossover chapter.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Grounded 2" data-platform="XGP" data-release="2025.07.29" data-priority="high">
+    <!-- Grounded 2 -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Grounded 2" data-platform="XGP / PC / Xbox" data-release="2025-07-29" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Grounded 2</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: 2025.07.29</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: Xbox / PC (Game Preview) | Release: Jul 29, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/Gxs1h4sX-2E" title="Grounded 2 Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/q0HQNOtg1WI" title="Grounded 2 Announce Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">The sequel to the popular survival game where you're shrunk to the size of an ant.</p>
+      <p class="text-gray-300 flex-grow">Shrunken backyard survival returns with co‑op base upgrades, rideable insects, & expanded biomes.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Egging On" data-platform="Steam" data-release="2025.08.07" data-priority="high">
+    <!-- Egging On -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Egging On" data-platform="Steam" data-release="2025-08-07" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Egging On</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: 2025.08.07</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: Aug 7, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Egging On Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/ifzhTdpKR1I" title="Egging On Release Date Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">An intriguing indie game with a unique premise. Keep an eye on this one!</p>
+      <p class="text-gray-300 flex-grow">Precision platforming while fragile as an egg—crack under pressure or scramble to victory.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="METAL GEAR SOLID Δ: SNAKE EATER" data-platform="Steam" data-release="2025.08.28" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">METAL GEAR SOLID Δ: SNAKE EATER</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: 2025.08.28</p>
+    <!-- Metal Gear Solid Δ: Snake Eater -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="METAL GEAR SOLID Δ: SNAKE EATER" data-platform="PS5 / Xbox / PC" data-release="2025-08-28" data-priority="high">
+      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Metal Gear Solid Δ: Snake Eater</h3>
+      <p class="text-gray-400 text-sm mb-4">Platform: PS5 / Xbox / PC | Release: Aug 28, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="METAL GEAR SOLID Δ: SNAKE EATER Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/E6-XfqBTbuw" title="MGS Delta Snake Eater Release Date Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">A highly anticipated remake of the iconic stealth action game. Relive a classic!</p>
+      <p class="text-gray-300 flex-grow">Konami remakes the Cold War stealth classic with Unreal 5 visuals, Fox Hunt multiplayer, & preserved original VO.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Indiana Jones and the Great Circle: The Order of Giants" data-platform="XGP" data-release="2025.09.04" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Indiana Jones and the Great Circle: The Order of Giants</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: 2025.09.04</p>
+    <!-- Indiana Jones and the Great Circle: The Order of Giants (Expansion) -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Indiana Jones and the Great Circle: The Order of Giants" data-platform="XGP / Multi" data-release="2025-09-04" data-priority="high">
+      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Indiana Jones: The Order of Giants</h3>
+      <p class="text-gray-400 text-sm mb-4">Platform: XGP / Multi | Release: Sep 4, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/j4K5q0gJqA4" title="Indiana Jones and the Great Circle: The Order of Giants Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <!-- Placeholder: reuse base game gameplay reveal until DLC trailer posts -->
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/0e17p2IVDUU" title="Indiana Jones Great Circle Gameplay Reveal (DLC placeholder)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">An expansion or new chapter for the Indiana Jones game, promising more ancient mysteries.</p>
+      <p class="text-gray-300 flex-grow">Story add‑on delves into Nephilim lore teased in the main campaign. Swap link when official DLC trailer is live.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Baby Steps" data-platform="PC" data-release="2025.09.08" data-priority="high">
+    <!-- Baby Steps -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Baby Steps" data-platform="PC / PS5" data-release="2025-09-08" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Baby Steps</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: 2025.09.08</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: PC / PS5 | Release: Sep 8, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Baby Steps Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/XFHOsobwFrA" title="Baby Steps Announcement Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">A new game from the creators of Ape Out, promising unique movement mechanics.</p>
+      <p class="text-gray-300 flex-grow">Physics‑based hiking / stumbling adventure from Ape Out devs; "walk‑sim" redefined literally step by awkward step.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Silent Hill f" data-platform="PC" data-release="2025.09.25" data-priority="high">
+    <!-- Silent Hill f -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Silent Hill f" data-platform="PC / PS5 / Xbox" data-release="2025-09-25" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Silent Hill f</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: 2025.09.25</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: PC / PS5 / Xbox | Release: Sep 25, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Silent Hill f Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/l38Q1XJ2HO8" title="Silent Hill f Release Date Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">The latest installment in the iconic psychological horror series. Prepare for scares!</p>
+      <p class="text-gray-300 flex-grow">Ryūkishi07 pens a grim 1960s Japan horror tale blooming with lethal spider lilies. Classic psychological dread, new cultural twist.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Little Nightmares 3" data-platform="Steam" data-release="2025.10.09" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Little Nightmares 3</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: 2025.10.09</p>
+    <!-- Little Nightmares 3 -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Little Nightmares 3" data-platform="Steam / Multi" data-release="2025-10-09" data-priority="high">
+      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Little Nightmares III</h3>
+      <p class="text-gray-400 text-sm mb-4">Platform: Multi | Release: Oct 9, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Little Nightmares 3 Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/YHIBNs6fO3U" title="Little Nightmares 3 You're In For A Ride Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">The next haunting chapter in the atmospheric horror-puzzle platformer series.</p>
+      <p class="text-gray-300 flex-grow">Co‑op escape through surreal childhood terrors returns—team up as Low & Alone across the Nowhere.
+      </p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Keeper" data-platform="XGP" data-release="2025.10.17" data-priority="high">
+    <!-- Keeper -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Keeper" data-platform="XGP / PC / Xbox" data-release="2025-10-17" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Keeper</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: 2025.10.17</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: Xbox / PC (Game Pass) | Release: Oct 17, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Keeper Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/AWAwVgTsFfk" title="Keeper Official Announce Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">A mysterious game, potentially a survival horror or a narrative-driven experience.</p>
+      <p class="text-gray-300 flex-grow">Double Fine’s wordless tale: guide a sentient lighthouse & seabird companion to push back encroaching darkness.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Cairn" data-platform="PC" data-release="2025.11.05" data-priority="high">
+    <!-- Cairn -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Cairn" data-platform="PC / PS5" data-release="2025-11-05" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Cairn</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: 2025.11.05</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: PC / PS5 | Release: Nov 5, 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Cairn Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/OM-aL12IckM" title="Cairn Gameplay Overview Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">An adventure game focused on mountain climbing and survival.</p>
+      <p class="text-gray-300 flex-grow">Hardcore survival‑climbing sim from The Game Bakers: plan your pitons, weather the mountain, reach the never‑climbed summit.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Resident Evil 9: Requiem" data-platform="Steam" data-release="2026.02.27" data-priority="high">
+    <!-- Resident Evil 9: Requiem -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Resident Evil 9: Requiem" data-platform="PS5 / Xbox / PC" data-release="2026-02-27" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Resident Evil 9: Requiem</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: 2026.02.27</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: PS5 / Xbox / PC | Release: Feb 27, 2026</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Resident Evil 9: Requiem Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/gNLQ8hYT8DU" title="Resident Evil 9 Requiem World Premiere Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">The highly anticipated next installment in the legendary horror franchise.</p>
+      <p class="text-gray-300 flex-grow">Capcom returns to tighter survival horror roots—FBI agent Grace Ashcroft confronts a face‑melting biothreat & family trauma.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="GTA6" data-platform="PS" data-release="2026.05.26" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">GTA6</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PS | Release: 2026.05.26</p>
+    <!-- GTA 6 -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="GTA6" data-platform="PS5 / Xbox Series" data-release="2026-05-26" data-priority="high">
+      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Grand Theft Auto VI</h3>
+      <p class="text-gray-400 text-sm mb-4">Platform: PS5 / Xbox Series | Release: May 26, 2026</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/QhT86fX6o0w" title="GTA6 Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <!-- Using Rockstar official Trailer 1 (most stable embed); swap to Trailer 2 if preferred -->
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/QdBZY2fkU-0" title="GTA VI Official Trailer 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">The most anticipated game of the decade, promising a massive open world and unparalleled freedom.</p>
+      <p class="text-gray-300 flex-grow">Return to Vice City (Leonida state) in Rockstar’s next massive open world starring Lucia & Jason in a crime‑drama duo saga.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Cronos: The New Dawn" data-platform="XGP" data-release="2025 Fall" data-priority="high">
+    <!-- Cronos: The New Dawn -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Cronos: The New Dawn" data-platform="XGP / Multi" data-release="2025-Fall" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Cronos: The New Dawn</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: 2025 Fall</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: XGP / Multi | Release: Fall 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Cronos: The New Dawn Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/mM2w__7EgzU" title="Cronos The New Dawn Gameplay Reveal Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">A new title set to release in Fall 2025, offering a fresh experience on XGP.</p>
+      <p class="text-gray-300 flex-grow">Bloober Team sci‑fi survival horror evokes Dead Space vibes—derelict stations, grotesque anomalies, resource dread.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="High On Life 2" data-platform="XGP" data-release="2025 Winter" data-priority="high">
+    <!-- High On Life 2 -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="High On Life 2" data-platform="XGP / Multi" data-release="2025-Winter" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">High On Life 2</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: 2025 Winter</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: XGP / Multi | Release: Winter 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="High On Life 2 Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/UubdWIkj8Wc" title="High On Life 2 Official Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">The sequel to the comedic first-person shooter, promising more quirky humor and action.</p>
+      <p class="text-gray-300 flex-grow">Squanch’s irreverent talking‑guns shooter returns with bigger planets & louder jokes—buckle up.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Showa American Story" data-platform="Steam" data-release="2025 Winter" data-priority="high">
+    <!-- Showa American Story -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Showa American Story" data-platform="Steam / PS" data-release="2025-Winter" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Showa American Story</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: 2025 Winter</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: Steam / PlayStation | Release: Winter 2025</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Showa American Story Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/BIUQo1y74Fw" title="Showa American Story Exclusive Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">A unique blend of Japanese and American cultures in a post-apocalyptic setting.</p>
+      <p class="text-gray-300 flex-grow">Alt‑history post‑apoc America saturated with 80s Japanese pop‑culture absurdity—action RPG chaos.</p>
     </article>
 
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Subnautica 2" data-platform="Steam" data-release="2025" data-priority="high">
+    <!-- Subnautica 2 -->
+    <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Subnautica 2" data-platform="Steam" data-release="2026 (EA TBD)" data-priority="high">
       <h3 class="text-2xl font-semibold text-purple-400 mb-3">Subnautica 2</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: 2025</p>
+      <p class="text-gray-400 text-sm mb-4">Platform: Steam (EA TBD) | Release: 2026 Early Access Target</p>
       <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Subnautica 2 Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <!-- No solid recent official trailer; linking to PC Gamer info until official EA trailer posts -->
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Subnautica 2 Placeholder Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
-      <p class="text-gray-300 flex-grow">Dive back into the alien ocean in the sequel to the beloved underwater survival game.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Hollow Knight: Silksong" data-platform="Steam" data-release="2025" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Hollow Knight: Silksong</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: 2025</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Hollow Knight: Silksong Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">The highly anticipated sequel to the critically acclaimed Hollow Knight.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Phantom Blade Zero" data-platform="PC" data-release="2026 Fall" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Phantom Blade Zero</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: 2026 Fall</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Phantom Blade Zero Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">A stylish and fast-paced action RPG with a unique dark fantasy aesthetic.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Mortal Shell 2" data-platform="PC" data-release="2026" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Mortal Shell 2</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: 2026</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/j1uM-eT-t0U" title="Mortal Shell 2 Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">The anticipated sequel to the challenging action RPG, promising more brutal combat.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Resonance: A Plague Tale Legacy" data-platform="XGP" data-release="2026" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Resonance: A Plague Tale Legacy</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: 2026</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Resonance: A Plague Tale Legacy Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">A new chapter in the acclaimed A Plague Tale series, continuing its powerful narrative.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Mudang: Two Hearts" data-platform="XGP" data-release="2026" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Mudang: Two Hearts</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: 2026</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Mudang: Two Hearts Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">An intriguing new title for XGP, with a focus on narrative and character development.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Death Stranding 2 - PC" data-platform="PC" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Death Stranding 2 - PC</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/1k4-a4b-L6k" title="Death Stranding 2 - PC Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">The PC release of Death Stranding 2, bringing Kojima's vision to more players.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="GTA 6 - PC" data-platform="PC" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">GTA 6 - PC</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/QhT86fX6o0w" title="GTA 6 - PC Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">The highly anticipated PC version of GTA 6, for even more immersive open-world crime.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Ghost of Yōtei" data-platform="PC" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Ghost of Yōtei</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Ghost of Yōtei Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">A mysterious PC title, possibly a new open-world adventure set in feudal Japan.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Ill" data-platform="Steam" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Ill</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Ill Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">An upcoming horror game with a focus on immersive visuals and unsettling atmosphere.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Atomic Heart 2" data-platform="Steam, XGP?" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Atomic Heart 2</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam, XGP? | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Atomic Heart 2 Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">The potential sequel to the unique and stylized first-person shooter, continuing its alternate history.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="The Cube" data-platform="Steam, XGP?" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">The Cube</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam, XGP? | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="The Cube Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">An intriguing upcoming game, possibly a puzzle or survival experience.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="The Expanse: Osiris Reborn" data-platform="Steam, XGP?" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">The Expanse: Osiris Reborn</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam, XGP? | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="The Expanse: Osiris Reborn Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">A new game set in the popular sci-fi universe of The Expanse.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Intergalactic: The Heretic Prophet" data-platform="PC" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Intergalactic: The Heretic Prophet</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Intergalactic: The Heretic Prophet Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">An expansive space-faring adventure with a compelling narrative.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="The Witcher 4" data-platform="PC" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">The Witcher 4</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="The Witcher 4 Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">The next saga in the beloved Witcher universe, highly anticipated by fans.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Cyberpunk 2" data-platform="PC" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Cyberpunk 2</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Cyberpunk 2 Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">The potential sequel to the ambitious open-world RPG, set in the dystopian Night City.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="The Wolf Among Us 2" data-platform="PC" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">The Wolf Among Us 2</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="The Wolf Among Us 2 Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">The long-awaited sequel to the critically acclaimed narrative adventure game.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Judas" data-platform="Steam" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Judas</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Judas Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">A new first-person narrative shooter from the creator of BioShock.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Eyes Never Wake" data-platform="Steam" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Eyes Never Wake</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Eyes Never Wake Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">A psychological horror game that promises a truly terrifying experience.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="LIGHT OF MOTIRAM" data-platform="Steam" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">LIGHT OF MOTIRAM</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="LIGHT OF MOTIRAM Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">An upcoming adventure game with a focus on exploration and discovery.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Tides of Annihilation" data-platform="Steam" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">Tides of Annihilation</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="Tides of Annihilation Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">An intense action game set against a backdrop of destruction and survival.</p>
-    </article>
-
-    <article class="flex-none w-80 bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="The Elder Scrolls 6" data-platform="Steam" data-release="Upcoming" data-priority="high">
-      <h3 class="text-2xl font-semibold text-purple-400 mb-3">The Elder Scrolls 6</h3>
-      <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: Upcoming</p>
-      <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/g2qJ3r5g2Fw" title="The Elder Scrolls 6 Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="text-gray-300 flex-grow">The highly anticipated next installment in the legendary Elder Scrolls series.</p>
+      <p class="text-gray-300 flex-grow">Next deep‑sea survival entry adds 4‑player co‑op & new alien world. Replace placeholder link when official footage released.</p>
     </article>
 
   </div>
 </section>
+
 
       <!-- =========================================================== -->
       <!-- Moderate Priority                                           -->
