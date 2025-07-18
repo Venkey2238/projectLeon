@@ -4,6 +4,73 @@
     It handles interactive elements, enhances user experience, and fetches
     the latest YouTube livestream link and AI-generated content.
 */
+<script>
+(function () {
+  const scroller = document.querySelector('#high-priority-games[data-auto-scroll]');
+  if (!scroller) return;
+
+  const cards = Array.from(scroller.children).filter(el => el.matches('article'));
+  if (cards.length < 2) return; // nothing to auto-scroll
+
+  const scrollLeftBtn = document.getElementById('scrollLeftBtn');
+  const scrollRightBtn = document.getElementById('scrollRightBtn');
+
+  let index = 0;
+  let paused = false;
+  let userInteracted = false;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return; // skip autoplay
+
+  // Pause when user hovers, touches, or focuses a descendant
+  const pause = () => { paused = true; };
+  const resume = () => { paused = userInteracted ? true : false; };
+  // If user manually scrolls, stop autoplay for the rest of the session (optional)
+  const stopAutoplay = () => { userInteracted = true; paused = true; };
+
+  scroller.addEventListener('mouseenter', pause);
+  scroller.addEventListener('mouseleave', resume);
+  scroller.addEventListener('focusin', pause);
+  scroller.addEventListener('focusout', resume);
+  scroller.addEventListener('pointerdown', stopAutoplay, { once: true });
+  scroller.addEventListener('wheel', stopAutoplay, { once: true, passive: true });
+  scroller.addEventListener('touchstart', stopAutoplay, { once: true, passive: true });
+
+  function scrollToPosition(scrollAmount) {
+    scroller.scrollBy({
+      left: scrollAmount,
+      behavior: 'smooth'
+    });
+  }
+
+  // Event Listeners for buttons
+  if (scrollLeftBtn && scrollRightBtn) {
+    scrollLeftBtn.addEventListener('click', () => {
+      stopAutoplay(); // Stop autoplay on manual button interaction
+      scrollToPosition(-scroller.offsetWidth / 2); // Scroll left by half the visible width
+    });
+
+    scrollRightBtn.addEventListener('click', () => {
+      stopAutoplay(); // Stop autoplay on manual button interaction
+      scrollToPosition(scroller.offsetWidth / 2); // Scroll right by half the visible width
+    });
+  }
+
+  const INTERVAL_MS = 4000; // change speed here
+  setInterval(() => {
+    if (paused) return;
+    index = (index + 1) % cards.length;
+    // Modified to scroll to the card directly for autoplay, as original behavior
+    const card = cards[index];
+    if (card) {
+      scroller.scrollTo({
+        left: card.offsetLeft - parseInt(getComputedStyle(scroller).paddingLeft || 0, 10),
+        behavior: 'smooth'
+      });
+    }
+  }, INTERVAL_MS);
+})();
+</script>
 
 document.addEventListener('DOMContentLoaded', () => {
     // Smooth scrolling for navigation links
