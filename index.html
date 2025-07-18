@@ -581,7 +581,7 @@
       </div>
     </section>
 
-    <script>
+   <script>
     (function () {
       const scroller = document.querySelector('#high-priority-games[data-auto-scroll]');
       if (!scroller) return;
@@ -593,8 +593,10 @@
       const scrollRightBtn = document.getElementById('scrollRightBtn');
 
       let index = 0;
-      let paused = false;
-      let userInteracted = false;
+      let paused = false; // Controls if the auto-scroll interval should currently run
+      let isHovered = false; // Tracks if the scroller area is currently hovered
+      let isFocused = false; // Tracks if any element within the scroller area is focused
+      let manualScrollInProgress = false; // Tracks if a manual scroll (via buttons) is ongoing
 
       // Check for reduced motion preference
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -603,22 +605,56 @@
         scroller.style.scrollBehavior = 'auto'; // Ensure smooth scroll is off if not needed
         if (scrollLeftBtn) scrollLeftBtn.style.display = 'block'; // Make sure buttons are visible
         if (scrollRightBtn) scrollRightBtn.style.display = 'block';
-        return; // Skip autoplay setup
+        return; // Skip autoplay setup and hide buttons if no JS controls
       }
 
-      // Pause when user hovers, touches, or focuses a descendant
-      const pause = () => { paused = true; };
-      const resume = () => { paused = userInteracted ? true : false; };
-      // If user manually scrolls, stop autoplay for the rest of the session (optional)
-      const stopAutoplay = () => { userInteracted = true; paused = true; };
+      // Functions to manage pause/resume state based on user interaction
+      const pauseAutoplay = () => { paused = true; };
+      const resumeAutoplay = () => {
+        // Resume only if not currently hovered over or focused on
+        if (!isHovered && !isFocused) {
+          paused = false;
+        }
+      };
 
-      scroller.addEventListener('mouseenter', pause);
-      scroller.addEventListener('mouseleave', resume);
-      scroller.addEventListener('focusin', pause);
-      scroller.addEventListener('focusout', resume);
-      scroller.addEventListener('pointerdown', stopAutoplay, { once: true });
-      scroller.addEventListener('wheel', stopAutoplay, { once: true, passive: true });
-      scroller.addEventListener('touchstart', stopAutoplay, { once: true, passive: true });
+      // Event listeners for pausing/resuming based on hover and focus
+      scroller.addEventListener('mouseenter', () => {
+        isHovered = true;
+        pauseAutoplay();
+      });
+      scroller.addEventListener('mouseleave', () => {
+        isHovered = false;
+        resumeAutoplay();
+      });
+      scroller.addEventListener('focusin', () => {
+        isFocused = true;
+        pauseAutoplay();
+      });
+      scroller.addEventListener('focusout', () => {
+        isFocused = false;
+        resumeAutoplay();
+      });
+
+      // Temporary pause for direct manual scroll (wheel, drag)
+      const handleManualScrollStart = () => {
+        pauseAutoplay();
+        manualScrollInProgress = true;
+      };
+
+      const handleManualScrollEnd = () => {
+        manualScrollInProgress = false;
+        // Give a brief moment for user to finish interaction, then resume if not hovered/focused
+        setTimeout(resumeAutoplay, 300);
+      };
+
+      scroller.addEventListener('scroll', () => {
+        // Debounce the scroll end detection to avoid multiple calls during a single scroll
+        clearTimeout(scroller.scrollTimeout);
+        scroller.scrollTimeout = setTimeout(handleManualScrollEnd, 150);
+        if (!manualScrollInProgress) { // Only pause on scroll start if not already initiated by button
+            handleManualScrollStart();
+        }
+      });
 
       function scrollToPosition(scrollAmount) {
         scroller.scrollBy({
@@ -634,13 +670,15 @@
         scrollRightBtn.style.display = 'block';
 
         scrollLeftBtn.addEventListener('click', () => {
-          stopAutoplay(); // Stop autoplay on manual button interaction
+          pauseAutoplay(); // Pause immediately for button click
           scrollToPosition(-scroller.offsetWidth / 2); // Scroll left by half the visible width
+          setTimeout(resumeAutoplay, 600); // Resume after a short delay (longer than scroll animation)
         });
 
         scrollRightBtn.addEventListener('click', () => {
-          stopAutoplay(); // Stop autoplay on manual button interaction
+          pauseAutoplay(); // Pause immediately for button click
           scrollToPosition(scroller.offsetWidth / 2); // Scroll right by half the visible width
+          setTimeout(resumeAutoplay, 600); // Resume after a short delay
         });
       }
 
@@ -653,7 +691,6 @@
         const nextCard = cards[nextIndex];
 
         if (nextCard) {
-            // Check if the next card is already fully visible or almost visible
             const scrollerRect = scroller.getBoundingClientRect();
             const nextCardRect = nextCard.getBoundingClientRect();
 
