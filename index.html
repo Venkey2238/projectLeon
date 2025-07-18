@@ -245,7 +245,7 @@
       <!-- High Priority (static sample cards; can be replaced by JS)  -->
       <!-- =========================================================== -->
     
- <section id="high-priority" class="mb-20 section-fade-in" aria-labelledby="high-priority-heading">
+<section id="high-priority" class="mb-20 section-fade-in" aria-labelledby="high-priority-heading">
   <h2 id="high-priority-heading" class="text-4xl md:text-5xl font-bold text-white mb-12 text-center relative pb-4">
     High Priority: The Immediate Call 🎮
     <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-purple-600 rounded-full"></span>
@@ -255,10 +255,10 @@
 
       <div class="absolute top-0 left-0 right-0 flex justify-between p-4 z-10">
         <button id="scrollLeftBtn" class="bg-purple-600 text-white p-2 rounded-full shadow-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75">
-          &#9664;
+          ◀
         </button>
         <button id="scrollRightBtn" class="bg-purple-600 text-white p-2 rounded-full shadow-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75">
-          &#9654;
+          ▶
         </button>
       </div>
 
@@ -541,6 +541,73 @@
   display: none;
 }
 </style>
+<script>
+(function () {
+  const scroller = document.querySelector('#high-priority-games[data-auto-scroll]');
+  if (!scroller) return;
+
+  const cards = Array.from(scroller.children).filter(el => el.matches('article'));
+  if (cards.length < 2) return; // nothing to auto-scroll
+
+  const scrollLeftBtn = document.getElementById('scrollLeftBtn');
+  const scrollRightBtn = document.getElementById('scrollRightBtn');
+
+  let index = 0;
+  let paused = false;
+  let userInteracted = false;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return; // skip autoplay
+
+  // Pause when user hovers, touches, or focuses a descendant
+  const pause = () => { paused = true; };
+  const resume = () => { paused = userInteracted ? true : false; };
+  // If user manually scrolls, stop autoplay for the rest of the session (optional)
+  const stopAutoplay = () => { userInteracted = true; paused = true; };
+
+  scroller.addEventListener('mouseenter', pause);
+  scroller.addEventListener('mouseleave', resume);
+  scroller.addEventListener('focusin', pause);
+  scroller.addEventListener('focusout', resume);
+  scroller.addEventListener('pointerdown', stopAutoplay, { once: true });
+  scroller.addEventListener('wheel', stopAutoplay, { once: true, passive: true });
+  scroller.addEventListener('touchstart', stopAutoplay, { once: true, passive: true });
+
+  function scrollToPosition(scrollAmount) {
+    scroller.scrollBy({
+      left: scrollAmount,
+      behavior: 'smooth'
+    });
+  }
+
+  // Event Listeners for buttons
+  if (scrollLeftBtn && scrollRightBtn) {
+    scrollLeftBtn.addEventListener('click', () => {
+      stopAutoplay(); // Stop autoplay on manual button interaction
+      scrollToPosition(-scroller.offsetWidth / 2); // Scroll left by half the visible width
+    });
+
+    scrollRightBtn.addEventListener('click', () => {
+      stopAutoplay(); // Stop autoplay on manual button interaction
+      scrollToPosition(scroller.offsetWidth / 2); // Scroll right by half the visible width
+    });
+  }
+
+  const INTERVAL_MS = 4000; // change speed here
+  setInterval(() => {
+    if (paused) return;
+    index = (index + 1) % cards.length;
+    // Modified to scroll to the card directly for autoplay, as original behavior
+    const card = cards[index];
+    if (card) {
+      scroller.scrollTo({
+        left: card.offsetLeft - parseInt(getComputedStyle(scroller).paddingLeft || 0, 10),
+        behavior: 'smooth'
+      });
+    }
+  }, INTERVAL_MS);
+})();
+</script>
       <!-- =========================================================== -->
       <!-- Moderate Priority                                           -->
       <!-- =========================================================== -->
