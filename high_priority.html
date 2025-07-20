@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-<head>
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,15 +11,19 @@
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <title>LeonGrayJ Gaming Blog</title>
-  <link rel="icon" href="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" type="image/x-icon" />
+  <link rel="icon" href="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" type="image/x-icon" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
+  <!-- Tailwind CSS CDN (ok for prototypes; self-host for prod) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { darkMode: 'class' };</script>
 
+  <!-- Custom CSS -->
+  <!-- Reset first so we get consistent base across browsers -->
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/main.css" />
 
@@ -51,42 +54,42 @@
       background:none; border:none; color:#cbd5e0; font-size:1.25rem; cursor:pointer;
     }
     .ai-dialogue-box iframe { border-radius: .5rem; margin-top: .5rem; }
-     /* Custom styles for premium look and scrollbar hiding */
-        body {
-            background-color: #1a202c; /* Dark background for premium feel */
-            font-family: 'Inter', sans-serif; /* A modern, clean font */
-        }
 
-        .section-fade-in {
-            animation: fadeIn 1s ease-out forwards;
-            opacity: 0;
-            transform: translateY(20px);
-        }
+    /* Custom styles for premium look */
+    body {
+        background-color: #1a202c; /* Dark background for premium feel */
+        font-family: 'Inter', sans-serif; /* A modern, clean font */
+    }
 
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .section-fade-in {
+        animation: fadeIn 1s ease-out forwards;
+        opacity: 0;
+        transform: translateY(20px);
+    }
 
-        .card-shadow {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
+    }
 
-        .card-shadow-hover:hover {
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.15);
-            transform: translateY(-5px);
-        }
+    .card-shadow {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-shadow-hover:hover {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.15);
+        transform: translateY(-5px);
+    }
   </style>
-</head>
 </head>
 <body class='bg-gray-950 text-gray-100 antialiased leading-relaxed relative'>
 <header id="site-header" class="bg-gray-900/80 backdrop-blur shadow-lg py-3 px-6 md:px-12 fixed w-full z-40 border-b border-purple-500/20" role="banner">
      <nav class="container mx-auto flex justify-between items-center" aria-label="Primary">
        <div class="flex items-center gap-4">
          <a href="https://www.youtube.com/@LeonGrayJ/live" id="logo-livestream-link" class="relative block w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-purple-400 flex items-center justify-center overflow-hidden transition duration-300 transform hover:scale-105" aria-label="Go to current livestream" target="_blank" rel="noopener noreferrer">
-            <img id="leongrayj-logo" src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" alt="LeongrayJ Logo" class="" />
+            <img id="leongrayj-logo" src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" alt="LeongrayJ Logo" />
             <span id="live-badge" class="absolute bottom-0 right-0 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full translate-x-1/4 translate-y-1/4 shadow-lg animate-pulse hidden">LIVE</span>
          </a>
            <h1 class="text-2xl font-bold text-white tracking-wide">
@@ -109,267 +112,269 @@
         <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-purple-600 rounded-full"></span>
       </h2>
 
-      <div id="high-priority-games" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-4">
+      <!-- Updated container for grid layout -->
+      <div class="relative max-w-full mx-auto">
+        <div id="high-priority-games" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Clair Obscur: Expedition 33" data-platform="PS5 / XGP / PC" data-release="2025" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Clair Obscur: Expedition 33" data-platform="PS5 / XGP / PC" data-release="2025" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Clair Obscur: Expedition 33</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PS5 / XGP / PC | Release: 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/2VaLOc1FpSo?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="2VaLOc1FpSo"><img src="https://img.youtube.com/vi/2VaLOc1FpSo/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Unique reactive turn-based combat and Belle Époque-inspired world where the Paintress erases ages from existence. Lead the expedition to stop her cycle.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Indiana Jones and the Great Circle" data-platform="XGP / PS5 / PC" data-release="2025-12-09" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Indiana Jones and the Great Circle" data-platform="XGP / PS5 / PC" data-release="2025-12-09" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Indiana Jones and the Great Circle</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: XGP / PS5 / PC | Release: Dec 9, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/sq97d1RkdRM?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="sq97d1RkdRM"><img src="https://img.youtube.com/vi/sq97d1RkdRM/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">MachineGames takes Indy globe‑trotting across Rome, Egypt, Himalayas & more in a pulpy first‑person adventure between Raiders & Last Crusade.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Final Fantasy XVI" data-platform="PC" data-release="2024-09-17" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Final Fantasy XVI" data-platform="PC" data-release="2024-09-17" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Final Fantasy XVI (PC)</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: Sep 17, 2024</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/PC3oQe1EtYY?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="PC3oQe1EtYY"><img src="https://img.youtube.com/vi/PC3oQe1EtYY/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Dark fantasy epic of Dominants & Eikons now fully unleashed on PC with enhanced options beyond the PS5 original.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Mortal Shell" data-platform="Steam / PS / Xbox" data-release="2020-08-18" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Mortal Shell" data-platform="Steam / PS / Xbox" data-release="2020-08-18" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Mortal Shell</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Steam / Consoles | Release: Aug 18, 2020</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/r16Dc_jMWzA?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="r16Dc_jMWzA"><img src="https://img.youtube.com/vi/r16Dc_jMWzA/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Soulslike combat, body‑swapping Shell mechanic, and punishing boss fights in a desolate world of devotion and rot.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Dead Space" data-platform="Steam / XGP / PS5" data-release="2023-01-27" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Dead Space" data-platform="Steam / XGP / PS5" data-release="2023-01-27" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Dead Space (Remake)</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Steam / XGP / PS5 | Release: Jan 27, 2023</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/G5JviLRgXes?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="G5JviLRgXes"><img src="https://img.youtube.com/vi/G5JviLRgXes/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">The USG Ishimura returns fully rebuilt—dismember Necromorph horrors with precision tools in zero‑G terror.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Persona Series" data-platform="XGP" data-release="Collection" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Persona Series" data-platform="XGP" data-release="Collection" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Persona (Series)</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: Collection</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/ywdcmrOj6Jo?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="ywdcmrOj6Jo"><img src="https://img.youtube.com/vi/ywdcmrOj6Jo/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Stylish JRPG sagas (P3P, P4G, P5R) with deep social links, turn‑based combat, and unforgettable soundtracks—now more accessible.
             </p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Metaphor: ReFantazio" data-platform="Multi" data-release="2024" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Metaphor: ReFantazio" data-platform="Multi" data-release="2024" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Metaphor: ReFantazio</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Multi | Release: 2024</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/yQPk4cVrU_w?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="yQPk4cVrU_w"><img src="https://img.youtube.com/vi/yQPk4cVrU_w/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">From the Persona team: high‑fantasy campaign with social systems, archetype builds, and stylish hybrid combat.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Another Crab's Treasure" data-platform="Multi / XGP" data-release="2024-04-25" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Another Crab's Treasure" data-platform="Multi / XGP" data-release="2024-04-25" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Another Crab's Treasure</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Multi / XGP | Release: Apr 25, 2024</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/EjGoS9rOSYw?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="EjGoS9rOSYw"><img src="https://img.youtube.com/vi/EjGoS9rOSYw/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
-            <p class="text-300 flex-grow">Soulslike but adorable: scavenge trash shells for armor as a hermit crab battling pollution‑twisted sea life.</p>
+            <p class="text-gray-300 flex-grow">Soulslike but adorable: scavenge trash shells for armor as a hermit crab battling pollution‑twisted sea life.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Wuthering Waves V2.4 First Half" data-platform="PC / Mobile" data-release="2025-06-12" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Wuthering Waves V2.4 First Half" data-platform="PC / Mobile" data-release="2025-06-12" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Wuthering Waves V2.4 – First Half</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PC / Mobile | Release: Jun 12, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/qUqxxqrIRMw?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="qUqxxqrIRMw"><img src="https://img.youtube.com/vi/qUqxxqrIRMw/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Lightly We Toss the Crown — new Resonators, area, and events headline the first phase of v2.4.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="The Alters" data-platform="Multi" data-release="2025-06-13" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="The Alters" data-platform="Multi" data-release="2025-06-13" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">The Alters</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Multi | Release: Jun 13, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/965Km7t6KwM?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="965Km7t6KwM"><img src="https://img.youtube.com/vi/965Km7t6KwM/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">11 bit studios' survival narrative where alternate versions of yourself help (or hinder) your last‑chance mission.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Death Stranding 2" data-platform="PS5" data-release="2025-06-26" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Death Stranding 2" data-platform="PS5" data-release="2025-06-26" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Death Stranding 2: On the Beach</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PS5 | Release: Jun 26, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/HdzIwQhYABQ?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="HdzIwQhYABQ"><img src="https://img.youtube.com/vi/HdzIwQhYABQ/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Kojima returns with a broader traversal network, new characters (Lucy, Neil), and deeper Strand connections across a fractured world.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Wuthering Waves V2.4 Second Half" data-platform="PC / Mobile" data-release="2025-07-03" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Wuthering Waves V2.4 Second Half" data-platform="PC / Mobile" data-release="2025-07-03" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Wuthering Waves V2.4 – Second Half</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PC / Mobile | Release: Jul 3, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/qUqxxqrIRMw?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="qUqxxqrIRMw"><img src="https://img.youtube.com/vi/qUqxxqrIRMw/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Continuation of the 2.4 cycle—event reruns, banner rotations, & follow‑up story beats. Update link when official Phase‑2 trailer drops.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Wuchang: Fallen Feathers" data-platform="XGP / Multi" data-release="2025-07-24" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Wuchang: Fallen Feathers" data-platform="XGP / Multi" data-release="2025-07-24" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Wuchang: Fallen Feathers</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: XGP / Multi | Release: Jul 24, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/KMMMNGV9LqI?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="KMMMNGV9LqI"><img src="https://img.youtube.com/vi/KMMMNGV9LqI/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Soulslike set in a plague‑stricken Ming dynasty frontier; transform with avian corruption powers.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Dead By Daylight The Walking Dead Chapter" data-platform="Multi" data-release="2025-07-29" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Dead By Daylight The Walking Dead Chapter" data-platform="Multi" data-release="2025-07-29" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">DbD: The Walking Dead Chapter</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Multi | Release: Jul 29, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/K4TdvV46ZS4?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="K4TdvV46ZS4"><img src="https://img.youtube.com/vi/K4TdvV46ZS4/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Rick & Michonne enter The Fog—face iconic walkers & new killer power interactions in this crossover chapter.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Grounded 2" data-platform="XGP / PC / Xbox" data-release="2025-07-29" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Grounded 2" data-platform="XGP / PC / Xbox" data-release="2025-07-29" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Grounded 2</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Xbox / PC (Game Preview) | Release: Jul 29, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/q0HQNOtg1WI?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="q0HQNOtg1WI"><img src="https://img.youtube.com/vi/q0HQNOtg1WI/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Shrunken backyard survival returns with co‑op base upgrades, rideable insects, & expanded biomes.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Egging On" data-platform="Steam" data-release="2025-08-07" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Egging On" data-platform="Steam" data-release="2025-08-07" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Egging On</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: Aug 7, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/ifzhTdpKR1I?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="ifzhTdpKR1I"><img src="https://img.youtube.com/vi/ifzhTdpKR1I/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Precision platforming while fragile as an egg—crack under pressure or scramble to victory.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="METAL GEAR SOLID Δ: SNAKE EATER" data-platform="PS5 / Xbox / PC" data-release="2025-08-28" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="METAL GEAR SOLID Δ: SNAKE EATER" data-platform="PS5 / Xbox / PC" data-release="2025-08-28" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Metal Gear Solid Δ: Snake Eater</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PS5 / Xbox / PC | Release: Aug 28, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/E6-XfqBTbuw?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="E6-XfqBTbuw"><img src="https://img.youtube.com/vi/E6-XfqBTbuw/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Konami remakes the Cold War stealth classic with Unreal 5 visuals, Fox Hunt multiplayer, & preserved original VO.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Indiana Jones and the Great Circle: The Order of Giants" data-platform="XGP / Multi" data-release="2025-09-04" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Indiana Jones and the Great Circle: The Order of Giants" data-platform="XGP / Multi" data-release="2025-09-04" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Indiana Jones: The Order of Giants</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: XGP / Multi | Release: Sep 4, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/0e17p2IVDUU?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="0e17p2IVDUU"><img src="https://img.youtube.com/vi/0e17p2IVDUU/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Story add‑on delves into Nephilim lore teased in the main campaign. Swap link when official DLC trailer is live.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Baby Steps" data-platform="PC / PS5" data-release="2025-09-08" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Baby Steps" data-platform="PC / PS5" data-release="2025-09-08" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Baby Steps</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PC / PS5 | Release: Sep 8, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/XBaOE-FpIBw?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="XBaOE-FpIBw"><img src="https://img.youtube.com/vi/XBaOE-FpIBw/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Physics‑based hiking / stumbling adventure from Ape Out devs; "walk‑sim" redefined literally step by awkward step.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Silent Hill f" data-platform="PC / PS5 / Xbox" data-release="2025-09-25" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Silent Hill f" data-platform="PC / PS5 / Xbox" data-release="2025-09-25" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Silent Hill f</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PC / PS5 / Xbox | Release: Sep 25, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/l38Q1XJ2HO8?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="l38Q1XJ2HO8"><img src="https://img.youtube.com/vi/l38Q1XJ2HO8/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Ryūkishi07 pens a grim 1960s Japan horror tale blooming with lethal spider lilies. Classic psychological dread, new cultural twist.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Little Nightmares 3" data-platform="Steam / Multi" data-release="2025-10-09" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Little Nightmares 3" data-platform="Steam / Multi" data-release="2025-10-09" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Little Nightmares III</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Multi | Release: Oct 9, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/YHIBNs6fO3U?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="YHIBNs6fO3U"><img src="https://img.youtube.com/vi/YHIBNs6fO3U/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Co‑op escape through surreal childhood terrors returns—team up as Low & Alone across the Nowhere.
             </p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Keeper" data-platform="XGP / PC / Xbox" data-release="2025-10-17" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Keeper" data-platform="XGP / PC / Xbox" data-release="2025-10-17" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Keeper</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Xbox / PC (Game Pass) | Release: Oct 17, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/AWAwVgTsFfk?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="AWAwVgTsFfk"><img src="https://img.youtube.com/vi/AWAwVgTsFfk/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Double Fine’s wordless tale: guide a sentient lighthouse & seabird companion to push back encroaching darkness.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Cairn" data-platform="PC / PS5" data-release="2025-11-05" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Cairn" data-platform="PC / PS5" data-release="2025-11-05" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Cairn</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PC / PS5 | Release: Nov 5, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/OM-aL12IckM?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="OM-aL12IckM"><img src="https://img.youtube.com/vi/OM-aL12IckM/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Hardcore survival‑climbing sim from The Game Bakers: plan your pitons, weather the mountain, reach the never‑climbed summit.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Resident Evil 9: Requiem" data-platform="PS5 / Xbox / PC" data-release="2026-02-27" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Resident Evil 9: Requiem" data-platform="PS5 / Xbox / PC" data-release="2026-02-27" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Resident Evil 9: Requiem</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PS5 / Xbox / PC | Release: Feb 27, 2026</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/gNLQ8hYT8DU?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="gNLQ8hYT8DU"><img src="https://img.youtube.com/vi/gNLQ8hYT8DU/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Capcom returns to tighter survival horror roots—FBI agent Grace Ashcroft confronts a face‑melting biothreat & family trauma.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="GTA6" data-platform="PS5 / Xbox Series" data-release="2026-05-26" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="GTA6" data-platform="PS5 / Xbox Series" data-release="2026-05-26" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Grand Theft Auto VI</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PS5 / Xbox Series | Release: May 26, 2026</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/QdBZY2fkU-0?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="QdBZY2fkU-0"><img src="https://img.youtube.com/vi/QdBZY2fkU-0/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Return to Vice City (Leonida state) in Rockstar’s next massive open world starring Lucia & Jason in a crime‑drama duo saga.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Cronos: The New Dawn" data-platform="XGP / Multi" data-release="2025-Fall" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Cronos: The New Dawn" data-platform="XGP / Multi" data-release="2025-Fall" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Cronos: The New Dawn</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: XGP / Multi | Release: Fall 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/mM2w__7EgzU?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="mM2w__7EgzU"><img src="https://img.youtube.com/vi/mM2w__7EgzU/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Bloober Team sci‑fi survival horror evokes Dead Space vibes—derelict stations, grotesque anomalies, resource dread.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="High On Life 2" data-platform="XGP / Multi" data-release="2025-Winter" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="High On Life 2" data-platform="XGP / Multi" data-release="2025-Winter" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">High On Life 2</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: XGP / Multi | Release: Winter 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/UubdWIkj8Wc?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="UubdWIkj8Wc"><img src="https://img.youtube.com/vi/UubdWIkj8Wc/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Squanch’s irreverent talking‑guns shooter returns with bigger planets & louder jokes—buckle up.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Showa American Story" data-platform="Steam / PS" data-release="2025-Winter" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Showa American Story" data-platform="Steam / PS" data-release="2025-Winter" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Showa American Story</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Steam / PlayStation | Release: Winter 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/BIUQo1y74Fw?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="BIUQo1y74Fw"><img src="https://img.youtube.com/vi/BIUQo1y74Fw/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Alt‑history post‑apoc America saturated with 80s Japanese pop‑culture absurdity—action RPG chaos.</p>
           </article>
 
-          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Subnautica 2" data-platform="Steam" data-release="2026 (EA TBD)" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col h-full" data-game-title="Subnautica 2" data-platform="Steam" data-release="2026 (EA TBD)" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Subnautica 2</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Steam (EA TBD) | Release: 2026 Early Access Target</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/oK5Nr1VtJ9Q?autoplay=0&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+              <div class="youtube-lazy" data-id="oK5Nr1VtJ9Q"><img src="https://img.youtube.com/vi/oK5Nr1VtJ9Q/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Next deep‑sea survival entry adds 4‑player co‑op & new alien world. Replace placeholder link when official footage released.</p>
           </article>
@@ -378,5 +383,67 @@
       </div>
     </section>
 </main>
+<script>
+    // JavaScript for lazy loading YouTube videos
+    document.addEventListener('DOMContentLoaded', function() {
+        const lazyVideos = document.querySelectorAll('.youtube-lazy');
+
+        lazyVideos.forEach(lazyVideo => {
+            lazyVideo.addEventListener('click', function() {
+                // Only load the iframe if it hasn't been loaded yet
+                if (!this.dataset.loaded) {
+                    const videoId = this.dataset.id;
+                    const iframe = document.createElement('iframe');
+                    iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
+                    iframe.setAttribute('frameborder', '0');
+                    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                    iframe.setAttribute('allowfullscreen', '');
+                    // Add Tailwind classes for full size within the container
+                    iframe.classList.add('absolute', 'top-0', 'left-0', 'w-full', 'h-full', 'rounded-lg');
+
+                    // Clear thumbnail and button, then append the iframe
+                    this.innerHTML = '';
+                    this.appendChild(iframe);
+                    this.dataset.loaded = 'true'; // Mark as loaded
+                }
+            });
+        });
+    });
+
+    // Optional: Live badge animation (if you have a live stream status API)
+    // This is a placeholder for dynamic "LIVE" badge functionality.
+    // In a real scenario, you'd fetch your livestream status and toggle the 'hidden' class.
+    document.addEventListener('DOMContentLoaded', function() {
+        const liveBadge = document.getElementById('live-badge');
+        // Example: Simulate live status after a delay
+        // setTimeout(() => {
+        //     liveBadge.classList.remove('hidden');
+        // }, 5000);
+    });
+
+    // Optional: Section fade-in animation
+    document.addEventListener('DOMContentLoaded', function() {
+        const sections = document.querySelectorAll('.section-fade-in');
+        const observerOptions = {
+            root: null, // relative to the viewport
+            rootMargin: '0px',
+            threshold: 0.1 // 10% of the section must be visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    });
+</script>
 </body>
 </html>
