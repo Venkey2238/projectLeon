@@ -14,17 +14,13 @@
   <title>LeonGrayJ Gaming Blog</title>
   <link rel="icon" href="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" type="image/x-icon" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS CDN (ok for prototypes; self-host for prod) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { darkMode: 'class' };</script>
 
-  <!-- Custom CSS -->
-  <!-- Reset first so we get consistent base across browsers -->
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/main.css" />
 
@@ -83,29 +79,9 @@
             transform: translateY(-5px);
         }
 
-        /* For modern browsers that support scrollbar-width (Firefox) and -webkit-scrollbar (Chrome, Safari) */
-        .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
+        /* REMOVED: Scrollbar hiding styles (no-scrollbar and -webkit-scrollbar) */
 
-        /* For Webkit-based browsers (Chrome, Safari, Edge) */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* Enhance scroll button appearance */
-        #scrollLeftBtn, #scrollRightBtn {
-            transition: all 0.2s ease-in-out;
-        }
-
-        #scrollLeftBtn:hover, #scrollRightBtn:hover {
-            transform: scale(1.1);
-        }
-
-        #scrollLeftBtn:focus, #scrollRightBtn:focus {
-            transform: scale(1.05);
-        }
+        /* REMOVED: Enhance scroll button appearance */
   </style>
 </head>
 </head>
@@ -137,18 +113,10 @@
         <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-purple-600 rounded-full"></span>
       </h2>
 
-      <div class="relative max-w-full mx-auto"> <div id="high-priority-games" class="flex overflow-x-auto gap-10 pb-4 no-scrollbar snap-x snap-mandatory scroll-pl-4 pr-4" data-auto-scroll>
+      <div class="relative max-w-full mx-auto">
+        <div id="high-priority-games" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-4">
 
-          <div class="absolute inset-y-0 left-0 right-0 flex justify-between items-center px-4 pointer-events-none z-10">
-            <button id="scrollLeftBtn" class="bg-purple-600 text-white p-3 rounded-full shadow-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75 transition-all duration-300 transform hover:scale-110 pointer-events-auto">
-              ◀
-            </button>
-            <button id="scrollRightBtn" class="bg-purple-600 text-white p-3 rounded-full shadow-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75 transition-all duration-300 transform hover:scale-110 pointer-events-auto">
-              ▶
-            </button>
-          </div>
-
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Clair Obscur: Expedition 33" data-platform="PS5 / XGP / PC" data-release="2025" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Clair Obscur: Expedition 33" data-platform="PS5 / XGP / PC" data-release="2025" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Clair Obscur: Expedition 33</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PS5 / XGP / PC | Release: 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -157,7 +125,7 @@
             <p class="text-gray-300 flex-grow">Unique reactive turn-based combat and Belle Époque-inspired world where the Paintress erases ages from existence. Lead the expedition to stop her cycle.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Indiana Jones and the Great Circle" data-platform="XGP / PS5 / PC" data-release="2025-12-09" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Indiana Jones and the Great Circle" data-platform="XGP / PS5 / PC" data-release="2025-12-09" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Indiana Jones and the Great Circle</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: XGP / PS5 / PC | Release: Dec 9, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -166,7 +134,7 @@
             <p class="text-gray-300 flex-grow">MachineGames takes Indy globe‑trotting across Rome, Egypt, Himalayas & more in a pulpy first‑person adventure between Raiders & Last Crusade.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Final Fantasy XVI" data-platform="PC" data-release="2024-09-17" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Final Fantasy XVI" data-platform="PC" data-release="2024-09-17" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Final Fantasy XVI (PC)</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PC | Release: Sep 17, 2024</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -175,7 +143,7 @@
             <p class="text-gray-300 flex-grow">Dark fantasy epic of Dominants & Eikons now fully unleashed on PC with enhanced options beyond the PS5 original.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Mortal Shell" data-platform="Steam / PS / Xbox" data-release="2020-08-18" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Mortal Shell" data-platform="Steam / PS / Xbox" data-release="2020-08-18" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Mortal Shell</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Steam / Consoles | Release: Aug 18, 2020</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -184,7 +152,7 @@
             <p class="text-gray-300 flex-grow">Soulslike combat, body‑swapping Shell mechanic, and punishing boss fights in a desolate world of devotion and rot.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Dead Space" data-platform="Steam / XGP / PS5" data-release="2023-01-27" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Dead Space" data-platform="Steam / XGP / PS5" data-release="2023-01-27" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Dead Space (Remake)</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Steam / XGP / PS5 | Release: Jan 27, 2023</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -193,7 +161,7 @@
             <p class="text-gray-300 flex-grow">The USG Ishimura returns fully rebuilt—dismember Necromorph horrors with precision tools in zero‑G terror.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Persona Series" data-platform="XGP" data-release="Collection" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Persona Series" data-platform="XGP" data-release="Collection" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Persona (Series)</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: XGP | Release: Collection</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -203,7 +171,7 @@
             </p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Metaphor: ReFantazio" data-platform="Multi" data-release="2024" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Metaphor: ReFantazio" data-platform="Multi" data-release="2024" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Metaphor: ReFantazio</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Multi | Release: 2024</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -212,7 +180,7 @@
             <p class="text-gray-300 flex-grow">From the Persona team: high‑fantasy campaign with social systems, archetype builds, and stylish hybrid combat.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Another Crab's Treasure" data-platform="Multi / XGP" data-release="2024-04-25" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Another Crab's Treasure" data-platform="Multi / XGP" data-release="2024-04-25" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Another Crab's Treasure</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Multi / XGP | Release: Apr 25, 2024</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -221,7 +189,7 @@
             <p class="text-gray-300 flex-grow">Soulslike but adorable: scavenge trash shells for armor as a hermit crab battling pollution‑twisted sea life.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Wuthering Waves V2.4 First Half" data-platform="PC / Mobile" data-release="2025-06-12" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Wuthering Waves V2.4 First Half" data-platform="PC / Mobile" data-release="2025-06-12" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Wuthering Waves V2.4 – First Half</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PC / Mobile | Release: Jun 12, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -230,7 +198,7 @@
             <p class="text-gray-300 flex-grow">Lightly We Toss the Crown — new Resonators, area, and events headline the first phase of v2.4.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="The Alters" data-platform="Multi" data-release="2025-06-13" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="The Alters" data-platform="Multi" data-release="2025-06-13" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">The Alters</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Multi | Release: Jun 13, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -239,7 +207,7 @@
             <p class="text-gray-300 flex-grow">11 bit studios' survival narrative where alternate versions of yourself help (or hinder) your last‑chance mission.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Death Stranding 2" data-platform="PS5" data-release="2025-06-26" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Death Stranding 2" data-platform="PS5" data-release="2025-06-26" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Death Stranding 2: On the Beach</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PS5 | Release: Jun 26, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -248,7 +216,7 @@
             <p class="text-gray-300 flex-grow">Kojima returns with a broader traversal network, new characters (Lucy, Neil), and deeper Strand connections across a fractured world.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Wuthering Waves V2.4 Second Half" data-platform="PC / Mobile" data-release="2025-07-03" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Wuthering Waves V2.4 Second Half" data-platform="PC / Mobile" data-release="2025-07-03" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Wuthering Waves V2.4 – Second Half</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PC / Mobile | Release: Jul 3, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -257,7 +225,7 @@
             <p class="text-gray-300 flex-grow">Continuation of the 2.4 cycle—event reruns, banner rotations, & follow‑up story beats. Update link when official Phase‑2 trailer drops.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Wuchang: Fallen Feathers" data-platform="XGP / Multi" data-release="2025-07-24" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Wuchang: Fallen Feathers" data-platform="XGP / Multi" data-release="2025-07-24" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Wuchang: Fallen Feathers</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: XGP / Multi | Release: Jul 24, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -266,7 +234,7 @@
             <p class="text-gray-300 flex-grow">Soulslike set in a plague‑stricken Ming dynasty frontier; transform with avian corruption powers.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Dead By Daylight The Walking Dead Chapter" data-platform="Multi" data-release="2025-07-29" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Dead By Daylight The Walking Dead Chapter" data-platform="Multi" data-release="2025-07-29" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">DbD: The Walking Dead Chapter</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Multi | Release: Jul 29, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -275,16 +243,16 @@
             <p class="text-gray-300 flex-grow">Rick & Michonne enter The Fog—face iconic walkers & new killer power interactions in this crossover chapter.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Grounded 2" data-platform="XGP / PC / Xbox" data-release="2025-07-29" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Grounded 2" data-platform="XGP / PC / Xbox" data-release="2025-07-29" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Grounded 2</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Xbox / PC (Game Preview) | Release: Jul 29, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
-              <div class="youtube-lazy" data-id="q0HQNOtg1WI"><img src="https://img.youtube.com/vi/q0HQNOtg1WI/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
+              <div class="youtube-lazy" data-id="q0HQNOtg1WI"><img src="https://img.youtube.com/vi/q0HQNOtg1WI/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="play">▶</button></div>
             </div>
             <p class="text-gray-300 flex-grow">Shrunken backyard survival returns with co‑op base upgrades, rideable insects, & expanded biomes.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Egging On" data-platform="Steam" data-release="2025-08-07" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Egging On" data-platform="Steam" data-release="2025-08-07" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Egging On</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: Aug 7, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -293,7 +261,7 @@
             <p class="text-gray-300 flex-grow">Precision platforming while fragile as an egg—crack under pressure or scramble to victory.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="METAL GEAR SOLID Δ: SNAKE EATER" data-platform="PS5 / Xbox / PC" data-release="2025-08-28" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="METAL GEAR SOLID Δ: SNAKE EATER" data-platform="PS5 / Xbox / PC" data-release="2025-08-28" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Metal Gear Solid Δ: Snake Eater</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PS5 / Xbox / PC | Release: Aug 28, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -302,7 +270,7 @@
             <p class="text-gray-300 flex-grow">Konami remakes the Cold War stealth classic with Unreal 5 visuals, Fox Hunt multiplayer, & preserved original VO.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Indiana Jones and the Great Circle: The Order of Giants" data-platform="XGP / Multi" data-release="2025-09-04" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Indiana Jones and the Great Circle: The Order of Giants" data-platform="XGP / Multi" data-release="2025-09-04" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Indiana Jones: The Order of Giants</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: XGP / Multi | Release: Sep 4, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -311,7 +279,7 @@
             <p class="text-gray-300 flex-grow">Story add‑on delves into Nephilim lore teased in the main campaign. Swap link when official DLC trailer is live.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Baby Steps" data-platform="PC / PS5" data-release="2025-09-08" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Baby Steps" data-platform="PC / PS5" data-release="2025-09-08" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Baby Steps</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PC / PS5 | Release: Sep 8, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -320,7 +288,7 @@
             <p class="text-gray-300 flex-grow">Physics‑based hiking / stumbling adventure from Ape Out devs; "walk‑sim" redefined literally step by awkward step.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Silent Hill f" data-platform="PC / PS5 / Xbox" data-release="2025-09-25" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Silent Hill f" data-platform="PC / PS5 / Xbox" data-release="2025-09-25" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Silent Hill f</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PC / PS5 / Xbox | Release: Sep 25, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -329,7 +297,7 @@
             <p class="text-gray-300 flex-grow">Ryūkishi07 pens a grim 1960s Japan horror tale blooming with lethal spider lilies. Classic psychological dread, new cultural twist.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Little Nightmares 3" data-platform="Steam / Multi" data-release="2025-10-09" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Little Nightmares 3" data-platform="Steam / Multi" data-release="2025-10-09" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Little Nightmares III</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Multi | Release: Oct 9, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -339,7 +307,7 @@
             </p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Keeper" data-platform="XGP / PC / Xbox" data-release="2025-10-17" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Keeper" data-platform="XGP / PC / Xbox" data-release="2025-10-17" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Keeper</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Xbox / PC (Game Pass) | Release: Oct 17, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -348,7 +316,7 @@
             <p class="text-gray-300 flex-grow">Double Fine’s wordless tale: guide a sentient lighthouse & seabird companion to push back encroaching darkness.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Cairn" data-platform="PC / PS5" data-release="2025-11-05" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Cairn" data-platform="PC / PS5" data-release="2025-11-05" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Cairn</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PC / PS5 | Release: Nov 5, 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -357,7 +325,7 @@
             <p class="text-gray-300 flex-grow">Hardcore survival‑climbing sim from The Game Bakers: plan your pitons, weather the mountain, reach the never‑climbed summit.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Resident Evil 9: Requiem" data-platform="PS5 / Xbox / PC" data-release="2026-02-27" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Resident Evil 9: Requiem" data-platform="PS5 / Xbox / PC" data-release="2026-02-27" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Resident Evil 9: Requiem</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PS5 / Xbox / PC | Release: Feb 27, 2026</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -366,7 +334,7 @@
             <p class="text-gray-300 flex-grow">Capcom returns to tighter survival horror roots—FBI agent Grace Ashcroft confronts a face‑melting biothreat & family trauma.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="GTA6" data-platform="PS5 / Xbox Series" data-release="2026-05-26" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="GTA6" data-platform="PS5 / Xbox Series" data-release="2026-05-26" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Grand Theft Auto VI</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: PS5 / Xbox Series | Release: May 26, 2026</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -375,7 +343,7 @@
             <p class="text-gray-300 flex-grow">Return to Vice City (Leonida state) in Rockstar’s next massive open world starring Lucia & Jason in a crime‑drama duo saga.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Cronos: The New Dawn" data-platform="XGP / Multi" data-release="2025-Fall" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Cronos: The New Dawn" data-platform="XGP / Multi" data-release="2025-Fall" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Cronos: The New Dawn</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: XGP / Multi | Release: Fall 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -384,7 +352,7 @@
             <p class="text-gray-300 flex-grow">Bloober Team sci‑fi survival horror evokes Dead Space vibes—derelict stations, grotesque anomalies, resource dread.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="High On Life 2" data-platform="XGP / Multi" data-release="2025-Winter" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="High On Life 2" data-platform="XGP / Multi" data-release="2025-Winter" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">High On Life 2</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: XGP / Multi | Release: Winter 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -393,7 +361,7 @@
             <p class="text-gray-300 flex-grow">Squanch’s irreverent talking‑guns shooter returns with bigger planets & louder jokes—buckle up.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Showa American Story" data-platform="Steam / PS" data-release="2025-Winter" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Showa American Story" data-platform="Steam / PS" data-release="2025-Winter" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Showa American Story</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Steam / PlayStation | Release: Winter 2025</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -402,7 +370,7 @@
             <p class="text-gray-300 flex-grow">Alt‑history post‑apoc America saturated with 80s Japanese pop‑culture absurdity—action RPG chaos.</p>
           </article>
 
-          <article class="flex-none snap-start bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col w-[calc(100%-2.5rem)] md:w-[calc(50%-1.25rem)] lg:w-[calc(33.33%-1.666rem)]" data-game-title="Subnautica 2" data-platform="Steam" data-release="2026 (EA TBD)" data-priority="high">
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Subnautica 2" data-platform="Steam" data-release="2026 (EA TBD)" data-priority="high">
             <h3 class="text-2xl font-semibold text-purple-400 mb-3">Subnautica 2</h3>
             <p class="text-gray-400 text-sm mb-4">Platform: Steam (EA TBD) | Release: 2026 Early Access Target</p>
             <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
@@ -417,4 +385,3 @@
 </main>
 </body>
 </html>
-�
