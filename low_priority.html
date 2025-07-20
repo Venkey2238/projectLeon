@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LeongrayJ's personal gaming blog tracking high-priority and exciting titles. Watch live, read highlights, and join the journey." />
+  <meta property="og:title" content="LeongrayJ Gaming Blog" />
+  <meta property="og:description" content="Explore game priorities, live streams, and more with LeonGrayJ." />
+  <meta property="og:image" content="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>LeonGrayJ Gaming Blog</title>
+  <link rel="icon" href="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" type="image/x-icon" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN (ok for prototypes; self-host for prod) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
+
+  <!-- Custom CSS -->
+  <!-- Reset first so we get consistent base across browsers -->
+  <link rel="stylesheet" href="./assets/css/reset.css" />
+  <link rel="stylesheet" href="./assets/css/main.css" />
+
+  <style>
+    /* ------------------------------------------------------------------
+       Inline enhancements (feel free to move into main.css in prod)
+       ------------------------------------------------------------------ */
+    body { font-family: 'Inter', sans-serif; }
+    .text-shadow-lg { text-shadow: 2px 2px 8px rgba(0,0,0,.7); }
+    .card-shadow { box-shadow: 0 4px 15px rgba(0,0,0,.4); }
+    .card-shadow-hover:hover { box-shadow: 0 8px 25px rgba(0,0,0,.6); transform: translateY(-5px); }
+
+    /* AI Dialogue */
+    .ai-dialogue-box {
+      position: fixed; bottom: 6rem; left: 1rem;
+      background-color: #1a202c; /* gray-900 */
+      border: 2px solid #6b46c1; /* purple-600 */
+      border-radius: .75rem; padding: 1rem;
+      max-width: 24rem; width: 90%; z-index: 1000;
+      box-shadow: 0 5px 15px rgba(0,0,0,.5);
+      display: none; color: #e2e8f0; /* gray-200 */
+    }
+    .ai-dialogue-box.show { display: block; }
+    .ai-dialogue-box h3 { color: #a78bfa; margin-bottom: .5rem; }
+    .ai-dialogue-box p  { margin-bottom: .75rem; line-height: 1.6; }
+    .ai-dialogue-box .close-btn {
+      position: absolute; top: .5rem; right: .5rem; line-height: 1;
+      background:none; border:none; color:#cbd5e0; font-size:1.25rem; cursor:pointer;
+    }
+    .ai-dialogue-box iframe { border-radius: .5rem; margin-top: .5rem; }
+     /* Custom styles for premium look and scrollbar hiding */
+        body {
+            background-color: #1a202c; /* Dark background for premium feel */
+            font-family: 'Inter', sans-serif; /* A modern, clean font */
+        }
+
+        .section-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-shadow-hover:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+
+        /* For modern browsers that support scrollbar-width (Firefox) and -webkit-scrollbar (Chrome, Safari) */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* For Webkit-based browsers (Chrome, Safari, Edge) */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Enhance scroll button appearance */
+        #scrollLeftBtn, #scrollRightBtn {
+            transition: all 0.2s ease-in-out;
+        }
+
+        #scrollLeftBtn:hover, #scrollRightBtn:hover {
+            transform: scale(1.1);
+        }
+
+        #scrollLeftBtn:focus, #scrollRightBtn:focus {
+            transform: scale(1.05);
+        }
+  </style>
+</head>
+</head>
+<body class='bg-gray-950 text-gray-100 antialiased leading-relaxed relative'>
+<header id="site-header" class="bg-gray-900/80 backdrop-blur shadow-lg py-3 px-6 md:px-12 fixed w-full z-40 border-b border-purple-500/20" role="banner">
+     <nav class="container mx-auto flex justify-between items-center" aria-label="Primary">
+       <div class="flex items-center gap-4">
+         <a href="https://www.youtube.com/@LeonGrayJ/live" id="logo-livestream-link" class="relative block w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-purple-400 flex items-center justify-center overflow-hidden transition duration-300 transform hover:scale-105" aria-label="Go to current livestream" target="_blank" rel="noopener noreferrer">
+            <img id="leongrayj-logo" src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" alt="LeongrayJ Logo" class="" />
+            <span id="live-badge" class="absolute bottom-0 right-0 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full translate-x-1/4 translate-y-1/4 shadow-lg animate-pulse hidden">LIVE</span>
+         </a>
+           <h1 class="text-2xl font-bold text-white tracking-wide">
+             <span class="text-purple-400">LeonGrayJ</span>
+           </h1>
+       </div>
+       <ul class="hidden md:flex gap-6 text-sm font-semibold">
+         <li><a href="#featured-spotlight" class="text-gray-300 hover:text-purple-400 transition">Featured</a></li>
+         <li><a href="#high-priority" class="text-gray-300 hover:text-purple-400 transition">High Priority</a></li>
+         <li><a href="#moderate-priority" class="text-gray-300 hover:text-purple-400 transition">Moderate Priority</a></li>
+         <li><a href="#low-priority" class="text-gray-300 hover:text-purple-400 transition">Low Priority</a></li>
+         <li><a href="#about-me" class="text-gray-300 hover:text-purple-400 transition">About Me</a></li>
+       </ul>
+     </nav>
+   </header>
+<main class='container mx-auto px-6 py-24 flex-grow'>
+<section id="low-priority" class="mb-20 section-fade-in" aria-labelledby="low-priority-heading">
+        <h2 id="low-priority-heading" class="text-4xl md:text-5xl font-bold text-white mb-12 text-center relative pb-4">
+          Low Priority: Future Engagements
+          <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-green-600 rounded-full"></span>
+        </h2>
+        <div id="low-priority-games" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <!-- Elder Scrolls VI -->
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="The Elder Scrolls VI" data-platform="Steam" data-release="Upcoming" data-priority="low">
+            <h3 class="text-2xl font-semibold text-green-400 mb-3">The Elder Scrolls VI</h3>
+            <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: Upcoming</p>
+            <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
+              <div class="youtube-lazy" data-id="OkFdqqyI8y4"><img src="https://img.youtube.com/vi/OkFdqqyI8y4/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
+            </div>
+            <p class="text-gray-300 flex-grow">The next chapter in a legendary saga. Anticipation stays high even with a long wait ahead.</p>
+          </article>
+          <!-- Star Wars Outlaws -->
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Star Wars Outlaws" data-platform="Steam" data-release="2025" data-priority="low">
+            <h3 class="text-2xl font-semibold text-green-400 mb-3">Star Wars Outlaws</h3>
+            <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: 2025</p>
+            <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
+              <div class="youtube-lazy" data-id="ymcpwq1ltQc"><img src="https://img.youtube.com/vi/ymcpwq1ltQc/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
+            </div>
+            <p class="text-gray-300 flex-grow">An open-world Star Wars adventure focused on the underworld. Watching for more gameplay before diving in.</p>
+          </article>
+          <!-- Cyberpunk 2077 -->
+          <article class="bg-gray-800 rounded-xl p-6 card-shadow transition duration-300 card-shadow-hover flex flex-col" data-game-title="Cyberpunk 2077" data-platform="Steam" data-release="Out Now" data-priority="low">
+            <h3 class="text-2xl font-semibold text-green-400 mb-3">Cyberpunk 2077</h3>
+            <p class="text-gray-400 text-sm mb-4">Platform: Steam | Release: Out Now</p>
+            <div class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mb-4">
+              <div class="youtube-lazy" data-id="8X2kIfS6fb8"><img src="https://img.youtube.com/vi/8X2kIfS6fb8/hqdefault.jpg" alt="Video Thumbnail" loading="lazy"><button class="youtube-play">▶</button></div>
+            </div>
+            <p class="text-gray-300 flex-grow">Night City calls! Updates & expansions make it a strong contender for a future deep dive.</p>
+          </article>
+        </div>
+      </section>
+</main>
+</body>
+</html>
+�
