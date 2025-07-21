@@ -26,10 +26,12 @@ exports.handler = async () => {
         return { statusCode: 200, body: JSON.stringify({ isLive: false, latestVideo: null }) };
     }
 
-    const isLive = latest['media:group']['yt:liveBroadcastContent'] === 'live';
-    const latestVideoUrl = latest.link.$.href; // Access href attribute directly
-    const latestVideoTitle = latest.title;
-    const latestVideoThumbnail = latest['media:group']['media:thumbnail'] ? latest['media:group']['media:thumbnail'].$.url : null; // Access url attribute directly
+    // Check if the liveBroadcastContent tag exists and its value is 'live'
+    const isLive = latest['media:group'] && latest['media:group']['yt:liveBroadcastContent'] && latest['media:group']['yt:liveBroadcastContent']._ === 'live';
+    const latestVideoUrl = latest.link && latest.link.$ && latest.link.$.href ? latest.link.$.href : null; // Access href attribute directly
+    const latestVideoTitle = latest.title || null;
+    const latestVideoThumbnail = latest['media:group'] && latest['media:group']['media:thumbnail'] && latest['media:group']['media:thumbnail'].$ && latest['media:group']['media:thumbnail'].$.url ? latest['media:group']['media:thumbnail'].$.url : null; // Access url attribute directly
+
 
     return {
       statusCode: 200,
