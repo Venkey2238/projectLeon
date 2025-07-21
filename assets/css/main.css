@@ -118,6 +118,26 @@ header nav a:hover::after {
     left: 0;
 }
 
+/* News Ticker Animation */
+/* Premium News Scroller Animation */
+@keyframes premium-marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-premium-marquee {
+  display: inline-block;
+  /* Adjust padding-left based on content length for smoother start */
+  padding-left: 100%;
+  animation: premium-marquee 25s linear infinite; /* Slower for high-end feel */
+  animation-delay: 1s; /* Slight delay before animation starts */
+}
+
+/* Optional: Pause marquee on hover for better readability */
+#premium-news-scroller:hover .animate-premium-marquee {
+  animation-play-state: paused;
+}
+
 /* -------------------------------------------------------------------------- */
 /* 3. Hero Section */
 /* -------------------------------------------------------------------------- */
