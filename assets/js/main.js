@@ -29,6 +29,106 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+// assets/js/main.js
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ... existing smooth scrolling, livestream status functions ...
+
+    // --- News Scroller Logic ---
+    const newsScroller = document.getElementById('news-scroller');
+    const newsScrollerSection = document.getElementById('news-scroller-section');
+
+    async function fetchGamingNews() {
+        try {
+            // Construct a more specific prompt for current gaming news
+            const prompt = "Provide 3-5 concise, headline-style updates on the latest significant gaming news (e.g., major game releases, big announcements, esports events) as a comma-separated list. Exclude specific dates or times. For example: 'New Cyberpunk 2077 expansion announced, Elden Ring DLC details revealed, Valorant Champions schedule confirmed'.";
+            
+            const response = await fetch('/.netlify/functions/ai-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ prompt: prompt }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`AI function error: ${response.status} - ${errorData.body}`);
+            }
+
+            const data = await response.json();
+            const rawNews = data.message;
+            console.log("Raw AI news response:", rawNews);
+
+            if (rawNews) {
+                const newsItems = rawNews.split(',').map(item => item.trim()).filter(item => item.length > 0);
+                populateNewsScroller(newsItems);
+            } else {
+                newsScroller.innerHTML = `<span class="news-item text-red-400">Failed to fetch news. Please try again later.</span>`;
+            }
+
+        } catch (error) {
+            console.error('Error fetching gaming news:', error);
+            newsScroller.innerHTML = `<span class="news-item text-red-400">Error loading news: ${error.message}.</span>`;
+        }
+    }
+
+    function populateNewsScroller(newsArray) {
+        newsScroller.innerHTML = ''; // Clear previous content
+
+        if (newsArray.length === 0) {
+            newsScroller.innerHTML = `<span class="news-item">No news updates available at the moment.</span>`;
+            return;
+        }
+
+        // Duplicate the news items to create a continuous loop effect
+        const duplicatedNews = [...newsArray, ...newsArray, ...newsArray]; // Repeat multiple times
+
+        duplicatedNews.forEach(newsText => {
+            const span = document.createElement('span');
+            span.classList.add('news-item');
+            span.textContent = newsText;
+            newsScroller.appendChild(span);
+        });
+
+        // Calculate animation duration based on content length for consistent speed
+        // A longer content string needs a longer animation duration
+        const contentWidth = newsScroller.scrollWidth; // Get the total width of the content
+        const viewportWidth = newsScrollerSection.offsetWidth; // Get the width of the visible area
+        const speed = 50; // pixels per second (adjust as needed for desired speed)
+        const duration = (contentWidth + viewportWidth) / speed; // Time in seconds
+
+        newsScroller.style.animationDuration = `${duration}s`;
+        newsScroller.style.animationPlayState = 'running'; // Ensure it's running
+    }
+
+    // Initialize news fetching when the page loads
+    fetchGamingNews();
+
+    // You might want to refresh news periodically, e.g., every hour
+    // setInterval(fetchGamingNews, 3600000); // Fetch every hour (3600000 ms)
+
+    // Optional: Section fade-in animation for the news section itself
+    const observerOptions = {
+        root: null, // relative to the viewport
+        rootMargin: '0px',
+        threshold: 0.1 // 10% of the section must be visible
+    };
+
+    const newsSectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    if (newsScrollerSection) {
+        newsSectionObserver.observe(newsScrollerSection);
+    }
+});
 
     // Function to fetch and update the latest YouTube livestream link and live indicator
     async function updateLivestreamStatus() {
