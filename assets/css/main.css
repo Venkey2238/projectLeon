@@ -70,34 +70,7 @@ html {
 
 /* ... existing styles ... */
 
-/* News Scroller Styles */
-#news-scroller-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-}
 
-#news-scroller {
-    animation: scrollNews linear infinite;
-    /* Speed will be set dynamically via JS */
-}
-
-.news-item {
-    padding-right: 2rem; /* Spacing between news items */
-    font-size: 1.125rem; /* text-lg in Tailwind */
-    color: #e2e8f0; /* text-gray-200 in Tailwind */
-}
-
-/* Keyframe animation for continuous scrolling */
-@keyframes scrollNews {
-    from { transform: translateX(100%); } /* Start off-screen right */
-    to { transform: translateX(-100%); }  /* End off-screen left */
-}
-
-/* Pause animation on hover if desired */
-#news-scroller:hover {
-    animation-play-state: paused;
-}
 
 
 
