@@ -1,0 +1,7 @@
+[build]
+  publish = "build" # Or whatever your publish directory is (often just ".")
+  functions = "netlify/functions" # This tells Netlify where to find your serverless functions
+
+# If you have specific build commands, add them here
+# For a simple static site + functions, this might be enough:
+# command = "npm install && npm run build" # if you have a build step
