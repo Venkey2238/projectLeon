@@ -1,0 +1,305 @@
+<!-- 🎮 Leon's Arcade Full HTML with Embedded Playlists Working -->
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore all of LeongrayJ's favorite games and curated YouTube playlists in one place. Your personal gaming arcade." />
+  <meta property="og:title" content="Leon's Arcade - LeongrayJ Gaming Blog" />
+  <meta property="og:description" content="A collection of LeongrayJ's most exciting gaming playlists and highlights." />
+  <meta property="og:image" content="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Leon's Arcade</title>
+  <link rel="icon" type="image/x-icon" href="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://img.youtube.com" crossorigin>
+  <link rel="dns-prefetch" href="https://img.youtube.com">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'custom-purple': '#EC4899',
+            'custom-pink': '#D946EF',
+            'custom-blue': '#8B5CF6',
+            'custom-bg': '#0D0A13'
+          },
+          keyframes: {
+            'neon-glow': {
+              '0%, 100%': { boxShadow: '0 0 5px #EC4899, 0 0 10px #EC4899, 0 0 20px #D946EF, 0 0 40px #D946EF' },
+              '50%': { boxShadow: '0 0 2.5px #EC4899, 0 0 5px #EC4899, 0 0 10px #D946EF, 0 0 20px #D946EF' }
+            },
+            'glare-sweep': {
+              '0%': { transform: 'translateX(-100%) skewX(-30deg)' },
+              '50%': { transform: 'translateX(200%) skewX(-30deg)' },
+              '100%': { transform: 'translateX(200%) skewX(-30deg)' }
+            },
+            'text-reveal': {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          },
+          animation: {
+            'neon-glow': 'neon-glow 2s ease-in-out infinite',
+            'glare-sweep': 'glare-sweep 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'text-reveal': 'text-reveal 1s ease forwards'
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="./assets/css/reset.css" />
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <style>
+    body {
+      background-color: #0d0a13;
+      font-family: 'Inter', sans-serif;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%23EC4899" d="M16 0L0 16l16 16 16-16L16 0z" /></svg>'), auto;
+    }
+    a, button {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%23D946EF" d="M16 0L0 16l16 16 16-16L16 0z" /></svg>'), pointer;
+    }
+.hero-arcade {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-arcade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('videos/DVx4.gif') no-repeat center center;
+  background-size: contain; /* Or 'cover' if you prefer */
+  z-index: 0;
+  opacity: 1;
+}
+
+.hero-arcade::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25); /* You can reduce this or set to 0 */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2; /* ✅ Make this higher than before */
+  padding: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+    .hero-title, .hero-subtitle {
+      animation-name: text-reveal;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      opacity: 0;
+    }
+    .hero-subtitle { animation-delay: 0.5s; }
+    .game-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+  .game-card:hover {
+    transform: translateY(-8px) scale(1.04);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6), 0 0 16px #EC4899, 0 0 32px #D946EF;
+  }
+  .card-video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    flex-shrink: 0;
+  }
+  .game-card .p-6 {
+    flex-grow: 1;
+    padding: 1.5rem;
+  }
+  .game-card h4 {
+    font-size: 1.75rem;
+  }
+.fixed-gif {
+  position: fixed;
+  bottom: 20px;   /* adjust as needed */
+  left: 20px;     /* adjust as needed */
+  width: 100px;   /* scale size */
+  height: auto;
+  z-index: 1000;  /* make sure it stays on top */
+  pointer-events: none; /* prevents GIF from blocking clicks */
+}
+
+  </style>
+</head>
+<body class="bg-custom-bg text-gray-100 antialiased leading-relaxed">
+<div id="loading-screen" class="fixed inset-0 flex items-center justify-center bg-custom-bg z-[1000]">
+  <img src="./videos/new.gif" alt="Loading..." class="w-32 h-32 md:w-48 md:h-48" />
+</div>
+<header class="bg-gray-900/40 backdrop-blur-lg shadow-lg py-3 px-6 md:px-12 fixed w-full z-40 border-b border-purple-500/20">
+  <nav class="container mx-auto flex justify-between items-center">
+    <div class="flex items-center gap-4">
+      <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" class="w-14 h-14 rounded-full border-2 border-purple-400 flex items-center justify-center overflow-hidden hover:scale-105 transition">
+        <img src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" alt="LeongrayJ Logo" />
+      </a>
+      <h1 class="text-2xl font-bold text-white tracking-wide"><span class="text-purple-400"><a href="index.html">LeonGrayJ</a></span></h1>
+    </div>
+    <ul class="hidden md:flex gap-6 text-sm font-semibold">
+      <li><a class="hover:text-custom-purple" href="index.html#featured-playlists">Featured</a></li>
+      <li><a class="text-custom-purple" href="arcade.html">Leon's Arcade</a></li>
+      <li><a class="hover:text-custom-purple" href="high_priority.html">High Priority</a></li>
+      <li><a class="hover:text-custom-purple" href="moderate_priority.html">Moderate Priority</a></li>
+      <li><a class="hover:text-custom-purple" href="low_priority.html">Low Priority</a></li>
+      <li><a class="hover:text-custom-purple" href="index.html#about-me">About Me</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container mx-auto px-6 py-24">
+ <section class="hero-arcade rounded-2xl mb-16 flex items-center justify-center h-[60vh] md:h-[70vh] text-center">
+    <div class="hero-content max-w-4xl mx-auto z-10">
+      <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight hero-title">Leon's Arcade</h2>
+      <p class="text-xl md:text-2xl text-gray-300 mb-8 hero-subtitle">Step into my personal arcade and explore a curated collection of my all-time favorite games and their YouTube playlists.</p>
+    </div>
+  </section>
+
+<section>
+  <h3 class="text-4xl font-bold text-white mb-12 text-center">My Favorite Game Playlists</h3>
+  <div id="game-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Game Cards will be injected here by JS -->
+  </div>
+</section>
+<script>
+  const games = [
+    { title: "Cyberpunk 2077", id: "PLWia9WmNWzl0J7Q8MxOdnt85QRN8MEogH", thumb: "sgHGruE_JYA" },
+    { title: "Cyberpunk 2077: Phantom Liberty", id: "PLWia9WmNWzl1dhmgiqIg6clgsT7cTucKe", thumb: "EjwaIsDcxsI" },
+    { title: "Death Stranding", id: "PLWia9WmNWzl3wcY1hcyGnuokUOLo4BLMY", thumb: "Vr3oK9tFvDc" },
+    { title: "Final Fantasy 7 Remake Intergrade", id: "PLWia9WmNWzl0eh2YP56iPpdIaGTRUkyV2", thumb: "rtDGj2kmkjI" },
+    { title: "Horizon Forbidden West", id: "PLWia9WmNWzl3Dlq3jMSziaaFEeBqprs3e", thumb: "pC1IZ1xYrwE" },
+    { title: "Subnautica", id: "PLWia9WmNWzl2PRhmaqTRN65mD_pW2UsCS", thumb: "PSPIWP3Rako" },
+    { title: "Grounded", id: "PLWia9WmNWzl3b0gw5JRC3KvD5FaWtUtsP", thumb: "zIGrlC6wFIc" },
+    { title: "Elden Ring", id: "PLWia9WmNWzl0-CVtEuvzEZDKTMA9vSvyO", thumb: "jvJ-ZENRIWw" },
+    { title: "Elden Ring: Shadow of the Erdtree", id: "PLWia9WmNWzl0XEz638HHJg0CbyVS0AcNi", thumb: "JcG0vUrCc_c" },
+    { title: "Wuthering Waves", id: "PLWia9WmNWzl0f_uPEwRB2oIaKfACUiq8c", thumb: "XbBV1hexQzk" },
+    { title: "Stray", id: "PLWia9WmNWzl1fIznmlp7JyNbMNBYGQiay", thumb: "NPa0q205DsY" },
+    { title: "Raft", id: "PLWia9WmNWzl2fgIWv6jTbqjvFxJl1MAVn", thumb: "q-3WeHFPmW4" },
+    { title: "God of War (5) Ragnarök + DLC", id: "PLWia9WmNWzl1Q-Ie1sDTXee0yEP0FUOYG", thumb: "PoOwdXE3xGk" },
+    { title: "High On Life", id: "PLWia9WmNWzl3WGYs1Q9rKfeC7z5o3egvC", thumb: "eWJ8lsz-syI" },
+    { title: "Gris", id: "PLWia9WmNWzl35YYbgSNdeu2v5N5lDNRiA", thumb: "xRhd5MAzccQ" },
+    { title: "Resident Evil 2 Remake", id: "PLWia9WmNWzl0kYtIH-RMIOV8lqbST9hsc", thumb: "m9ioqDWDoWA" },
+    { title: "Dead By Daylight", id: "PLWia9WmNWzl2ZGbzsWJkynJK1j8nTiZRJ", thumb: "EAVh1qB8JLQ" },
+    { title: "A Plague Tale: Innocence", id: "PLWia9WmNWzl0t8zzet5L58mkkHvNIYb-A", thumb: "KVREdwEWXZA" },
+    { title: "A Plague Tale: Requiem", id: "PLWia9WmNWzl0WK-SxI_SvUKuF1oM2y9PP", thumb: "TNDJWVidpGg" },
+    { title: "What Remains of Edith Finch", id: "PLWia9WmNWzl3vmBXqiIVG6RaQAzK3a0dO", thumb: "Vi6vZFKeNt8" },
+    { title: "The Alters", id: "PLWia9WmNWzl1hhzxG1XDxOXOaNKnKKUoD", thumb: "B-nYwFbXIHw" },
+    { title: "The Walking Dead: The Telltale Definitive Series", id: "PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia", thumb: "of2reY8GzDo" }
+  ];
+
+window.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('game-grid');
+    const fragment = document.createDocumentFragment();
+
+    games.forEach(game => {
+      const div = document.createElement('div');
+      div.className = 'game-card';
+      div.onclick = () => loadVideo(div, game.id);
+
+      div.innerHTML = `
+        <img loading="lazy" class="card-video" src="https://img.youtube.com/vi/${game.thumb}/0.jpg" alt="${game.title} Thumbnail">
+        <div class="p-6 flex flex-col">
+          <h4 class="text-2xl font-bold text-white mb-2">${game.title}</h4>
+          <a href="https://www.youtube.com/playlist?list=${game.id}" target="_blank"
+             class="mt-auto text-custom-purple hover:text-custom-pink font-semibold">
+            View on YouTube ↗
+          </a>
+        </div>`;
+      fragment.appendChild(div);
+    });
+
+    grid.appendChild(fragment);
+  });
+</script>
+
+
+
+
+</main>
+
+<footer class="bg-gray-900/40 backdrop-blur-lg py-8 px-6 md:px-12 text-center text-gray-400 text-sm">
+  <div class="container mx-auto">
+    <p class="mb-4">© 2025 LeonGrayJ. All Rights Reserved.</p>
+    <div class="flex justify-center gap-6">
+      <a class="hover:text-custom-purple transition" href="https://discord.gg/XY66hCpFcB" target="_blank">Discord</a>
+      <a class="hover:text-custom-purple transition" href="https://www.youtube.com/@LeonGrayJ" target="_blank">YouTube</a>
+      <a class="hover:text-custom-purple transition" href="#">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+<script>
+window.addEventListener('load', function() {
+  const loadingScreen = document.getElementById('loading-screen');
+  const floatingGif = document.getElementById('floating-gif');
+
+  if (loadingScreen) {
+    loadingScreen.style.display = 'none';
+    loadingScreen.remove(); // optional
+  }
+
+  if (floatingGif) {
+    floatingGif.style.display = 'block';
+  }
+});
+</script>
+
+<script defer type="module" src="./assets/js/main.js"></script>
+<img id="floating-gif" src="./videos/Z6W9.gif" alt="Floating GIF" class="fixed-gif" style="display: none;">
+<!-- Video modal container -->
+<div id="video-modal" class="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center hidden">
+  <div class="relative w-full max-w-6xl aspect-video bg-black rounded-lg shadow-lg">
+    <iframe id="video-iframe" class="w-full h-full rounded-lg"
+            src="" frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen></iframe>
+    <button id="modal-close"
+            class="absolute top-2 right-2 text-white text-3xl font-bold hover:text-pink-400 transition">
+      ×
+    </button>
+  </div>
+</div>
+
+
+<script>
+  function loadVideo(card, playlistId) {
+    const iframe = document.getElementById('video-iframe');
+    iframe.src = `https://www.youtube.com/embed/videoseries?list=${playlistId}&autoplay=1`;
+    document.getElementById('video-modal').classList.remove('hidden');
+  }
+
+  document.getElementById('modal-close').addEventListener('click', () => {
+    document.getElementById('video-modal').classList.add('hidden');
+    document.getElementById('video-iframe').src = '';
+  });
+  // Also close when clicking outside iframe container
+  document.getElementById('video-modal').addEventListener('click', e => {
+    if (e.target.id === 'video-modal') {
+      document.getElementById('modal-close').click();
+    }
+  });
+</script>
+
+</body>
+</html>
