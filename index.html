@@ -13,15 +13,11 @@
 <meta content="summary_large_image" name="twitter:card"/>
 <title>LeonGrayJ Gaming Blog</title>
 <link href="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" rel="icon" type="image/x-icon"/>
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS CDN (ok for prototypes; self-host for prod) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config = { darkMode: 'class' };</script>
-<!-- Custom CSS -->
-<!-- Reset first so we get consistent base across browsers -->
 <link href="./assets/css/reset.css" rel="stylesheet"/>
 <link href="./assets/css/main.css" rel="stylesheet"/>
 <style>
@@ -29,6 +25,14 @@
     main {
   padding-top: 120px; /* header height + news ticker height */
 }
+
+body {
+      background-color: #0d0a13;
+      font-family: 'Inter', sans-serif;
+    }
+    a, button {
+      cursor: inherit;
+    }
 
     /* ------------------------------------------------------------------
        Inline enhancements (feel free to move into main.css in prod)
@@ -275,17 +279,22 @@ body {
   opacity: 1;
 }
 
-/* News Ticker Animation (Existing, but ensure it's smooth) */
-.animate-premium-marquee {
-  animation: premium-marquee 20s linear infinite;
-  white-space: nowrap;
-  padding-left: 100%; /* Start off-screen */
-  display: inline-block; /* Necessary for animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%); /* Start already in view */
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
-@keyframes premium-marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
+
+.animate-premium-marquee {
+  display: inline-block;
+  /* Adjust padding-left based on content length for smoother start */
+  padding-left: 100%;
+  animation: premium-marquee 85s linear infinite; /* Slower for high-end feel */
+  animation-delay: 1s; /* Slight delay before animation starts */
 }
 
 /* Section Entrance Animation (for the entire featured section) */
@@ -310,15 +319,131 @@ body {
   100% { background-position: 1000px 1000px; }
 }
   </style>
-</meta></head>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'custom-purple': '#EC4899',
+            'custom-pink': '#D946EF',
+            'custom-blue': '#8B5CF6',
+            'custom-bg': '#0D0A13'
+          },
+          keyframes: {
+            'neon-glow': {
+              '0%, 100%': { boxShadow: '0 0 5px #EC4899, 0 0 10px #EC4899, 0 0 20px #D946EF, 0 0 40px #D946EF' },
+              '50%': { boxShadow: '0 0 2.5px #EC4899, 0 0 5px #EC4899, 0 0 10px #D946EF, 0 0 20px #D946EF' }
+            },
+            'glare-sweep': {
+              '0%': { transform: 'translateX(-100%) skewX(-30deg)' },
+              '50%': { transform: 'translateX(200%) skewX(-30deg)' },
+              '100%': { transform: 'translateX(200%) skewX(-30deg)' }
+            },
+            'text-reveal': {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          },
+          animation: {
+            'neon-glow': 'neon-glow 2s ease-in-out infinite',
+            'glare-sweep': 'glare-sweep 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'text-reveal': 'text-reveal 1s ease forwards'
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="./assets/css/reset.css" />
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <style>
+    body {
+      background-color: #0d0a13;
+      font-family: 'Inter', sans-serif;
+    }
+    a, button {
+      cursor: inherit;
+    }
+    .hero-arcade {
+      background-image: url('https://wallpapers.com/images/hd/space-battle-cyberpunk-5k-9qf426c117b9609f.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-arcade::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    .hero-title, .hero-subtitle {
+      animation-name: text-reveal;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      opacity: 0;
+    }
+    .hero-subtitle { animation-delay: 0.5s; }
+    .game-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+    .game-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px #EC4899, 0 0 40px #D946EF;
+    }
+    .card-video {
+      width: 100%;
+      height: 200px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+  </style>
+
+<script>
+  const colors = ["#EC4899", "#D946EF", "#F87171", "#A78BFA", "#FBBF24"];
+  let currentIndex = 0;
+
+  function updateCursor() {
+    const color = colors[currentIndex];
+    const svgCursor = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+        <path fill="${color}" d="M16 0L0 16l16 16 16-16L16 0z"/>
+      </svg>`;
+    const dataUrl = `url('data:image/svg+xml;utf8,${encodeURIComponent(svgCursor)}'), auto`;
+    document.body.style.cursor = dataUrl;
+
+    currentIndex = (currentIndex + 1) % colors.length;
+  }
+
+  setInterval(updateCursor, 2500);
+  updateCursor(); // initial
+</script>
+</meta>
+
+</head>
 <body class="bg-gray-950 text-gray-100 antialiased leading-relaxed relative">
-<!-- Skip link -->
+<div id="loading-screen" class="fixed inset-0 flex items-center justify-center bg-custom-bg z-[1000]">
+  <img src="./videos/loaderfour.webp" alt="Loading..." class="w-32 h-32 md:w-48 md:h-48" />
+</div>
 <a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:bg-purple-600 focus:text-white focus:px-4 focus:py-2 focus:rounded" href="#main-content">Skip to content</a>
 <div class="min-h-screen flex flex-col">
-<!-- ============================================================= -->
-<!-- Header / Site Nav                                             -->
-<!-- Combines richer ARIA + live badge hook from original v1       -->
-<!-- ============================================================= -->
 <header class="bg-gray-900/80 backdrop-blur shadow-lg py-3 px-6 md:px-12 fixed w-full z-40 border-b border-purple-500/20" id="site-header" role="banner">
 <nav aria-label="Primary" class="container mx-auto flex justify-between items-center">
 <div class="flex items-center gap-4">
@@ -327,44 +452,36 @@ body {
 <span class="absolute bottom-0 right-0 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full translate-x-1/4 translate-y-1/4 shadow-lg animate-pulse hidden" id="live-badge">LIVE</span>
 </a>
 <h1 class="text-2xl font-bold text-white tracking-wide">
-<span class="text-purple-400">LeonGrayJ</span>
+<span class="text-purple-400"><a href="index.html">LeonGrayJ</a></span>
 </h1>
 </div>
 <ul class="hidden md:flex gap-6 text-sm font-semibold">
-<li><a class="text-gray-300 hover:text-purple-400 transition" href="index.html#featured-spotlight">Featured</a></li>
-<li><a class="text-gray-300 hover:text-purple-400 transition" href="high_priority.html">High Priority</a></li>
-<li><a class="text-gray-300 hover:text-purple-400 transition" href="moderate_priority.html">Moderate Priority</a></li>
-<li><a class="text-gray-300 hover:text-purple-400 transition" href="low_priority.html">Low Priority</a></li>
-<li><a class="text-gray-300 hover:text-purple-400 transition" href="index.html#about-me">About Me</a></li>
+      <li><a class="text-custom-purple" href="index.html#featured-playlists">Featured</a></li>
+      <li><a class="hover:text-custom-purple" href="arcade.html">Leon's Arcade</a></li>
+      <li><a class="hover:text-custom-purple" href="high_priority.html">High Priority</a></li>
+      <li><a class="hover:text-custom-purple" href="moderate_priority.html">Moderate Priority</a></li>
+      <li><a class="hover:text-custom-purple" href="low_priority.html">Low Priority</a></li>
+      <li><a class="text-custom-purple" href="index.html#about-me">About Me</a></li>
 </ul>
 </nav>
 </header>
-<!-- ============================================================= -->
-<!-- Hero                                                          -->
-<!-- Uses local asset from original; inline fallback background    -->
-<!-- ============================================================= -->
 <main class="container mx-auto px-6 py-24 flex-grow" id="main-content">
 <div></div>
 <div></div>
-<!-- News Ticker -->
 <section>
 <div class="fixed w-full bg-gradient-to-r from-gray-900 via-purple-900 to-gray-900 shadow-xl overflow-hidden z-30 top-[90px]" id="premium-news-scroller">
 <div class="absolute inset-0 bg-black opacity-30 pointer-events-none"></div>
 <div class="relative py-2 flex items-center justify-center">
 <div class="absolute left-0 w-1/12 h-full bg-gradient-to-r from-gray-900 to-transparent z-10"></div>
 <div class="absolute right-0 w-1/12 h-full bg-gradient-to-l from-gray-900 to-transparent z-10"></div>
-<div class="whitespace-nowrap animate-premium-marquee text-lg font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-300 to-white">
-<span class="mr-8">✨ Breaking News: The Walking Dead Series stream is live!</span>
-<span class="mr-8">🚀 New Game Updates Coming Soon!</span>
-<span class="mr-8">⭐ Check Out My Latest Game Priorities!</span>
-<span class="mr-8">🎮 Exclusive Content &amp; Giveaways!</span>
+<div id="dynamic-marquee" class="whitespace-nowrap animate-premium-marquee text-lg font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-300 to-white">
+  <!-- Dynamic news items will be inserted here -->
+  <span class="mr-8">Loading latest gaming news...</span>
 </div>
 </div>
 </div>
 </section>
 <section class="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden pt-16 bg-cover bg-center bg-no-repeat" data-hero-bg="./assets/img/hero.jpg" id="hero-section" style="background-image:url('https://wallpapers.com/images/hd/the-walking-dead-game-characters-q02t53z560938y3y.jpg'); background-size:75%;">
-<!-- OPTIONAL overlay to improve text contrast -->
-<!-- <div class="absolute inset-0 bg-black/50"></div> -->
 <div class="relative z-10 p-6 max-w-4xl mx-auto">
 <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-6 text-shadow-lg leading-tight text-center">
       Curating the Future of Gaming
@@ -372,32 +489,26 @@ body {
 <p class="text-xl md:text-2xl text-gray-300 mb-8 text-shadow-lg text-center">
       Welcome to my personal chronicle of the most anticipated titles, categorized by the urgency of their call to adventure. Join me as I explore what's next on the horizon.
     </p>
-<a class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg" href="#featured-spotlight">
+<a class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg" href="#featured-playlists">
       Explore My List
     </a>
 </div>
 </section>
-<section class="mt-20"> <!-- margin-top -->
-<section class="mt-20"> <!-- margin-top -->
-<section class="mt-20"> <!-- margin-top -->
-<section class="mt-20"> <!-- margin-top -->
-<section class="mt-20"> <!-- margin-top -->
-
-<section aria-labelledby="featured-spotlight-heading" class="w-full max-w-6xl mx-auto section-fade-in relative overflow-hidden rounded-3xl shadow-3xl transform hover:shadow-4xl transition-all duration-700 ease-in-out" id="featured-spotlight">
+<section class="mt-20"> <section class="mt-20"> <section class="mt-20"> <section class="mt-20"> <section class="mt-20"> <section aria-labelledby="featured-playlists-heading" class="w-full max-w-6xl mx-auto section-fade-in relative overflow-hidden rounded-3xl shadow-3xl transform hover:shadow-4xl transition-all duration-700 ease-in-out" id="featured-playlists">
 
   <div class="absolute inset-0 bg-gradient-to-br from-gray-950 via-purple-950 to-pink-950 opacity-95 z-0 animate-gradient-shift"></div>
   <div class="absolute inset-0 bg-pattern-dots z-0 animate-pattern-flow"></div>
   <div class="absolute inset-0 z-0 pointer-events-none" style="background: radial-gradient(circle at center, rgba(168, 85, 247, 0.1) 0%, transparent 70%); animation: pulse-light 5s infinite alternate;"></div>
 
   <div class="relative z-10 p-8 md:p-12 lg:p-16">
-    <h2 class="text-center relative pb-8 tracking-tight leading-tight featured-heading" id="featured-spotlight-heading">
+    <h2 class="text-center relative pb-8 tracking-tight leading-tight featured-heading" id="featured-playlists-heading">
       <span class="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-pink-500 animate-text-reveal">
-        Featured Pick of the Month
+        Featured Playlists & Picks
       </span>
       <span class="block mx-auto mt-4 w-40 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-subtle-pulse"></span>
     </h2>
 
-    <div class="glass-effect rounded-2xl p-8 md:p-12 shadow-2xl featured-content-wrapper" id="featured-spotlight-wrapper">
+    <div class="glass-effect rounded-2xl p-8 md:p-12 shadow-2xl featured-content-wrapper" id="featured-playlists-wrapper">
       <div class="lg:w-full w-full space-y-16">
         <h4 class="text-3xl sm:text-4xl font-bold text-white mb-6 border-b-2 border-purple-700 pb-6 text-center animate-fade-in-up">
           <span class="text-purple-400">🎥</span> Curated Playlists
@@ -449,18 +560,6 @@ body {
     background-size: 20px 20px;
   } */
 </style>
-<!--      
-            <section class="mb-16 section-fade-in" aria-label="Search games">
-              <div class="bg-gray-800 rounded-xl p-6 search-bar-container flex flex-col md:flex-row items-center gap-4">
-                <label for="game-search-input" class="sr-only">Search for games</label>
-                <input type="text" id="game-search-input" placeholder="Search for games..." class="flex-grow bg-gray-700 text-white border border-gray-600 rounded-full py-3 px-6 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-400" />
-                <button id="game-search-button" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">Search</button>
-              </div>
-            </section> -->
-<!-- =========================================================== -->
-<!-- About                                                       -->
-<!-- =========================================================== -->
-<!-- About Section -->
 <section aria-labelledby="about-me-heading" class="mb-20 section-fade-in flex justify-center" id="about-me">
 <div class="bg-gray-800 rounded-xl p-6 md:p-10 flex flex-col items-center text-center gap-6 about-section card-shadow max-w-3xl w-full">
 <img alt="LeongrayJ Profile" class="w-40 h-40 rounded-full object-cover border-4 border-purple-600 shadow-lg" src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj"/>
@@ -478,9 +577,6 @@ body {
     </p>
 </div>
 </section>
-<!-- =========================================================== -->
-<!-- Testimonials                                                 -->
-<!-- =========================================================== -->
 <section aria-labelledby="testimonials-heading" class="mb-20 section-fade-in" id="testimonials">
 <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center relative pb-4" id="testimonials-heading">
           What Gamers Say
@@ -505,14 +601,10 @@ body {
 </blockquote>
 </div>
 </section>
-<!-- =========================================================== -->
-<!-- Community + Discord                                          -->
-<!-- =========================================================== -->
 <section aria-labelledby="community-heading" class="bg-gray-900 rounded-xl p-10 md:p-16 text-center card-shadow mb-20 mx-auto max-w-6xl border border-gray-800 newsletter-section section-fade-in" id="leongrayj-community">
 <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight" id="community-heading">Join the <span class="text-purple-400">LeonGrayJ</span> Community!</h2>
 <p class="text-lg text-gray-300 mb-12 max-w-3xl mx-auto">Dive deeper into my gaming world. Here’s how you can connect and be a part of the journey.</p>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-16">
-<!-- Support Card -->
 <div class="bg-gray-800 p-8 rounded-lg border border-purple-700 card-shadow transition duration-300 hover:scale-[1.01] hover:border-purple-600 flex flex-col justify-between">
 <div>
 <h3 class="text-3xl font-semibold text-purple-400 mb-4">Your Support Fuels the Adventure!</h3>
@@ -523,11 +615,10 @@ body {
               Visit My YouTube
             </a>
 </div>
-<!-- Live Card -->
 <div class="bg-gray-800 p-8 rounded-lg border border-blue-700 card-shadow transition duration-300 hover:scale-[1.01] hover:border-blue-600 flex flex-col justify-between">
 <div>
-<h3 class="text-3xl font-semibold text-blue-400 mb-4">Catch Me Live &amp; Say Hi!</h3>
-<p class="text-gray-300 text-lg mb-6">I livestream almost every day, playing a variety of games. Stop by, hang out, and don’t hesitate to say hi in the chat—I’d love to know you’re here! �🐥🪽</p>
+<h3 class="text-3xl font-semibold text-blue-400 mb-4">Catch Me Live & Say Hi!</h3>
+<p class="text-gray-300 text-lg mb-6">I livestream almost every day, playing a variety of games. Stop by, hang out, and don’t hesitate to say hi in the chat—I’d love to know you’re here! 🐥🪽</p>
 </div>
 <a class="mt-6 inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg" href="https://www.youtube.com/@LeonGrayJ/live" rel="noopener noreferrer" target="_blank">
 <svg aria-hidden="true" class="w-6 h-6 mr-3" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M19.812 5.056a3.75 3.75 0 0 0-2.124-2.124C16.322 2.5 12 2.5 12 2.5s-4.322 0-5.688.432a3.75 3.75 0 0 0-2.124 2.124c-.432 1.366-.432 4.225-.432 4.225v2.817c0 2.86.001 4.79.432 6.156a3.75 3.75 0 0 0 2.124 2.124c1.366.432 5.688.432 5.688.432s4.322 0 5.688-.432a3.75 3.75 0 0 0 2.124-2.124c.432-1.366.432-4.225.432-4.225V9.281c0-2.86-.001-4.79-.432-6.156ZM9.75 15.375V8.625L15.375 12l-5.625 3.375Z" fill-rule="evenodd"></path></svg>
@@ -545,12 +636,10 @@ body {
 </div>
 </section>
 
-<!-- ============================================================= -->
-<!-- Latest Gaming Buzz (news teaser cards; static sample)          -->
-<!-- ============================================================= -->
 <section aria-labelledby="latest-buzz-heading" class="bg-gray-800 py-10 border-t border-purple-700 section-fade-in" id="latest-buzz">
 <div class="container mx-auto px-6">
-<h2 class="text-3xl font-bold text-purple-400 mb-6" id="latest-buzz-heading">🎮 Latest Gaming Buzz</h2>
+<h2 class="text-3xl font-bold text-purple-400 mb-2" id="latest-buzz-heading">🎮 Latest Gaming Buzz & Playlists</h2>
+<p class="text-gray-400 text-lg mb-6">Catch up on the newest gaming news or <a href="arcade.html" class="text-purple-400 hover:text-pink-400 underline transition-colors duration-300">explore all my favorite games in Leon's Arcade</a>.</p>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 <article aria-label="Xbox Showcase Recap" class="bg-gray-900 p-4 rounded-lg shadow hover:shadow-lg transition latest-buzz-card">
 <h3 class="text-lg font-semibold text-white mb-2">Xbox Showcase Recap</h3>
@@ -567,9 +656,6 @@ body {
 </div>
 </div>
 </section>
-<!-- ============================================================= -->
-<!-- Footer                                                        -->
-<!-- ============================================================= -->
 <footer class="bg-gray-900 py-8 px-6 md:px-12 text-center text-gray-400 text-sm" role="contentinfo">
 <div class="container mx-auto">
 <p class="mb-4">© 2025 LeonGrayJ. All Rights Reserved.</p>
@@ -581,41 +667,65 @@ body {
 </div>
 </footer>
 
-<!-- ============================================================= -->
-<!-- AI Dialogue Box (interactive)                                  -->
-<!-- ============================================================= -->
-<!--   <div id="ai-dialogue-box" class="ai-dialogue-box" role="dialog" aria-modal="true" aria-labelledby="ai-dialogue-title">
-    <button class="close-btn" id="ai-dialogue-close-btn" aria-label="Close AI assistant">×</button>
-    <h3 id="ai-dialogue-title" class="text-xl font-bold mb-2">Greetings, Gamer! 👋</h3>
-    <p id="ai-dialogue-content" class="text-sm text-gray-300"></p>
-    <div id="ai-video-container" class="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg mt-4 hidden">
-      <iframe id="ai-video-iframe" class="absolute top-0 left-0 w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-  </div> -->
-<!-- ============================================================= -->
-<!-- Floating Navigation (Desktop Quick Jumps)                      -->
-<!-- ============================================================= -->
 <nav aria-label="Quick section navigation" class="hidden lg:flex fixed top-1/2 right-4 z-50 flex-col gap-3 -translate-y-1/2" id="floating-nav">
-<a class="bg-purple-600 hover:bg-purple-700 text-white p-2 rounded-full shadow-lg transition" href="#featured-spotlight" title="Featured Pick">⭐</a>
-<a class="bg-purple-600 hover:bg-purple-700 text-white p-2 rounded-full shadow-lg transition" href="#high-priority" title="High Priority">🎯</a>
-<a class="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full shadow-lg transition" href="#moderate-priority" title="Moderate Priority">⛰️</a>
-<a class="bg-green-600 hover:bg-green-700 text-white p-2 rounded-full shadow-lg transition" href="#low-priority" title="Low Priority">🌱</a>
+<a class="bg-purple-600 hover:bg-purple-700 text-white p-2 rounded-full shadow-lg transition" href="#featured-playlists" title="Featured Pick">⭐</a>
+<a class="bg-purple-600 hover:bg-purple-700 text-white p-2 rounded-full shadow-lg transition" href="./high_priority.html" title="High Priority">🎯</a>
+<a class="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full shadow-lg transition" href="./moderate_priority.html" title="Moderate Priority">⛰️</a>
+<a class="bg-green-600 hover:bg-green-700 text-white p-2 rounded-full shadow-lg transition" href="./low_priority.html" title="Low Priority">🌱</a>
 </nav>
-<!-- Back to Top -->
 <button aria-label="Back to top" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-3 rounded-full shadow-lg hidden z-50" id="backToTop" title="Go to top">⬆️</button>
-<!-- Scroll Progress Bar -->
 <div class="fixed top-0 left-0 w-0 h-1 bg-purple-600 z-50" id="scroll-progress"></div>
-<!-- Hidden Iframe Fallback Live Checker (optional legacy technique) -->
 <iframe id="live-checker" src="https://www.youtube.com/@LeonGrayJ/live" style="display:none;" title="Live Checker"></iframe>
-<!-- ============================================================= -->
-<!-- JS                                                             -->
-<!-- main.js should:                                                -->
-<!--  • Populate featured + priority grids (or augment existing)    -->
-<!--  • Handle search/filter                                        -->
-<!--  • Poll Netlify fn for YT live status (channel: UCNxPNmokJwOsJANF4BlGbKA) -->
-<!--  • Toggle live badge + logo href update                        -->
-<!--  • Scroll effects, fade-ins, back-to-top, progress bar         -->
-<!--  • AI dialogue widget behavior                                 -->
+<script>
+window.addEventListener('load', function() {
+  const loadingScreen = document.getElementById('loading-screen');
+  const floatingGif = document.getElementById('floating-gif');
+
+  // Delay hiding the loading screen by 5 seconds (5000 ms)
+  setTimeout(() => {
+    if (loadingScreen) {
+      loadingScreen.style.display = 'none';
+      loadingScreen.remove(); // optional
+    }
+
+    if (floatingGif) {
+      floatingGif.style.display = 'block';
+    }
+  }, 2000); // <-- 5000 milliseconds = 5 seconds
+});
+</script>
+
+<script>
+ const apiKey = 'b162f72fadcc5c39885332a7dcfa90ce'; // Replace with your GNews API key
+  const marquee = document.getElementById('dynamic-marquee');
+
+  fetch(`https://gnews.io/api/v4/search?q=gaming&lang=en&max=10&apikey=${apiKey}`)
+    .then(response => {
+      if (!response.ok) throw new Error("API response not OK.");
+      return response.json();
+    })
+    .then(data => {
+      marquee.innerHTML = ''; // Clear loading message
+      data.articles.forEach(article => {
+        const span = document.createElement('span');
+        span.className = "mr-8";
+        span.textContent = `📰 ${article.title}`;
+        marquee.appendChild(span);
+      });
+    })
+    .catch(error => {
+      console.error("Failed to fetch news:", error);
+      marquee.innerHTML = '<span class="mr-8">⚠️ Failed to load latest news. Try again later.</span>';
+    });
+setInterval(() => {
+  fetch('https://gnews.io/api/v4/search?q=gaming&lang=en&max=10&apikey=${b162f72fadcc5c39885332a7dcfa90ce}')
+    .then(response => response.json())
+    .then(data => {
+      const headlines = data.slice(0, 10).map(item => item.title);
+      document.getElementById('news').textContent = headlines.join(' ⚔️ ');
+    });
+}, 5 * 60 * 1000); // every 5 minutes
+</script>
 <script defer="" src="./assets/js/main.js" type="module"></script>
 <script defer="" src="./assets/js/lazy-youtube.js"></script>
 </body>
