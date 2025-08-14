@@ -91,12 +91,19 @@
             transform: scale(1.05);
         }/* General Enhancements for Premium Look */
 
-        /* For Webkit-based browsers */
-    ::-webkit-scrollbar,
-    ::-webkit-scrollbar-thumb,
-    ::-webkit-scrollbar-track {
-  cursor: default !important; /* Forces the scrollbar to use the default cursor, which will be the one set on the body */
+   /* Replace YOUR_CSS_CURSOR_URL with your data URL string */
+::-webkit-scrollbar,
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%23EC4899" d="M16 0L0 16l16 16 16-16L16 0z"/></svg>') 16 16, auto !important;
 }
+
+/* Firefox */
+* {
+  scrollbar-color: auto; /* keep your colors */
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%23EC4899" d="M16 0L0 16l16 16 16-16L16 0z"/></svg>') 16 16, auto;
+}
+
 body {
   background-color: #0d0a13; /* Even darker background */
 }
@@ -406,17 +413,28 @@ body {
   const colors = ["#EC4899", "#D946EF", "#F87171", "#A78BFA", "#FBBF24"];
   let currentIndex = 0;
 
-  function updateCursor() {
-    const color = colors[currentIndex];
-    const svgCursor = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-        <path fill="${color}" d="M16 0L0 16l16 16 16-16L16 0z"/>
-      </svg>`;
-    const dataUrl = `url('data:image/svg+xml;utf8,${encodeURIComponent(svgCursor)}'), auto`;
-    document.body.style.cursor = dataUrl;
+function updateCursor() {
+  const color = colors[currentIndex];
+  const svgCursor = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+      <path fill="${color}" d="M16 0L0 16l16 16 16-16L16 0z"/>
+    </svg>`;
+  const dataUrl = `url('data:image/svg+xml;utf8,${encodeURIComponent(svgCursor)}'), auto`;
 
-    currentIndex = (currentIndex + 1) % colors.length;
-  }
+  document.body.style.cursor = dataUrl;
+
+  // Apply to scrollbar too
+  const style = document.getElementById('cursor-style') || document.createElement('style');
+  style.id = 'cursor-style';
+  style.innerHTML = `
+    ::-webkit-scrollbar,
+    ::-webkit-scrollbar-thumb,
+    ::-webkit-scrollbar-track { cursor: ${dataUrl} !important; }
+  `;
+  document.head.appendChild(style);
+
+  currentIndex = (currentIndex + 1) % colors.length;
+}
 
   setInterval(updateCursor, 2500);
   updateCursor();
