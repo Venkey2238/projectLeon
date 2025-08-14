@@ -394,26 +394,7 @@ body {
       opacity: 0;
     }
     .hero-subtitle { animation-delay: 0.5s; }
-    .game-card {
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    }
-    .game-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px #EC4899, 0 0 40px #D946EF;
-    }
-    .card-video {
-      width: 100%;
-      height: 200px;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
-    }
+
   </style>
 
 <script>
@@ -494,47 +475,257 @@ body {
     </a>
 </div>
 </section>
-<section class="mt-20"> <section class="mt-20"> <section class="mt-20"> <section class="mt-20"> <section class="mt-20"> <section aria-labelledby="featured-playlists-heading" class="w-full max-w-6xl mx-auto section-fade-in relative overflow-hidden rounded-3xl shadow-3xl transform hover:shadow-4xl transition-all duration-700 ease-in-out" id="featured-playlists">
 
-  <div class="absolute inset-0 bg-gradient-to-br from-gray-950 via-purple-950 to-pink-950 opacity-95 z-0 animate-gradient-shift"></div>
-  <div class="absolute inset-0 bg-pattern-dots z-0 animate-pattern-flow"></div>
-  <div class="absolute inset-0 z-0 pointer-events-none" style="background: radial-gradient(circle at center, rgba(168, 85, 247, 0.1) 0%, transparent 70%); animation: pulse-light 5s infinite alternate;"></div>
+<section class="cinematic-playlist-section py-20 px-4 relative overflow-hidden bg-black text-white font-sans">
 
-  <div class="relative z-10 p-8 md:p-12 lg:p-16">
-    <h2 class="text-center relative pb-8 tracking-tight leading-tight featured-heading" id="featured-playlists-heading">
-      <span class="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-pink-500 animate-text-reveal">
-        Featured Playlists & Picks
-      </span>
-      <span class="block mx-auto mt-4 w-40 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-subtle-pulse"></span>
-    </h2>
+  <!-- BACKGROUND LAYERS -->
+  <div class="absolute inset-0 z-0">
+    <div class="stars-layer"></div>
+    <div class="nebula-layer"></div>
+    <div class="aurora-layer"></div>
+    <div class="fog-layer"></div>
+    <div class="spotlight-sweep"></div>
+  </div>
 
-    <div class="glass-effect rounded-2xl p-8 md:p-12 shadow-2xl featured-content-wrapper" id="featured-playlists-wrapper">
-      <div class="lg:w-full w-full space-y-16">
-        <h4 class="text-3xl sm:text-4xl font-bold text-white mb-6 border-b-2 border-purple-700 pb-6 text-center animate-fade-in-up">
-          <span class="text-purple-400">🎥</span> Curated Playlists
-        </h4>
+  <!-- CONTENT -->
+  <div class="relative z-10 max-w-6xl mx-auto text-center">
+    <div class="holo-badge">NOW FEATURING</div>
+    <h2 class="title"><b>Clair Obscur: Expedition 33 </b></h2>
+    <p class="subtitle">A breathtaking journey into a world of art, fantasy, and heart-pounding adventure</p>
 
-        <div class="playlist-card rounded-2xl p-8 shadow-xl flex flex-col items-center space-y-6 animate-scale-in">
-          <h5 class="text-2xl sm:text-3xl font-extrabold text-white text-center animate-text-pop">🌀 Wu Chang Playlist</h5>
-          <p class="text-gray-300 text-center max-w-prose animate-fade-in">Dive into the mystical and dynamic world of Wu Chang with this hand-picked collection of captivating videos.</p>
-          <div class="relative w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-lg border border-purple-800 playlist-video-container animate-video-pulse">
-            <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full" frameborder="0" src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0vlWrMDCStIrp-3ne7i_XS" title="Wu Chang Playlist"></iframe>
-          </div>
-          <a class="link-underline text-purple-400 hover:text-pink-400 font-semibold text-lg transition-colors duration-300 animate-bounce-in" href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0vlWrMDCStIrp-3ne7i_XS" target="_blank">Open Full Playlist ↗</a>
-        </div>
+    <!-- NEON DIVIDER -->
+    <div class="neon-divider"></div>
 
-        <div class="playlist-card rounded-2xl p-8 shadow-xl flex flex-col items-center space-y-6 animate-scale-in delay-150">
-          <h5 class="text-2xl sm:text-3xl font-extrabold text-white text-center animate-text-pop">🧟 The Walking Dead Playlist</h5>
-          <p class="text-gray-300 text-center max-w-prose animate-fade-in">Experience the gripping survival saga with this curated selection, perfect for fans of the post-apocalyptic world.</p>
-          <div class="relative w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-lg border border-purple-800 playlist-video-container animate-video-pulse">
-            <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full" frameborder="0" src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia" title="The Walking Dead Playlist"></iframe>
-          </div>
-          <a class="link-underline text-purple-400 hover:text-pink-400 font-semibold text-lg transition-colors duration-300 animate-bounce-in" href="https://www.youtube.com/playlist?list=PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia" target="_blank">Open Full Playlist ↗</a>
-        </div>
+    <!-- VIDEO SHOWCASE -->
+    <div class="video-showcase">
+      <iframe width="100%" height="450" 
+        src="https://www.youtube.com/embed/0RKbpYI5z7Y?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
+        frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <!-- GAME INFO -->
+    <div class="game-info">
+      <h3><b>About Clair Obscur: Expedition 33</b></h3>
+      <p>
+        In <b>Clair Obscur: Expedition 33</b>, players embark on an epic quest across a surreal,
+        painterly world inspired by French impressionism. With its unique blend of fast-paced
+        combat, evocative storytelling, and striking visuals, this adventure delivers an
+        unforgettable journey through beauty and peril. Every step feels like walking through
+        a living painting — where danger and wonder coexist.
+      </p>
+      <p>
+        🎮 <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH" 
+        target="_blank" class="playlist-link"><b>Watch the full playlist here</b></a>
+      </p>
+    </div>
+
+    <!-- FACT PANELS -->
+    <div class="facts-grid">
+      <div class="fact-panel">
+        <span class="fact-icon">🎨</span>
+        <span class="fact-text"><b>Art-Inspired World</b></span>
+      </div>
+      <div class="fact-panel">
+        <span class="fact-icon">⚔️</span>
+        <span class="fact-text"><b>Dynamic Combat</b></span>
+      </div>
+      <div class="fact-panel">
+        <span class="fact-icon">📖</span>
+        <span class="fact-text"><b>Rich Storytelling</b></span>
       </div>
     </div>
   </div>
+
+  <style>
+    /* BACKGROUND STARS */
+    .stars-layer {
+      position: absolute;
+      inset: 0;
+      background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      animation: stars-move 120s linear infinite;
+    }
+    @keyframes stars-move {
+      from { background-position: 0 0; }
+      to { background-position: 10000px 5000px; }
+    }
+
+    /* NEBULA */
+    .nebula-layer {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(255,0,150,0.2), transparent 70%),
+                  radial-gradient(circle at 70% 30%, rgba(0,200,255,0.15), transparent 70%);
+      animation: nebula-fade 15s ease-in-out infinite alternate;
+    }
+    @keyframes nebula-fade {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* AURORA */
+    .aurora-layer {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(0,255,200,0.2), transparent, rgba(255,0,200,0.2));
+      background-size: 200% 200%;
+      animation: aurora-shift 20s ease-in-out infinite;
+    }
+    @keyframes aurora-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* FOG */
+    .fog-layer {
+      position: absolute;
+      inset: 0;
+      background: url('https://www.transparenttextures.com/patterns/fog.png') repeat;
+      opacity: 0.15;
+      animation: fog-move 60s linear infinite;
+    }
+    @keyframes fog-move {
+      from { background-position: 0 0; }
+      to { background-position: -2000px 1000px; }
+    }
+
+    /* SPOTLIGHT SWEEP */
+    .spotlight-sweep {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
+      animation: spotlight 8s linear infinite;
+    }
+    @keyframes spotlight {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* CONTENT STYLING */
+    .holo-badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #0ff, #f0f);
+      background-size: 200% 200%;
+      animation: holo-shift 3s ease-in-out infinite;
+      color: black;
+      font-weight: bold;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+    @keyframes holo-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .title {
+      font-size: 3.2rem;
+      font-weight: bold;
+      text-shadow: 0 0 15px #0ff, 0 0 30px #f0f;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    .neon-divider {
+      height: 4px;
+      width: 100px;
+      background: linear-gradient(90deg, #0ff, #f0f, #0ff);
+      background-size: 200% 200%;
+      margin: 2rem auto;
+      animation: divider-glow 2s linear infinite;
+    }
+    @keyframes divider-glow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    /* VIDEO SHOWCASE */
+.video-showcase {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  aspect-ratio: 16 / 9; /* Keeps perfect 16:9 shape */
+  border: 4px solid rgba(0,255,255,0.8);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(0,255,255,0.6), 0 0 50px rgba(255,0,255,0.4);
+  margin: 0 auto 3rem auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.video-showcase iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none; /* No inner border from the iframe */
+}
+.video-showcase:hover {
+  transform: scale(1.03) rotate(0.5deg);
+  box-shadow: 0 0 40px rgba(0,255,255,0.8), 0 0 60px rgba(255,0,255,0.6);
+}
+
+    /* GAME INFO */
+    .game-info {
+      margin: 2rem auto;
+      max-width: 800px;
+      text-align: left;
+      line-height: 1.6;
+      font-size: 1.05rem;
+      background: rgba(0,0,0,0.6);
+      padding: 1.5rem;
+      border: 1px solid rgba(0,255,255,0.3);
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.3);
+    }
+    .playlist-link {
+      color: #0ff;
+      text-decoration: none;
+    }
+    .playlist-link:hover {
+      text-decoration: underline;
+    }
+
+    /* FACT PANELS */
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .fact-panel {
+      background: rgba(0,0,0,0.65);
+      border: 1px solid rgba(0,255,255,0.4);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      font-weight: bold;
+    }
+    .fact-panel:hover {
+      background: rgba(0,255,255,0.15);
+      box-shadow: 0 0 20px rgba(0,255,255,0.4);
+    }
+    .fact-icon {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .fact-text {
+      font-size: 1rem;
+    }
+  </style>
+
 </section>
+
+
 </section></section></section></section></section></main></div>
 
 
