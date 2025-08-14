@@ -26,18 +26,14 @@
   padding-top: 120px; /* header height + news ticker height */
 }
 
-body {
-      background-color: #0d0a13;
-      font-family: 'Inter', sans-serif;
-    }
+
     a, button {
-      cursor: inherit;
+      cursor: default;
     }
 
     /* ------------------------------------------------------------------
        Inline enhancements (feel free to move into main.css in prod)
        ------------------------------------------------------------------ */
-    body { font-family: 'Inter', sans-serif; }
     .text-shadow-lg { text-shadow: 2px 2px 8px rgba(0,0,0,.7); }
     .card-shadow { box-shadow: 0 4px 15px rgba(0,0,0,.4); }
     .card-shadow-hover:hover { box-shadow: 0 8px 25px rgba(0,0,0,.6); transform: translateY(-5px); }
@@ -94,6 +90,13 @@ body {
         #scrollLeftBtn:focus, #scrollRightBtn:focus {
             transform: scale(1.05);
         }/* General Enhancements for Premium Look */
+
+        /* For Webkit-based browsers */
+    ::-webkit-scrollbar,
+    ::-webkit-scrollbar-thumb,
+    ::-webkit-scrollbar-track {
+  cursor: default !important; /* Forces the scrollbar to use the default cursor, which will be the one set on the body */
+}
 body {
   background-color: #0d0a13; /* Even darker background */
 }
@@ -319,7 +322,6 @@ body {
   100% { background-position: 1000px 1000px; }
 }
   </style>
-  <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -363,7 +365,7 @@ body {
       font-family: 'Inter', sans-serif;
     }
     a, button {
-      cursor: inherit;
+      cursor: default;
     }
     .hero-arcade {
       background-image: url('https://wallpapers.com/images/hd/space-battle-cyberpunk-5k-9qf426c117b9609f.jpg');
@@ -397,7 +399,10 @@ body {
 
   </style>
 
+
 <script>
+  // This code is already in your file.
+  // It defines the rotating SVG cursor.
   const colors = ["#EC4899", "#D946EF", "#F87171", "#A78BFA", "#FBBF24"];
   let currentIndex = 0;
 
@@ -414,8 +419,9 @@ body {
   }
 
   setInterval(updateCursor, 2500);
-  updateCursor(); // initial
+  updateCursor();
 </script>
+
 </meta>
 
 </head>
