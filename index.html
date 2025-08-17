@@ -500,9 +500,8 @@ function updateCursor() {
 </div>
 </section>
 
-<section class="cinematic-playlist-section py-20 px-4 relative overflow-hidden bg-black text-white font-sans"  id="featured-playlists">
+<section class="cinematic-playlist-section py-20 px-4 relative overflow-hidden bg-black text-white font-sans" id="featured-playlists">
 
-  <!-- BACKGROUND LAYERS -->
   <div class="absolute inset-0 z-0">
     <div class="stars-layer"></div>
     <div class="nebula-layer"></div>
@@ -511,23 +510,19 @@ function updateCursor() {
     <div class="spotlight-sweep"></div>
   </div>
 
-  <!-- CONTENT -->
-  <div class="relative z-10 max-w-6xl mx-auto text-center">
+  <div class="relative z-10 max-w-6xl mx-auto text-center mb-24">
     <div class="holo-badge">NOW FEATURING</div>
-    <h2 class="title"><b>Clair Obscur: Expedition 33 </b></h2>
+    <h2 class="title"><b>Clair Obscur: Expedition 33</b></h2>
     <p class="subtitle">A breathtaking journey into a world of art, fantasy, and heart-pounding adventure</p>
 
-    <!-- NEON DIVIDER -->
     <div class="neon-divider"></div>
 
-    <!-- VIDEO SHOWCASE -->
     <div class="video-showcase">
-      <iframe width="100%" height="450" 
+      <iframe width="100%" height="450"
         src="https://www.youtube.com/embed/0RKbpYI5z7Y?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
         frameborder="0" allowfullscreen></iframe>
     </div>
 
-    <!-- GAME INFO -->
     <div class="game-info">
       <h3><b>About Clair Obscur: Expedition 33</b></h3>
       <p>
@@ -538,12 +533,11 @@ function updateCursor() {
         a living painting — where danger and wonder coexist.
       </p>
       <p>
-        🎮 <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH" 
+        🎮 <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
         target="_blank" class="playlist-link"><b>Watch the full playlist here</b></a>
       </p>
     </div>
 
-    <!-- FACT PANELS -->
     <div class="facts-grid">
       <div class="fact-panel">
         <span class="fact-icon">🎨</span>
@@ -560,6 +554,49 @@ function updateCursor() {
     </div>
   </div>
 
+  <div class="relative z-10 max-w-6xl mx-auto text-center">
+    <div class="holo-badge">ALSO FEATURING</div>
+    <h2 class="title"><b>Dead Space Remake</b></h2>
+    <p class="subtitle">Experience the sci-fi survival horror classic, rebuilt from the ground up</p>
+
+    <div class="neon-divider"></div>
+
+    <div class="video-showcase">
+      <iframe width="100%" height="450"
+        src="https://www.youtube.com/embed/2-M98ozycFI?list=PLWia9WmNWzl2eBo8lBp8Hoxv9mUiGaZ8j"
+        frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div class="game-info">
+      <h3><b>About Dead Space Remake</b></h3>
+      <p>
+        Step back aboard the USG Ishimura in this stunningly rebuilt version of the sci-fi
+        survival horror classic. <b>Dead Space Remake</b> delivers a deep and immersive experience
+        with improved visuals, atmospheric sound design, and new gameplay elements. Unravel the
+        dark mystery of what happened to the ship's crew and face the terrifying Necromorphs.
+      </p>
+      <p>
+        🎮 <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl2eBo8lBp8Hoxv9mUiGaZ8j"
+        target="_blank" class="playlist-link"><b>Watch the full playlist here</b></a>
+      </p>
+    </div>
+
+    <div class="facts-grid">
+      <div class="fact-panel">
+        <span class="fact-icon">🌑</span>
+        <span class="fact-text"><b>Sci-fi Horror</b></span>
+      </div>
+      <div class="fact-panel">
+        <span class="fact-icon">🔪</span>
+        <span class="fact-text"><b>Dismemberment System</b></span>
+      </div>
+      <div class="fact-panel">
+        <span class="fact-icon">✨</span>
+        <span class="fact-text"><b>Rebuilt for Next-Gen</b></span>
+      </div>
+    </div>
+  </div>
+
   <style>
     /* BACKGROUND STARS */
     .stars-layer {
@@ -569,35 +606,50 @@ function updateCursor() {
       animation: stars-move 120s linear infinite;
     }
     @keyframes stars-move {
-      from { background-position: 0 0; }
-      to { background-position: 10000px 5000px; }
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 10000px 5000px;
+      }
     }
 
     /* NEBULA */
     .nebula-layer {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 50%, rgba(255,0,150,0.2), transparent 70%),
-                  radial-gradient(circle at 70% 30%, rgba(0,200,255,0.15), transparent 70%);
+      background: radial-gradient(circle at 30% 50%, rgba(255, 0, 150, 0.2), transparent 70%),
+        radial-gradient(circle at 70% 30%, rgba(0, 200, 255, 0.15), transparent 70%);
       animation: nebula-fade 15s ease-in-out infinite alternate;
     }
     @keyframes nebula-fade {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
+      0%,
+      100% {
+        opacity: 0.6;
+      }
+      50% {
+        opacity: 1;
+      }
     }
 
     /* AURORA */
     .aurora-layer {
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, rgba(0,255,200,0.2), transparent, rgba(255,0,200,0.2));
+      background: linear-gradient(120deg, rgba(0, 255, 200, 0.2), transparent, rgba(255, 0, 200, 0.2));
       background-size: 200% 200%;
       animation: aurora-shift 20s ease-in-out infinite;
     }
     @keyframes aurora-shift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     /* FOG */
@@ -609,20 +661,28 @@ function updateCursor() {
       animation: fog-move 60s linear infinite;
     }
     @keyframes fog-move {
-      from { background-position: 0 0; }
-      to { background-position: -2000px 1000px; }
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: -2000px 1000px;
+      }
     }
 
     /* SPOTLIGHT SWEEP */
     .spotlight-sweep {
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.08), transparent);
       animation: spotlight 8s linear infinite;
     }
     @keyframes spotlight {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
+      0% {
+        background-position: -200% 0;
+      }
+      100% {
+        background-position: 200% 0;
+      }
     }
 
     /* CONTENT STYLING */
@@ -640,8 +700,13 @@ function updateCursor() {
       text-transform: uppercase;
     }
     @keyframes holo-shift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
     }
 
     .title {
@@ -666,35 +731,39 @@ function updateCursor() {
       animation: divider-glow 2s linear infinite;
     }
     @keyframes divider-glow {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 200% 50%;
+      }
     }
 
     /* VIDEO SHOWCASE */
-.video-showcase {
-  position: relative;
-  width: 100%;
-  max-width: 960px;
-  aspect-ratio: 16 / 9; /* Keeps perfect 16:9 shape */
-  border: 4px solid rgba(0,255,255,0.8);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 0 25px rgba(0,255,255,0.6), 0 0 50px rgba(255,0,255,0.4);
-  margin: 0 auto 3rem auto;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.video-showcase iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none; /* No inner border from the iframe */
-}
-.video-showcase:hover {
-  transform: scale(1.03) rotate(0.5deg);
-  box-shadow: 0 0 40px rgba(0,255,255,0.8), 0 0 60px rgba(255,0,255,0.6);
-}
+    .video-showcase {
+      position: relative;
+      width: 100%;
+      max-width: 960px;
+      aspect-ratio: 16 / 9;
+      border: 4px solid rgba(0, 255, 255, 0.8);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.6), 0 0 50px rgba(255, 0, 255, 0.4);
+      margin: 0 auto 3rem auto;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .video-showcase iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-showcase:hover {
+      transform: scale(1.03) rotate(0.5deg);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.6);
+    }
 
     /* GAME INFO */
     .game-info {
@@ -703,11 +772,11 @@ function updateCursor() {
       text-align: left;
       line-height: 1.6;
       font-size: 1.05rem;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       padding: 1.5rem;
-      border: 1px solid rgba(0,255,255,0.3);
+      border: 1px solid rgba(0, 255, 255, 0.3);
       border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,255,255,0.3);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
     }
     .playlist-link {
       color: #0ff;
@@ -725,8 +794,8 @@ function updateCursor() {
       margin-top: 2rem;
     }
     .fact-panel {
-      background: rgba(0,0,0,0.65);
-      border: 1px solid rgba(0,255,255,0.4);
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(0, 255, 255, 0.4);
       border-radius: 10px;
       padding: 1rem;
       text-align: center;
@@ -734,8 +803,8 @@ function updateCursor() {
       font-weight: bold;
     }
     .fact-panel:hover {
-      background: rgba(0,255,255,0.15);
-      box-shadow: 0 0 20px rgba(0,255,255,0.4);
+      background: rgba(0, 255, 255, 0.15);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
     }
     .fact-icon {
       font-size: 1.8rem;
