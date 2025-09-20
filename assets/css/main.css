@@ -1,0 +1,400 @@
+/*
+    main.css
+    Custom styles for the LeongrayJ Game Priority List website.
+    These styles enhance the premium feel, add subtle animations,
+    and provide specific design elements that complement Tailwind CSS.
+*/
+
+/* -------------------------------------------------------------------------- */
+/* 1. Global Styles & Overrides */
+/* -------------------------------------------------------------------------- */
+
+/* Custom Scrollbar for a premium look */
+/* For Webkit browsers (Chrome, Safari) */
+html {
+  scroll-padding-top: 100px; /* Adjust this value based on the exact height of your fixed elements */
+}
+::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a; /* Dark background for the track */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4a0e7e; /* Purple-ish thumb color */
+    border-radius: 8px;
+    border: 3px solid #1a1a1a; /* Border around the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6a0dad; /* Lighter purple on hover */
+}
+
+/* For Firefox */
+html {
+    scrollbar-width: thin; /* "auto" or "thin" */
+    scrollbar-color: #4a0e7e #1a1a1a; /* thumb color track color */
+}
+
+/*
+    Body background and text colors are primarily handled by Tailwind classes in index.html:
+    bg-gray-950 (very dark almost black) and text-gray-100 (off-white).
+    Font family 'Inter' is also set globally in index.html for consistency.
+*/
+
+/* --- NEW OR MODIFIED STYLES FOR LOGO AND BORDER ALIGNMENT --- */
+
+/* Target the logo image specifically to ensure it fills its parent container */
+#leongrayj-logo {
+    /* Previous: width: 100%; height: 100%; */
+    /* Adjust these values slightly to make the image visually fill the border */
+    width: 110%; /* Experiment with values like 105%, 110%, 115% */
+    height: 110%; /* Match width */
+    object-fit: cover;
+    border-radius: 50%; /* Ensure the border-radius is also applied to the image for a perfect circle */
+
+    /* Position it slightly to center after oversizing */
+    position: absolute; /* Add this */
+    top: 50%; /* Add this */
+    left: 50%; /* Add this */
+    transform: translate(-50%, -50%); /* Add this to truly center it */
+}
+
+/* You already have the .live-glow styles for the box-shadow */
+
+/* -------------------------------------------------------------------------- */
+/* 2. Header & Navigation */
+/* -------------------------------------------------------------------------- */
+
+/* Fixed header with shadow for depth */
+header {
+    /* Tailwind classes already apply bg-gray-900, shadow-lg, py-4, px-6/12, fixed, w-full, z-10 */
+    border-bottom: 1px solid rgba(139, 92, 246, 0.2); /* Subtle bottom border */
+}
+
+/* Logo and Site Title styling */
+header h1 {
+    /* Tailwind classes apply text-3xl, font-bold, text-white, tracking-wide */
+    /* The text-shadow-lg is applied via a custom style in index.html for global use */
+}
+
+header h1 span {
+    /* Tailwind class text-purple-400 */
+    transition: color 0.3s ease;
+}
+
+header h1:hover span {
+    color: #a78bfa; /* Lighter purple on hover */
+}
+
+/* Navigation links */
+header nav a {
+    /* Tailwind classes apply text-gray-300, hover:text-purple-400, transition duration-300 */
+    position: relative;
+    padding-bottom: 5px; /* Space for underline */
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #a78bfa; /* Lighter purple for underline */
+    transition: width 0.3s ease-out, left 0.3s ease-out;
+}
+
+header nav a:hover::after {
+    width: 100%;
+    left: 0;
+}
+/* News Ticker Animation */
+/* Premium News Scroller Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(50%); /* Start already in view */
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+.animate-premium-marquee {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 120s linear infinite; /* 👈 Fix is here */
+  animation-delay: 1s;
+}
+
+
+/* Optional: Pause marquee on hover for better readability */
+#premium-news-scroller:hover .animate-premium-marquee {
+  animation-play-state: paused;
+}
+/* -------------------------------------------------------------------------- */
+/* 3. Hero Section */
+/* -------------------------------------------------------------------------- */
+
+/* Hero section overlay and text styling */
+.hero-section {
+    /* Background image and opacity overlay handled by inline style/Tailwind in index.html */
+    /* text-shadow-lg is a custom utility defined in index.html */
+}
+
+.hero-section h2 {
+    /* Tailwind classes apply text-5xl/7xl, font-extrabold, text-white, mb-6, leading-tight */
+    animation: fadeInDown 1s ease-out forwards;
+    opacity: 0; /* Start invisible */
+}
+
+.hero-section p {
+    /* Tailwind classes apply text-xl/2xl, text-gray-300, mb-8 */
+    animation: fadeIn 1.2s ease-out forwards;
+    opacity: 0; /* Start invisible */
+    animation-delay: 0.3s;
+}
+
+.hero-section a.inline-block {
+    /* Tailwind classes apply bg-purple-600, hover:bg-purple-700, text-white, font-bold, py-3, px-8, rounded-full, transition, transform, hover:scale-105, shadow-lg */
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0; /* Start invisible */
+    animation-delay: 0.6s;
+}
+
+/* Keyframe Animations for Hero Section */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. Main Content Sections (Priority Lists) */
+/* -------------------------------------------------------------------------- */
+
+/* Section headings with animated underline */
+section h2 {
+    /* Tailwind classes apply text-4xl/5xl, font-bold, text-white, mb-12, text-center, relative, pb-4 */
+}
+
+section h2 span {
+    /* The colored underline element */
+    animation: expandLine 1.5s ease-out forwards;
+    transform-origin: center;
+    transform: scaleX(0); /* Start hidden */
+}
+
+@keyframes expandLine {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+
+/* Game Card Styling */
+.game-card {
+    /* Tailwind classes apply bg-gray-800, rounded-xl, p-6, flex, flex-col */
+    /* Custom card-shadow and card-shadow-hover are defined in index.html <style> */
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle border */
+    overflow: hidden; /* Ensures rounded corners on children */
+}
+
+.game-card:hover {
+    border-color: rgba(139, 92, 246, 0.4); /* Highlight border on hover */
+}
+
+.game-card h3 {
+    /* Tailwind classes apply text-2xl, font-semibold, mb-3 */
+    /* Color changes per priority section (purple, blue, green) */
+}
+
+.game-card .video-container {
+    /* Tailwind classes apply relative, w-full, pb-[56.25%], h-0, overflow-hidden, rounded-lg, mb-4 */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border around video */
+    transition: border-color 0.3s ease;
+}
+
+.game-card:hover .video-container {
+    border-color: rgba(139, 92, 246, 0.6); /* Highlight video border on card hover */
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. Newsletter Signup Section */
+/* -------------------------------------------------------------------------- */
+
+.newsletter-section {
+    /* Tailwind classes apply bg-gray-800, rounded-xl, p-10/16, text-center, card-shadow */
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border */
+}
+
+.newsletter-section input {
+    /* Tailwind classes apply flex-grow, bg-gray-700, text-white, border, border-gray-600, rounded-full, py-3, px-6, focus:outline-none, focus:ring-2, focus:ring-purple-500, focus:border-transparent, placeholder-gray-400 */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.newsletter-section input:focus {
+    border-color: #a78bfa; /* Lighter purple border on focus */
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.3); /* Subtle glow on focus */
+}
+
+.newsletter-section button {
+    /* Tailwind classes apply bg-purple-600, hover:bg-purple-700, text-white, font-bold, py-3, px-8, rounded-full, transition, transform, hover:scale-105, shadow-lg */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.newsletter-section button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.15); /* Light overlay for ripple effect */
+    border-radius: 50%;
+    transition: width 0.4s ease-out, height 0.4s ease-out, top 0.4s ease-out, left 0.4s ease-out;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.newsletter-section button:hover::before {
+    width: 200%;
+    height: 200%;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* 6. Footer */
+/* -------------------------------------------------------------------------- */
+
+footer {
+    /* Tailwind classes apply bg-gray-900, py-8, px-6/12, text-center, text-gray-400, text-sm */
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle top border */
+}
+
+footer a {
+    /* Tailwind classes apply hover:text-purple-400, transition duration-300 */
+}
+
+/* -------------------------------------------------------------------------- */
+/* 7. Responsive Adjustments (beyond Tailwind's default breakpoints if needed) */
+/* -------------------------------------------------------------------------- */
+
+/* Example: Adjust hero text size for smaller screens if Tailwind defaults aren't enough */
+@media (max-width: 640px) {
+    .hero-section h2 {
+        font-size: 3.5rem; /* Smaller on very small screens */
+    }
+    .hero-section p {
+        font-size: 1.1rem;
+    }
+}
+
+/* Ensure the main content has appropriate padding on smaller screens */
+@media (max-width: 768px) {
+    main {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+/* For the live badge initially hidden */
+.hidden {
+    display: none;
+}
+
+
+/* Glowing red ring when live */
+.live-glow {
+    position: relative;
+    border-color: transparent !important; /* Hide purple border */
+    box-shadow: 0 0 10px 3px rgba(255, 0, 0, 0.8),
+                0 0 20px 6px rgba(255, 0, 0, 0.6),
+                0 0 30px 9px rgba(255, 0, 0, 0.4);
+    animation: live-ring-pulse 1.5s infinite ease-in-out;
+    border-radius: 50%;
+}
+
+@keyframes live-ring-pulse {
+    0%, 100% {
+        box-shadow: 0 0 10px 3px rgba(255, 0, 0, 0.8),
+                    0 0 20px 6px rgba(255, 0, 0, 0.6),
+                    0 0 30px 9px rgba(255, 0, 0, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 15px 5px rgba(255, 0, 0, 1),
+                    0 0 25px 8px rgba(255, 0, 0, 0.8),
+                    0 0 40px 12px rgba(255, 0, 0, 0.6);
+    }
+}
+
+
+/* Styles for the LIVE badge */
+#live-badge {
+  display: inline-block;   /* Prevent full block sizing */
+  text-decoration: none;   /* Remove underline */
+  font-size: 0.7rem;       /* Keep text small */
+  padding: 0.2rem 0.5rem;  /* Pill shape */
+  line-height: 1;          /* Fix vertical centering */
+}
+
+
+/* --- NEW OR MODIFIED STYLES FOR LOGO AND BORDER ALIGNMENT --- */
+
+/* Target the logo image specifically to ensure it fills its parent container */
+#leongrayj-logo {
+    /* Existing: w-[95%] h-[95%] object-cover rounded-full */
+    /* Change to 100% to fill the container completely */
+    width: 100%;
+    height: 100%;
+    /* Keep object-cover to maintain aspect ratio and prevent distortion */
+    object-fit: cover;
+    /* Ensure the border-radius is also applied to the image for a perfect circle */
+    border-radius: 50%;
+}
+
+/* Adjust the logo's parent container border if needed */
+/* The existing border-2 on the 'a' tag already handles the purple border. */
+/* No changes needed here unless you want to make the initial purple border smaller or larger. */
+a.relative.block.w-16.h-16.md\:w-20.md\:h-20.rounded-full.border-2.border-purple-600 {
+    /* The border on the container itself */
+    /* This border will now perfectly frame the 100% width/height image. */
+    /* If you want the glow to appear *outside* of this border,
+       then the current setup is good. If you want the glow to replace or
+       be part of this border, you might remove 'border-2' from the HTML
+       and manage it purely via box-shadow or a pseudo-element on the 'a' tag.
+       For now, let's assume the purple border is distinct from the red glow. */
+}

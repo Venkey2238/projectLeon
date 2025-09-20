@@ -1,0 +1,6 @@
+[build]
+  functions = "netlify/functions"
+  publish = "." # e.g., "dist", "public"
+# netlify.toml
+[functions]
+directory = "netlify/functions"
