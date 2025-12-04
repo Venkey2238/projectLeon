@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta content="ie=edge" http-equiv="x-ua-compatible"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta content="LeongrayJ's personal gaming blog tracking high-priority and exciting titles. Watch live, read highlights, and join the journey." name="description">
+    <meta content="LeongrayJ's premium gaming blog tracking high-priority titles with live streaming integration" name="description">
     <meta content="LeongrayJ Gaming Blog" property="og:title"/>
     <meta content="Explore game priorities, live streams, and more with LeonGrayJ." property="og:description"/>
     <meta content="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" property="og:image"/>
@@ -15,924 +15,1111 @@
     <link rel="icon" type="image/x-icon" href="assets/images/logo.png"/>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* CYBERPUNK NEON THEME */
+        /* ADVANCED CYBERPUNK NEON THEME */
         :root {
             --neon-pink: #ff00ff;
             --neon-blue: #00ffff;
             --neon-purple: #9d00ff;
+            --neon-green: #00ff88;
             --dark-bg: #0a0a14;
-            --glass-bg: rgba(255, 255, 255, 0.05);
+            --darker-bg: #050510;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --gradient-1: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            --gradient-2: linear-gradient(135deg, var(--neon-blue), var(--neon-green));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            background: var(--dark-bg);
+            background: var(--darker-bg);
             font-family: 'Inter', sans-serif;
             color: white;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
+        /* SCROLLBAR STYLING */
+        ::-webkit-scrollbar {
+            width: 10px;
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-1);
+            border-radius: 5px;
+            border: 2px solid var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gradient-2);
+        }
+
+        /* PREMIUM GLASS EFFECT */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-panel-hover:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.15),
+                0 0 40px rgba(255, 0, 255, 0.1);
+        }
+
+        /* NEON TEXT EFFECTS */
         .neon-text {
-            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+            text-shadow: 
+                0 0 10px currentColor,
+                0 0 20px currentColor,
+                0 0 30px currentColor,
+                0 0 40px currentColor;
         }
 
-        .neon-border {
-            border: 2px solid;
-            border-image: linear-gradient(45deg, var(--neon-pink), var(--neon-blue)) 1;
+        .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
         }
 
-        /* FIXED GAPLESS MARQUEE */
+        .gradient-text-2 {
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        /* ANIMATIONS */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .pulse-animation {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .shimmer-effect {
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 100%);
+            background-size: 1000px 100%;
+            animation: shimmer 3s infinite;
+        }
+
+        /* LIVE BADGE */
+        .live-badge {
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff0000, #ff5555, #ff0000);
+            background-size: 200% 200%;
+            padding: 4px 16px;
+            font-size: 10px;
+            font-weight: 900;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: white;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+            z-index: 50;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: live-pulse 1.5s ease-in-out infinite;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes live-pulse {
+            0%, 100% { 
+                box-shadow: 0 0 25px rgba(255, 0, 0, 0.8); 
+                transform: translateX(-50%) scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 35px rgba(255, 0, 0, 1); 
+                transform: translateX(-50%) scale(1.05);
+            }
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            animation: live-dot-pulse 1s infinite;
+            box-shadow: 0 0 10px #ff0000;
+        }
+
+        @keyframes live-dot-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        /* MARQUEE IMPROVEMENTS */
         .marquee-container {
             width: 100%;
             overflow: hidden;
             white-space: nowrap;
             position: relative;
+            mask-image: linear-gradient(
+                to right,
+                transparent 0%,
+                black 10%,
+                black 90%,
+                transparent 100%
+            );
         }
 
         .marquee-content {
             display: inline-block;
             white-space: nowrap;
             animation: marquee-scroll 40s linear infinite;
+            padding-left: 100%;
         }
 
         @keyframes marquee-scroll {
-            0% { transform: translateX(100%); }
+            0% { transform: translateX(0); }
             100% { transform: translateX(-100%); }
         }
 
-        /* LIVE BADGE */
-        .live-badge {
+        /* LOGO CONTAINER */
+        .logo-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-circle {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid transparent;
+            background: linear-gradient(var(--dark-bg), var(--dark-bg)) padding-box,
+                        var(--gradient-1) border-box;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-circle:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.5);
+        }
+
+        .logo-circle img {
+            width: 85%;
+            height: 85%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* NAVIGATION */
+        .nav-item {
+            position: relative;
+            padding: 8px 0;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        .nav-item.active::after {
+            width: 100%;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(157, 0, 255, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        /* SECTION STYLES */
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
             position: absolute;
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(45deg, red, #ff5555);
-            padding: 2px 12px;
-            font-size: 11px;
-            font-weight: 900;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-1);
+            border-radius: 2px;
+        }
+
+        /* TESTIMONIAL CARDS */
+        .testimonial-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.7s;
+        }
+
+        .testimonial-card:hover::before {
+            left: 100%;
+        }
+
+        /* BUTTONS */
+        .btn-primary {
+            background: var(--gradient-1);
             color: white;
-            box-shadow: 0 0 20px red;
-            z-index: 20;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(157, 0, 255, 0.3);
         }
 
-        .live-dot {
-            width: 7px;
-            height: 7px;
-            background: red;
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(157, 0, 255, 0.5);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border: 2px solid transparent;
+            background: linear-gradient(var(--dark-bg), var(--dark-bg)) padding-box,
+                        var(--gradient-2) border-box;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+        }
+
+        /* LOADING SCREEN */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker-bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 4px solid transparent;
+            border-top: 4px solid var(--neon-pink);
+            border-right: 4px solid var(--neon-blue);
+            border-bottom: 4px solid var(--neon-purple);
+            border-left: 4px solid var(--neon-green);
             border-radius: 50%;
-            animation: pulse 1s infinite;
+            animation: rotate 1.5s linear infinite;
+            position: relative;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: .5; transform: scale(.7); }
+        .loader::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 4px solid transparent;
+            border-top: 4px solid rgba(255, 0, 255, 0.3);
+            border-right: 4px solid rgba(0, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: rotate 2s linear infinite reverse;
         }
 
-        .live-glow {
-            box-shadow: 0 0 20px red !important;
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .logo-circle {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem !important;
+            }
+            
+            .section-padding {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+        }
+
+        /* GRID BACKGROUND */
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            opacity: 0.3;
         }
     </style>
-
 </head>
 
-<body class="bg-cyber-dark text-white">
+<body class="relative">
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen">
+        <div class="loader mb-8"></div>
+        <div class="text-center">
+            <h2 class="gradient-text text-2xl font-bold mb-2">INITIALIZING SYSTEM</h2>
+            <p class="text-gray-400 text-sm">Loading premium gaming experience...</p>
+        </div>
+    </div>
+
+    <!-- BACKGROUND ELEMENTS -->
+    <div class="grid-bg"></div>
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-pink/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-blue/5 rounded-full blur-3xl"></div>
+    </div>
 
     <!-- HEADER -->
-    <header class="glass-effect fixed w-full z-50 py-4 px-6 border-b border-neon-purple/30">
-        <nav class="container mx-auto flex justify-between items-center">
-
-            <!-- LOGO -->
-            <div class="flex items-center gap-4">
-                <div class="relative" id="logo-container">
-
-                    <!-- ⭐ UPDATED: LOGO PATH -->
-                    <div class="relative w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-neon-blue transition-all duration-300">
-                        <img id="leongrayj-logo"
+    <header class="glass-panel fixed w-full z-50 py-4 border-b border-white/5">
+        <div class="container mx-auto px-6">
+            <nav class="flex justify-between items-center">
+                <!-- LOGO -->
+                <div class="logo-container">
+                    <div class="logo-circle" id="logo-container">
+                        <img id="leongrayj-logo" 
                              src="assets/images/logo.png"
                              alt="LeongrayJ Logo"
-                             class="w-full h-full object-cover"/>
+                             class="cursor-pointer"/>
+                        <div id="live-badge" class="live-badge hidden">
+                            <span class="live-dot"></span>
+                            LIVE NOW
+                        </div>
                     </div>
-
-                    <div id="live-badge" class="live-badge hidden">
-                        <span class="live-dot"></span>
-                        LIVE
+                    
+                    <div>
+                        <h1 class="text-2xl font-black tracking-tight">
+                            <span class="gradient-text">LEONGRAYJ</span>
+                        </h1>
+                        <p class="text-xs text-gray-400 font-medium tracking-wider">PREMIUM GAMING BLOG</p>
                     </div>
                 </div>
 
-                <h1 class="text-2xl font-bold">
-                    <span class="text-neon-blue">Leon</span>
-                    <span class="text-neon-pink">GrayJ</span>
-                    <span class="text-xs text-gray-400 ml-2">GAMING BLOG</span>
-                </h1>
-            </div>
+                <!-- NAVIGATION -->
+                <ul class="hidden lg:flex items-center gap-8">
+                    <li><a href="#featured-playlists" class="nav-item active text-white">FEATURED</a></li>
+                    <li><a href="arcade.html" class="nav-item text-gray-300 hover:text-white">ARCADE</a></li>
+                    <li><a href="high_priority.html" class="nav-item text-gray-300 hover:text-white">HIGH PRIORITY</a></li>
+                    <li><a href="moderate_priority.html" class="nav-item text-gray-300 hover:text-white">MODERATE</a></li>
+                    <li><a href="low_priority.html" class="nav-item text-gray-300 hover:text-white">LOW PRIORITY</a></li>
+                    <li><a href="#about-me" class="nav-item text-gray-300 hover:text-white">ABOUT</a></li>
+                    <li>
+                        <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" 
+                           class="btn-secondary flex items-center gap-2">
+                            <i class="fas fa-broadcast-tower"></i>
+                            <span>WATCH LIVE</span>
+                        </a>
+                    </li>
+                </ul>
 
-            <ul class="hidden md:flex gap-6 font-semibold">
-                <li><a href="index.html#featured-playlists" class="text-neon-blue">Featured</a></li>
-                <li><a href="arcade.html">Leon's Arcade</a></li>
-                <li><a href="high_priority.html">High Priority</a></li>
-                <li><a href="moderate_priority.html">Moderate</a></li>
-                <li><a href="low_priority.html">Low Priority</a></li>
-                <li><a href="index.html#about-me" class="text-neon-pink">About</a></li>
-            </ul>
-        </nav>
+                <!-- MOBILE MENU BUTTON -->
+                <button id="mobile-menu-btn" class="lg:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div id="mobile-menu" class="lg:hidden glass-panel absolute top-full left-0 w-full mt-2 py-6 hidden">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col gap-4">
+                    <a href="#featured-playlists" class="nav-item text-white py-3">Featured</a>
+                    <a href="arcade.html" class="nav-item text-gray-300 py-3">Arcade</a>
+                    <a href="high_priority.html" class="nav-item text-gray-300 py-3">High Priority</a>
+                    <a href="moderate_priority.html" class="nav-item text-gray-300 py-3">Moderate</a>
+                    <a href="low_priority.html" class="nav-item text-gray-300 py-3">Low Priority</a>
+                    <a href="#about-me" class="nav-item text-gray-300 py-3">About</a>
+                    <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" 
+                       class="btn-primary mt-4 text-center">
+                        Watch Live
+                    </a>
+                </div>
+            </div>
+        </div>
     </header>
 
     <!-- MARQUEE -->
-    <section class="marquee-container mt-20 bg-black/50 py-3 border-y border-neon-purple/30">
-        <div id="dynamic-marquee" class="marquee-content text-sm font-bold">
-            <span class="mx-8">🎮 Loading latest gaming news...</span>
+    <section class="marquee-container mt-20 bg-black/40 py-4 border-y border-white/10">
+        <div id="dynamic-marquee" class="marquee-content text-sm font-semibold">
+            <span class="mx-8">🚀 Welcome to LeonGrayJ Gaming Blog • Stay tuned for live streams •</span>
+            <span class="mx-8 gradient-text">🎮 Loading latest gaming news...</span>
         </div>
     </section>
 
-    <!-- MAIN CONTENT (UNCHANGED) -->
-    <!-- ⭐ Everything below is your original content exactly preserved -->
-
-    <main class="flex-grow pt-32" id="main-content">
-
+    <!-- MAIN CONTENT -->
+    <main class="relative z-10">
         <!-- HERO SECTION -->
-        <section class="relative h-[80vh] flex items-center justify-center overflow-hidden cyber-grid">
-            <div class="absolute inset-0 bg-gradient-to-br from-neon-purple/10 via-transparent to-neon-blue/10"></div>
-            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
-                    <span class="text-neon-blue">CURATING THE</span><br/>
-                    <span class="text-neon-pink neon-text">FUTURE OF GAMING</span>
-                </h1>
-                <p class="text-xl text-gray-300 mb-10">
-                    Welcome to the ultimate chronicle of gaming's most anticipated titles.
-                </p>
-                <a href="#featured-playlists"
-                   class="inline-block bg-gradient-to-r from-neon-purple to-neon-pink text-white font-bold py-4 px-10 rounded-full">
-                    EXPLORE MY LIST →
-                </a>
+        <section class="hero-section section-padding" style="padding: 150px 40px 100px;">
+            <div class="hero-bg"></div>
+            <div class="container mx-auto relative z-10">
+                <div class="max-w-4xl mx-auto text-center">
+                    <div class="mb-8">
+                        <span class="inline-block px-6 py-2 rounded-full bg-black/40 border border-white/10 text-sm font-bold tracking-wider mb-6">
+                            PREMIUM GAMING EXPERIENCE
+                        </span>
+                    </div>
+                    
+                    <h1 class="hero-title text-6xl lg:text-8xl font-black mb-8 leading-tight">
+                        <span class="gradient-text">CURATING THE</span>
+                        <br>
+                        <span class="gradient-text-2">FUTURE OF GAMING</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+                        Welcome to the ultimate chronicle of gaming's most anticipated titles. 
+                        Join me in exploring what's next on the horizon with exclusive content, 
+                        live streams, and in-depth analysis.
+                    </p>
+                    
+                    <div class="flex flex-wrap justify-center gap-6">
+                        <a href="#featured-playlists" class="btn-primary">
+                            <i class="fas fa-gamepad mr-2"></i>
+                            EXPLORE GAMES
+                        </a>
+                        <a href="https://www.youtube.com/@LeonGrayJ" target="_blank" class="btn-secondary">
+                            <i class="fab fa-youtube mr-2"></i>
+                            YOUTUBE CHANNEL
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- FEATURED SECTION, ABOUT, COMMUNITY... -->
-	<section class="cinematic-playlist-section relative overflow-hidden" id="featured-playlists">
-  <!-- Advanced Video Background -->
-  <div class="absolute inset-0 z-0 overflow-hidden">
-    <!-- Main Video Background -->
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-      <source src="./videos/sh2.webm" type="video/webm">
-      <source src="./videos/sh2.mp4" type="video/mp4">
-    </video>
-    
-    <!-- Overlay Effects -->
-    <div class="absolute inset-0 bg-gradient-to-br from-black/90 via-purple-900/40 to-black/90"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/80"></div>
-    
-    <!-- Particle Effects -->
-    <div class="particles-container absolute inset-0">
-      <div class="particle particle-1"></div>
-      <div class="particle particle-2"></div>
-      <div class="particle particle-3"></div>
-      <div class="particle particle-4"></div>
-      <div class="particle particle-5"></div>
-    </div>
-    
-    <!-- Scanlines Effect -->
-    <div class="scanlines absolute inset-0"></div>
-    
-    <!-- Vignette -->
-    <div class="vignette absolute inset-0"></div>
-    
-    <!-- Fog Overlay -->
-    <div class="fog-overlay absolute inset-0"></div>
-  </div>
-
-  <!-- Content -->
-  <div class="relative z-10 max-w-7xl mx-auto px-4 py-16 md:py-24">
-    <!-- Header -->
-    <div class="text-center mb-12">
-      <div class="inline-block mb-4">
-        <span class="feature-badge">NOW FEATURING</span>
-      </div>
-      <h1 class="section-title mb-4">
-        <span class="title-main">🎮 Silent Hill 2</span>
-        <span class="title-glow"></span>
-      </h1>
-      <p class="section-subtitle">
-        A psychological horror masterpiece reimagined with cinematic storytelling
-      </p>
-      <div class="divider mx-auto mt-6"></div>
-    </div>
-
-    <!-- Game Showcase -->
-    <div class="game-showcase">
-      <div class="showcase-container">
-        <!-- Left: Video -->
-        <div class="video-container">
-          <div class="video-wrapper">
-            <div class="video-frame">
-              <iframe 
-                src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl10p6KfQdcMdmhr_XAVY14b" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen
-                loading="lazy"
-              ></iframe>
-            </div>
-            <div class="video-glow"></div>
-          </div>
-        </div>
-
-        <!-- Right: Content -->
-        <div class="content-container">
-          <div class="content-inner">
-            <h2 class="game-title">
-              <span class="title-text">Silent Hill 2</span>
-              <span class="title-underline"></span>
-            </h2>
-            
-            <div class="game-description">
-              <p class="desc-text">
-                Step into the fog‑shrouded town of Silent Hill, where fear sharpens into emotion and every shadow hides the truth James Sunderland seeks. A haunting, atmospheric journey into guilt, memory, and psychological terror.
-              </p>
-            </div>
-            
-            <div class="playlist-link-container">
-              <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl10p6KfQdcMdmhr_XAVY14b" 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 class="playlist-link">
-                <span class="link-icon">▶️</span>
-                <span class="link-text">Watch Full Playlist</span>
-                <span class="link-arrow">→</span>
-              </a>
-            </div>
-            
-            <div class="facts-grid">
-              <div class="fact-card">
-                <div class="fact-icon">🌫️</div>
-                <div class="fact-content">
-                  <h4 class="fact-title">Fog‑Covered Atmosphere</h4>
-                  <p class="fact-desc">Immersive environmental storytelling</p>
+        <!-- FEATURED SECTION -->
+        <section id="featured-playlists" class="section-padding py-24 relative">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-5xl font-black mb-6">
+                        <span class="gradient-text">FEATURED PLAYLIST</span>
+                    </h2>
+                    <p class="text-gray-400 text-lg max-w-3xl mx-auto">
+                        Dive into the most atmospheric and psychologically intense gaming experience
+                    </p>
                 </div>
-              </div>
-              
-              <div class="fact-card">
-                <div class="fact-icon">🧠</div>
-                <div class="fact-content">
-                  <h4 class="fact-title">Psychological Horror</h4>
-                  <p class="fact-desc">Deep narrative exploration</p>
+
+                <!-- FEATURED GAME CARD -->
+                <div class="glass-panel rounded-3xl overflow-hidden max-w-6xl mx-auto glass-panel-hover transition-all duration-500">
+                    <div class="md:flex">
+                        <!-- Video Section -->
+                        <div class="md:w-7/12 p-0 relative">
+                            <div class="relative h-full min-h-[400px] overflow-hidden">
+                                <!-- Video Background -->
+                                <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+                                    <source src="./videos/sh2.webm" type="video/webm">
+                                    <source src="./videos/sh2.mp4" type="video/mp4">
+                                </video>
+                                
+                                <!-- Overlay -->
+                                <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+                                
+                                <!-- Video Player -->
+                                <div class="relative z-10 p-8 h-full flex items-center">
+                                    <div class="w-full">
+                                        <div class="video-wrapper rounded-2xl overflow-hidden shadow-2xl">
+                                            <div class="relative pb-[56.25%]">
+                                                <iframe 
+                                                    src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl10p6KfQdcMdmhr_XAVY14b" 
+                                                    class="absolute inset-0 w-full h-full"
+                                                    allowfullscreen
+                                                    loading="lazy">
+                                                </iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Content Section -->
+                        <div class="md:w-5/12 p-10 bg-black/60">
+                            <div class="mb-6">
+                                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-900/50 to-pink-900/50 text-sm font-bold">
+                                    <i class="fas fa-play-circle"></i>
+                                    NOW FEATURING
+                                </span>
+                            </div>
+                            
+                            <h3 class="text-4xl font-black mb-6 gradient-text">SILENT HILL 2</h3>
+                            
+                            <p class="text-gray-300 mb-8 leading-relaxed">
+                                Step into the fog‑shrouded town of Silent Hill, where fear sharpens into emotion 
+                                and every shadow hides the truth James Sunderland seeks. A haunting, atmospheric 
+                                journey into guilt, memory, and psychological terror.
+                            </p>
+                            
+                            <div class="grid grid-cols-3 gap-4 mb-10">
+                                <div class="bg-black/40 p-4 rounded-xl border border-white/10 text-center hover:border-purple-500/50 transition-all">
+                                    <div class="text-3xl mb-2">🌫️</div>
+                                    <div class="text-sm font-bold">Atmospheric</div>
+                                </div>
+                                <div class="bg-black/40 p-4 rounded-xl border border-white/10 text-center hover:border-blue-500/50 transition-all">
+                                    <div class="text-3xl mb-2">🧠</div>
+                                    <div class="text-sm font-bold">Psychological</div>
+                                </div>
+                                <div class="bg-black/40 p-4 rounded-xl border border-white/10 text-center hover:border-green-500/50 transition-all">
+                                    <div class="text-3xl mb-2">🎵</div>
+                                    <div class="text-sm font-bold">Soundtrack</div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl10p6KfQdcMdmhr_XAVY14b" 
+                                   target="_blank"
+                                   class="btn-primary w-full text-center block">
+                                    <i class="fab fa-youtube mr-2"></i>
+                                    WATCH FULL PLAYLIST
+                                </a>
+                                
+                                <a href="arcade.html" 
+                                   class="btn-secondary w-full text-center block">
+                                    <i class="fas fa-arrow-right mr-2"></i>
+                                    EXPLORE MORE GAMES
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              
-              <div class="fact-card">
-                <div class="fact-icon">🎵</div>
-                <div class="fact-content">
-                  <h4 class="fact-title">Iconic Soundtrack</h4>
-                  <p class="fact-desc">Memorable audio experience</p>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <style>
-    /* ===== Base Styles ===== */
-    .cinematic-playlist-section {
-      min-height: 100vh;
-      background: #000;
-      color: white;
-      position: relative;
-      isolation: isolate;
-    }
-
-    /* ===== Video Background Effects ===== */
-    .cinematic-playlist-section video {
-      filter: brightness(0.4) contrast(1.2) saturate(1.3);
-      animation: video-pulse 8s ease-in-out infinite;
-    }
-
-    @keyframes video-pulse {
-      0%, 100% { filter: brightness(0.4) contrast(1.2) saturate(1.3); }
-      50% { filter: brightness(0.5) contrast(1.3) saturate(1.4); }
-    }
-
-    /* Particles */
-    .particles-container {
-      pointer-events: none;
-    }
-
-    .particle {
-      position: absolute;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      animation: float 20s infinite linear;
-    }
-
-    .particle-1 { width: 100px; height: 100px; top: 10%; left: 5%; animation-delay: 0s; }
-    .particle-2 { width: 150px; height: 150px; top: 20%; right: 10%; animation-delay: -5s; }
-    .particle-3 { width: 80px; height: 80px; bottom: 15%; left: 15%; animation-delay: -10s; }
-    .particle-4 { width: 120px; height: 120px; bottom: 25%; right: 20%; animation-delay: -15s; }
-    .particle-5 { width: 60px; height: 60px; top: 40%; left: 50%; animation-delay: -7s; }
-
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
-      25% { transform: translateY(-100px) rotate(90deg); opacity: 0.3; }
-      50% { transform: translateY(-200px) rotate(180deg); opacity: 0.1; }
-      75% { transform: translateY(-100px) rotate(270deg); opacity: 0.3; }
-      100% { transform: translateY(0) rotate(360deg); opacity: 0.2; }
-    }
-
-    /* Scanlines */
-    .scanlines {
-      background: linear-gradient(
-        to bottom,
-        transparent 50%,
-        rgba(0, 0, 0, 0.1) 50%
-      );
-      background-size: 100% 4px;
-      pointer-events: none;
-      mix-blend-mode: overlay;
-      animation: scanline 10s linear infinite;
-    }
-
-    @keyframes scanline {
-      0% { background-position: 0 0; }
-      100% { background-position: 0 100px; }
-    }
-
-    /* Vignette */
-    .vignette {
-      background: radial-gradient(
-        ellipse at center,
-        transparent 30%,
-        rgba(0, 0, 0, 0.7) 70%
-      );
-      pointer-events: none;
-    }
-
-    /* Fog Overlay */
-    .fog-overlay {
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23noise)"/></svg>');
-      animation: fog-drift 60s linear infinite;
-      mix-blend-mode: overlay;
-    }
-
-    @keyframes fog-drift {
-      0% { background-position: 0 0; }
-      100% { background-position: 1000px 1000px; }
-    }
-
-    /* ===== Header Styles ===== */
-    .feature-badge {
-      display: inline-block;
-      padding: 8px 24px;
-      background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
-      background-size: 200% 200%;
-      animation: gradient-shift 3s ease infinite;
-      color: black;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 0.875rem;
-      border-radius: 50px;
-      box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-badge::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
-      border-radius: 52px;
-      z-index: -1;
-      filter: blur(10px);
-      opacity: 0.7;
-    }
-
-    @keyframes gradient-shift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    .section-title {
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      font-weight: 900;
-      margin-bottom: 1rem;
-      position: relative;
-      display: inline-block;
-    }
-
-    .title-main {
-      background: linear-gradient(45deg, #fff 30%, #ff00ff 50%, #00ffff 70%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      display: block;
-      animation: text-glow 2s ease-in-out infinite alternate;
-    }
-
-    .title-glow {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, #ff00ff, #00ffff);
-      filter: blur(40px);
-      opacity: 0.5;
-      z-index: -1;
-      animation: glow-pulse 3s ease-in-out infinite;
-    }
-
-    @keyframes text-glow {
-      0% { filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.5)); }
-      100% { filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.8)); }
-    }
-
-    @keyframes glow-pulse {
-      0%, 100% { opacity: 0.3; transform: scale(1); }
-      50% { opacity: 0.7; transform: scale(1.05); }
-    }
-
-    .section-subtitle {
-      font-size: clamp(1.125rem, 2vw, 1.5rem);
-      color: rgba(255, 255, 255, 0.9);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.6;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    }
-
-    .divider {
-      width: 200px;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #ff00ff, #00ffff, transparent);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .divider::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, white, transparent);
-      animation: divider-sweep 2s ease-in-out infinite;
-    }
-
-    @keyframes divider-sweep {
-      0% { left: -100%; }
-      100% { left: 100%; }
-    }
-
-    /* ===== Game Showcase ===== */
-    .game-showcase {
-      margin-top: 4rem;
-    }
-
-    .showcase-container {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    @media (min-width: 1024px) {
-      .showcase-container {
-        grid-template-columns: 1.2fr 1fr;
-        gap: 4rem;
-      }
-    }
-
-    /* Video Container */
-    .video-container {
-      position: relative;
-    }
-
-    .video-wrapper {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      transform-style: preserve-3d;
-      perspective: 1000px;
-    }
-
-    .video-frame {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-      height: 0;
-      overflow: hidden;
-      border-radius: 15px;
-      transform: translateZ(20px);
-      box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(255, 255, 255, 0.1);
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .video-frame:hover {
-      transform: translateZ(30px) scale(1.02);
-      box-shadow: 
-        0 30px 60px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(255, 255, 255, 0.2),
-        0 0 50px rgba(255, 0, 255, 0.3);
-    }
-
-    .video-frame iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .video-glow {
-      position: absolute;
-      inset: -2px;
-      background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
-      border-radius: 22px;
-      filter: blur(20px);
-      opacity: 0.5;
-      z-index: -1;
-      animation: glow-rotate 4s linear infinite;
-    }
-
-    @keyframes glow-rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Content Container */
-    .content-container {
-      position: relative;
-    }
-
-    .content-inner {
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 2rem;
-      box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .content-inner::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #ff00ff, #00ffff, transparent);
-    }
-
-    .game-title {
-      font-size: clamp(1.75rem, 3vw, 2.5rem);
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      position: relative;
-    }
-
-    .title-text {
-      background: linear-gradient(45deg, #fff, #ff00ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      display: inline-block;
-    }
-
-    .title-underline {
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100px;
-      height: 3px;
-      background: linear-gradient(90deg, #ff00ff, #00ffff);
-      border-radius: 2px;
-      animation: underline-slide 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes underline-slide {
-      0% { transform: translateX(0) scaleX(1); }
-      100% { transform: translateX(100px) scaleX(0.5); }
-    }
-
-    .game-description {
-      margin-bottom: 2rem;
-    }
-
-    .desc-text {
-      color: rgba(255, 255, 255, 0.9);
-      line-height: 1.7;
-      font-size: 1.125rem;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    /* Playlist Link */
-    .playlist-link-container {
-      margin-bottom: 2.5rem;
-    }
-
-    .playlist-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 32px;
-      background: linear-gradient(45deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2));
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 12px;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.125rem;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .playlist-link::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s;
-    }
-
-    .playlist-link:hover {
-      transform: translateY(-3px);
-      box-shadow: 
-        0 10px 30px rgba(255, 0, 255, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.3);
-    }
-
-    .playlist-link:hover::before {
-      left: 100%;
-    }
-
-    .link-icon {
-      font-size: 1.5rem;
-      filter: drop-shadow(0 0 8px rgba(255, 0, 255, 0.5));
-    }
-
-    .link-text {
-      background: linear-gradient(45deg, #fff, #ff00ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      font-weight: 700;
-    }
-
-    .link-arrow {
-      font-size: 1.25rem;
-      opacity: 0.8;
-      transition: transform 0.3s ease;
-    }
-
-    .playlist-link:hover .link-arrow {
-      transform: translateX(5px);
-    }
-
-    /* Facts Grid */
-    .facts-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .fact-card {
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .fact-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(255, 0, 255, 0.1), transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .fact-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(255, 0, 255, 0.3);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    }
-
-    .fact-card:hover::before {
-      opacity: 1;
-    }
-
-    .fact-icon {
-      font-size: 2rem;
-      filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.5));
-      flex-shrink: 0;
-    }
-
-    .fact-content {
-      flex: 1;
-    }
-
-    .fact-title {
-      font-size: 1.125rem;
-      font-weight: 700;
-      margin-bottom: 0.25rem;
-      color: white;
-    }
-
-    .fact-desc {
-      font-size: 0.875rem;
-      color: rgba(255, 255, 255, 0.7);
-      line-height: 1.4;
-    }
-
-    /* ===== Responsive Adjustments ===== */
-    @media (max-width: 768px) {
-      .cinematic-playlist-section {
-        min-height: auto;
-        padding: 4rem 1rem;
-      }
-      
-      .showcase-container {
-        gap: 2rem;
-      }
-      
-      .content-inner {
-        padding: 1.5rem;
-      }
-      
-      .facts-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .playlist-link {
-        width: 100%;
-        justify-content: center;
-      }
-    }
-
-    /* ===== Additional Effects ===== */
-    /* Noise texture */
-    .content-inner::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.02"><filter id="a"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23a)"/></svg>');
-      pointer-events: none;
-      mix-blend-mode: overlay;
-    }
-
-    /* Subtle parallax effect */
-    @media (min-width: 768px) {
-      .video-container {
-        transform: translateZ(0);
-        transition: transform 0.3s ease;
-      }
-      
-      .content-container {
-        transform: translateZ(0);
-        transition: transform 0.3s ease 0.1s;
-      }
-      
-      .cinematic-playlist-section:hover .video-container {
-        transform: translateY(-10px);
-      }
-      
-      .cinematic-playlist-section:hover .content-container {
-        transform: translateY(-5px);
-      }
-    }
-  </style>
-</section>
-<section aria-labelledby="about-me-heading" class="mb-20 section-fade-in flex justify-center" id="about-me">
-<div class="bg-gray-800 rounded-xl p-6 md:p-10 flex flex-col items-center text-center gap-6 about-section card-shadow max-w-3xl w-full">
-<img alt="LeongrayJ Profile" class="w-40 h-40 rounded-full object-cover border-4 border-purple-600 shadow-lg" src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj"/>
-<h2 class="text-3xl font-bold text-white" id="about-me-heading">
-      Greetings, fellow gamers!
-    </h2>
-<p class="text-gray-300 text-base md:text-lg leading-relaxed">
-      I'm LeonGrayJ, your guide through the ever-expanding universe of video games. This blog is my personal logbook, where I track, review, and share my journey through the most exciting and anticipated titles—from high-octane action to deep narrative experiences.
-    </p>
-<p class="text-gray-300 text-base md:text-lg leading-relaxed">
-      My passion lies in discovering games that truly push boundaries and offer unforgettable experiences. Join me as we uncover hidden gems and celebrate the masterpieces that shape our gaming world.
-    </p>
-<p class="text-gray-300 text-base md:text-lg leading-relaxed">
-      Outside of gaming, I’m focused on building a welcoming and creative community. Let’s connect on Discord or catch up during one of my YouTube livestreams!
-    </p>
-</div>
-</section>
-<section aria-labelledby="testimonials-heading" class="mb-20 section-fade-in" id="testimonials">
-<h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center relative pb-4" id="testimonials-heading">
-          What Gamers Say
-          <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-green-600 rounded-full"></span>
-</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 testimonials-section">
-<blockquote aria-label="Testimonial from A Happy Gamer" class="bg-gray-800 rounded-xl p-6 testimonial-card">
-<p class="text-lg mb-4">"LeonGrayJ's insights are always spot-on! This blog helps me prioritize my gaming backlog perfectly."</p>
-<footer class="text-sm author">— A Happy Gamer</footer>
-</blockquote>
-<blockquote aria-label="Testimonial from Stream Follower" class="bg-gray-800 rounded-xl p-6 testimonial-card">
-<p class="text-lg mb-4">"The live streams are fantastic, and the community is super welcoming. Highly recommend checking it out!"</p>
-<footer class="text-sm author">— Stream Follower</footer>
-</blockquote>
-<blockquote aria-label="Testimonial from Avid Reader" class="bg-gray-800 rounded-xl p-6 testimonial-card">
-<p class="text-lg mb-4">"Finally, a gaming blog that truly understands what makes a game special. Great content!"</p>
-<footer class="text-sm author">— Avid Reader</footer>
-</blockquote>
-<blockquote aria-label="Testimonial from Design Enthusiast" class="bg-gray-800 rounded-xl p-6 testimonial-card">
-<p class="text-lg mb-4">"The design and features are top-notch. It's a pleasure to browse and discover new games here."</p>
-<footer class="text-sm author">— Design Enthusiast</footer>
-</blockquote>
-</div>
-</section>
-<section aria-labelledby="community-heading" class="bg-gray-900 rounded-xl p-10 md:p-16 text-center card-shadow mb-20 mx-auto max-w-6xl border border-gray-800 newsletter-section section-fade-in" id="leongrayj-community">
-<h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight" id="community-heading">Join the <span class="text-purple-400">LeonGrayJ</span> Community!</h2>
-<p class="text-lg text-gray-300 mb-12 max-w-3xl mx-auto">Dive deeper into my gaming world. Here’s how you can connect and be a part of the journey.</p>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-16">
-<div class="bg-gray-800 p-8 rounded-lg border border-purple-700 card-shadow transition duration-300 hover:scale-[1.01] hover:border-purple-600 flex flex-col justify-between">
-<div>
-<h3 class="text-3xl font-semibold text-purple-400 mb-4">Your Support Fuels the Adventure!</h3>
-<p class="text-gray-300 text-lg mb-6">If you enjoy my content, please consider subscribing and giving my videos a like! Your support helps me to continue creating and improving my content. Thank you so much for being a part of this journey! ✨🌟⭐🌱❤️🌳</p>
-</div>
-<a class="mt-6 inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg" href="https://www.youtube.com/@LeonGrayJ" rel="noopener noreferrer" target="_blank">
-<svg aria-hidden="true" class="w-6 h-6 mr-3" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M19.812 5.056a3.75 3.75 0 0 0-2.124-2.124C16.322 2.5 12 2.5 12 2.5s-4.322 0-5.688.432a3.75 3.75 0 0 0-2.124 2.124c-.432 1.366-.432 4.225-.432 4.225v2.817c0 2.86.001 4.79.432 6.156a3.75 3.75 0 0 0 2.124 2.124c1.366.432 5.688.432 5.688.432s4.322 0 5.688-.432a3.75 3.75 0 0 0 2.124-2.124c.432-1.366.432-4.225.432-4.225V9.281c0-2.86-.001-4.79-.432-6.156ZM9.75 15.375V8.625L15.375 12l-5.625 3.375Z" fill-rule="evenodd"></path></svg>
-              Visit My YouTube
-            </a>
-</div>
-<div class="bg-gray-800 p-8 rounded-lg border border-blue-700 card-shadow transition duration-300 hover:scale-[1.01] hover:border-blue-600 flex flex-col justify-between">
-<div>
-<h3 class="text-3xl font-semibold text-blue-400 mb-4">Catch Me Live & Say Hi!</h3>
-<p class="text-gray-300 text-lg mb-6">I livestream almost every day, playing a variety of games. Stop by, hang out, and don’t hesitate to say hi in the chat—I’d love to know you’re here! 🐥🪽</p>
-</div>
-<a class="mt-6 inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg" href="https://www.youtube.com/@LeonGrayJ/live" rel="noopener noreferrer" target="_blank">
-<svg aria-hidden="true" class="w-6 h-6 mr-3" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M19.812 5.056a3.75 3.75 0 0 0-2.124-2.124C16.322 2.5 12 2.5 12 2.5s-4.322 0-5.688.432a3.75 3.75 0 0 0-2.124 2.124c-.432 1.366-.432 4.225-.432 4.225v2.817c0 2.86.001 4.79.432 6.156a3.75 3.75 0 0 0 2.124 2.124c1.366.432 5.688.432 5.688.432s4.322 0 5.688-.432a3.75 3.75 0 0 0 2.124-2.124c.432-1.366.432-4.225.432-4.225V9.281c0-2.86-.001-4.79-.432-6.156ZM9.75 15.375V8.625L15.375 12l-5.625 3.375Z" fill-rule="evenodd"></path></svg>
-              Visit My YouTube
-            </a>
-</div>
-</div>
-<div class="bg-gray-800 rounded-xl p-10 md:p-16 text-center card-shadow border border-gray-700">
-<h3 class="text-4xl font-bold text-white mb-6">Join the <span class="text-indigo-400">LeonGrayJ</span> Discord!</h3>
-<p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">Connect with me and the community directly! Get real-time updates, chat about games, participate in events, and hang out with fellow gamers.</p>
-<a class="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg" href="https://discord.gg/XY66hCpFcB" rel="noopener noreferrer" target="_blank">
-<svg aria-hidden="true" class="w-6 h-6 mr-3" fill="currentColor" viewbox="0 0 24 24"><path d="M20.25 6.75a.75.75 0 0 0 0 1.5H21v6a3 3 0 0 1-3 3h-.75a.75.75 0 0 0 0 1.5h.75a4.5 4.5 0 0 0 4.5-4.5v-6a.75.75 0 0 0-.75-.75h-3.75Zm-16.5 0a.75.75 0 0 0-.75.75v6a4.5 4.5 0 0 0 4.5 4.5h.75a.75.75 0 0 0 0-1.5H6a3 3 0 0 1-3-3v-6a.75.75 0 0 0-.75-.75H3.75ZM12 16.5c-2.485 0-4.5-1.93-4.5-4.305 0-2.062 1.344-3.793 3.219-4.39.29-.092.593-.14.902-.14.309 0 .612.048.902.14 1.875.597 3.219 2.328 3.219 4.39 0 2.375-2.015 4.305-4.5 4.305Zm-3.75-4.5a.75.75 0 0 0-.75.75v.75c0 .414.336.75.75.75h.75a.75.75 0 0 0 .75-.75v-.75a.75.75 0 0 0-.75-.75h-.75Z"></path></svg>
-            Join the Discord
-          </a>
-</div>
-</section>
-        <!-- ⭐ ALL CONTENT BELOW IS 100% UNCHANGED FROM YOUR FILE -->
-        <!-- (Preserved exactly as you provided) -->
-	
-        <!-- ... -->
-        <!-- ... (everything remains intact here) -->
-        <!-- ... -->
-
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about-me" class="section-padding py-24 relative">
+            <div class="container mx-auto max-w-5xl">
+                <div class="glass-panel rounded-3xl p-12 relative overflow-hidden">
+                    <!-- Decorative Elements -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-neon-purple/10 rounded-full -translate-y-32 translate-x-32 blur-3xl"></div>
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-neon-blue/10 rounded-full translate-y-32 -translate-x-32 blur-3xl"></div>
+                    
+                    <div class="flex flex-col lg:flex-row items-center gap-12 relative z-10">
+                        <!-- Profile Image -->
+                        <div class="lg:w-2/5">
+                            <div class="relative">
+                                <div class="absolute -inset-4 bg-gradient-to-r from-neon-purple to-neon-pink rounded-full blur-xl opacity-30"></div>
+                                <div class="relative w-64 h-64 rounded-full overflow-hidden border-4 border-white/20">
+                                    <img src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj"
+                                         alt="LeongrayJ Profile"
+                                         class="w-full h-full object-cover"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- About Content -->
+                        <div class="lg:w-3/5">
+                            <h2 class="text-4xl font-black mb-8 gradient-text">
+                                Greetings, Fellow Gamers!
+                            </h2>
+                            
+                            <div class="space-y-6">
+                                <p class="text-gray-300 leading-relaxed">
+                                    I'm <span class="font-bold text-white">LeonGrayJ</span>, your guide through the ever-expanding universe of video games. 
+                                    This blog is my personal logbook, where I track, review, and share my journey through 
+                                    the most exciting and anticipated titles—from high-octane action to deep narrative experiences.
+                                </p>
+                                
+                                <p class="text-gray-300 leading-relaxed">
+                                    My passion lies in discovering games that truly push boundaries and offer unforgettable 
+                                    experiences. Join me as we uncover hidden gems and celebrate the masterpieces that shape 
+                                    our gaming world.
+                                </p>
+                                
+                                <p class="text-gray-300 leading-relaxed">
+                                    Outside of gaming, I'm focused on building a welcoming and creative community. 
+                                    Let's connect on Discord or catch up during one of my YouTube livestreams!
+                                </p>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-4 mt-10">
+                                <a href="https://discord.gg/XY66hCpFcB" target="_blank" 
+                                   class="flex items-center gap-3 px-6 py-3 rounded-full bg-indigo-600 hover:bg-indigo-700 transition-all">
+                                    <i class="fab fa-discord"></i>
+                                    <span class="font-semibold">Join Discord</span>
+                                </a>
+                                
+                                <a href="https://www.youtube.com/@LeonGrayJ" target="_blank" 
+                                   class="flex items-center gap-3 px-6 py-3 rounded-full bg-red-600 hover:bg-red-700 transition-all">
+                                    <i class="fab fa-youtube"></i>
+                                    <span class="font-semibold">YouTube</span>
+                                </a>
+                                
+                                <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" 
+                                   class="flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-red-600 to-pink-600 hover:opacity-90 transition-all">
+                                    <i class="fas fa-broadcast-tower"></i>
+                                    <span class="font-semibold">Live Streams</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section id="testimonials" class="section-padding py-24">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="section-title text-5xl font-black mb-6">
+                        <span class="gradient-text">WHAT GAMERS SAY</span>
+                    </h2>
+                    <p class="text-gray-400 text-lg max-w-3xl mx-auto">
+                        Hear from the community about their experience
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="glass-panel testimonial-card rounded-2xl p-8">
+                        <div class="mb-6">
+                            <div class="flex text-yellow-400 mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 italic">
+                                "LeonGrayJ's insights are always spot-on! This blog helps me prioritize my gaming backlog perfectly."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">A Happy Gamer</h4>
+                                <p class="text-xs text-gray-400">Community Member</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="glass-panel testimonial-card rounded-2xl p-8">
+                        <div class="mb-6">
+                            <div class="flex text-yellow-400 mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 italic">
+                                "The live streams are fantastic, and the community is super welcoming. Highly recommend!"
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Stream Follower</h4>
+                                <p class="text-xs text-gray-400">Regular Viewer</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="glass-panel testimonial-card rounded-2xl p-8">
+                        <div class="mb-6">
+                            <div class="flex text-yellow-400 mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 italic">
+                                "Finally, a gaming blog that truly understands what makes a game special. Great content!"
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 flex items-center justify-center">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Avid Reader</h4>
+                                <p class="text-xs text-gray-400">Blog Subscriber</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 4 -->
+                    <div class="glass-panel testimonial-card rounded-2xl p-8">
+                        <div class="mb-6">
+                            <div class="flex text-yellow-400 mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 italic">
+                                "The design and features are top-notch. It's a pleasure to browse and discover new games here."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-orange-600 to-red-600 flex items-center justify-center">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Design Enthusiast</h4>
+                                <p class="text-xs text-gray-400">UI/UX Designer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMMUNITY SECTION -->
+        <section id="leongrayj-community" class="section-padding py-24">
+            <div class="container mx-auto max-w-6xl">
+                <div class="glass-panel rounded-3xl p-12 relative overflow-hidden">
+                    <!-- Background Glow -->
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-96 bg-gradient-to-r from-purple-600/10 via-pink-600/10 to-blue-600/10 blur-3xl"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="text-center mb-16">
+                            <h2 class="text-5xl font-black mb-6">
+                                <span class="gradient-text">JOIN THE</span>
+                                <span class="gradient-text-2"> COMMUNITY</span>
+                            </h2>
+                            <p class="text-gray-400 text-lg max-w-3xl mx-auto">
+                                Dive deeper into my gaming world. Here's how you can connect and be a part of the journey.
+                            </p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                            <!-- YouTube Card -->
+                            <div class="glass-panel rounded-2xl p-8 border border-white/10 hover:border-purple-500/30 transition-all duration-500">
+                                <div class="text-center mb-8">
+                                    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-red-600 to-pink-600 flex items-center justify-center mx-auto mb-6">
+                                        <i class="fab fa-youtube text-3xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold mb-4">Your Support Fuels the Adventure!</h3>
+                                    <p class="text-gray-400 mb-6">
+                                        If you enjoy my content, please consider subscribing and liking videos! Your support helps create better content. ✨❤️
+                                    </p>
+                                </div>
+                                <a href="https://www.youtube.com/@LeonGrayJ" target="_blank" 
+                                   class="btn-primary w-full text-center block">
+                                    <i class="fab fa-youtube mr-2"></i>
+                                    SUBSCRIBE ON YOUTUBE
+                                </a>
+                            </div>
+                            
+                            <!-- Live Streams Card -->
+                            <div class="glass-panel rounded-2xl p-8 border border-white/10 hover:border-red-500/30 transition-all duration-500">
+                                <div class="text-center mb-8">
+                                    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-red-700 to-orange-600 flex items-center justify-center mx-auto mb-6 pulse-animation">
+                                        <i class="fas fa-broadcast-tower text-3xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold mb-4">Catch Me Live & Say Hi!</h3>
+                                    <p class="text-gray-400 mb-6">
+                                        I livestream almost daily, playing a variety of games. Stop by, hang out, and say hi in the chat! 🐥
+                                    </p>
+                                </div>
+                                <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" 
+                                   class="btn-primary w-full text-center block bg-gradient-to-r from-red-600 to-orange-600">
+                                    <i class="fas fa-play-circle mr-2"></i>
+                                    WATCH LIVE STREAMS
+                                </a>
+                            </div>
+                            
+                            <!-- Discord Card -->
+                            <div class="glass-panel rounded-2xl p-8 border border-white/10 hover:border-indigo-500/30 transition-all duration-500">
+                                <div class="text-center mb-8">
+                                    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center mx-auto mb-6">
+                                        <i class="fab fa-discord text-3xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold mb-4">Join Our Discord Community!</h3>
+                                    <p class="text-gray-400 mb-6">
+                                        Connect directly with me and the community! Get updates, chat about games, and join events with fellow gamers.
+                                    </p>
+                                </div>
+                                <a href="https://discord.gg/XY66hCpFcB" target="_blank" 
+                                   class="btn-primary w-full text-center block bg-gradient-to-r from-indigo-600 to-purple-600">
+                                    <i class="fab fa-discord mr-2"></i>
+                                    JOIN DISCORD SERVER
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Newsletter Section -->
+                        <div class="glass-panel rounded-2xl p-10 border border-white/10">
+                            <div class="text-center mb-8">
+                                <h3 class="text-3xl font-bold mb-4 gradient-text">Stay Updated</h3>
+                                <p class="text-gray-400 max-w-2xl mx-auto">
+                                    Get notified about new content, live stream schedules, and gaming insights directly in your inbox.
+                                </p>
+                            </div>
+                            
+                            <div class="max-w-xl mx-auto">
+                                <form class="flex flex-col sm:flex-row gap-4">
+                                    <input type="email" 
+                                           placeholder="Enter your email address" 
+                                           class="flex-1 bg-black/30 border border-white/10 rounded-full px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-all">
+                                    <button type="submit" class="btn-primary whitespace-nowrap">
+                                        <i class="fas fa-paper-plane mr-2"></i>
+                                        SUBSCRIBE
+                                    </button>
+                                </form>
+                                <p class="text-xs text-gray-500 text-center mt-4">
+                                    No spam, ever. Unsubscribe at any time.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- FOOTER -->
-    <footer class="glass-effect mt-20 py-8 px-4 border-t border-neon-purple/30">
-        <div class="container mx-auto text-center">
-            <p class="text-gray-400 mb-6">© 2025 LeonGrayJ. All Rights Reserved.</p>
-            <div class="flex justify-center gap-8">
-                <a href="https://discord.gg/XY66hCpFcB" class="text-gray-400 hover:text-neon-blue">Discord</a>
-                <a href="https://www.youtube.com/@LeonGrayJ" class="text-gray-400 hover:text-neon-pink">YouTube</a>
+    <footer class="glass-panel border-t border-white/10 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-8">
+                <!-- Logo & Info -->
+                <div class="text-center lg:text-left">
+                    <div class="flex items-center justify-center lg:justify-start gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-purple-500">
+                            <img src="assets/images/logo.png" alt="Logo" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-black gradient-text">LEONGRAYJ</h3>
+                            <p class="text-xs text-gray-400">Premium Gaming Blog</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-sm max-w-md">
+                        Curating the future of gaming with in-depth analysis, live streams, and community engagement.
+                    </p>
+                </div>
+                
+                <!-- Links -->
+                <div class="flex flex-col sm:flex-row gap-8">
+                    <div>
+                        <h4 class="font-bold mb-4">QUICK LINKS</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#featured-playlists" class="text-gray-400 hover:text-white transition-colors">Featured</a></li>
+                            <li><a href="arcade.html" class="text-gray-400 hover:text-white transition-colors">Arcade</a></li>
+                            <li><a href="#about-me" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold mb-4">PRIORITIES</h4>
+                        <ul class="space-y-2">
+                            <li><a href="high_priority.html" class="text-gray-400 hover:text-white transition-colors">High Priority</a></li>
+                            <li><a href="moderate_priority.html" class="text-gray-400 hover:text-white transition-colors">Moderate</a></li>
+                            <li><a href="low_priority.html" class="text-gray-400 hover:text-white transition-colors">Low Priority</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold mb-4">CONNECT</h4>
+                        <div class="flex gap-4">
+                            <a href="https://discord.gg/XY66hCpFcB" target="_blank" 
+                               class="w-10 h-10 rounded-full bg-indigo-600 hover:bg-indigo-700 flex items-center justify-center transition-all">
+                                <i class="fab fa-discord"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@LeonGrayJ" target="_blank" 
+                               class="w-10 h-10 rounded-full bg-red-600 hover:bg-red-700 flex items-center justify-center transition-all">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" 
+                               class="w-10 h-10 rounded-full bg-gradient-to-r from-red-600 to-pink-600 hover:opacity-90 flex items-center justify-center transition-all">
+                                <i class="fas fa-broadcast-tower"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-10 pt-8 text-center">
+                <p class="text-gray-500 text-sm">
+                    © 2025 LeonGrayJ Gaming Blog. All Rights Reserved. 
+                    <span class="block sm:inline mt-2 sm:mt-0">Made with ❤️ for the gaming community.</span>
+                </p>
             </div>
         </div>
     </footer>
 
-    <!-- FIXED LIVE BADGE + MARQUEE JS -->
+    <!-- BACK TO TOP BUTTON -->
+    <button id="backToTop" 
+            class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white shadow-2xl z-40 opacity-0 transition-opacity duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- SCRIPT -->
     <script>
+        // LOADING SCREEN
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loading-screen');
+                loadingScreen.style.opacity = '0';
+                loadingScreen.style.visibility = 'hidden';
+            }, 1500);
+        });
+
+        // MOBILE MENU
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuBtn.innerHTML = mobileMenu.classList.contains('hidden') 
+                    ? '<i class="fas fa-bars"></i>' 
+                    : '<i class="fas fa-times"></i>';
+            });
+        }
+
+        // BACK TO TOP BUTTON
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopBtn.style.opacity = '1';
+            } else {
+                backToTopBtn.style.opacity = '0';
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // LIVE STATUS CHECK
         async function checkLiveStatus() {
             const logo = document.getElementById('leongrayj-logo');
             const badge = document.getElementById('live-badge');
@@ -944,29 +1131,32 @@
 
                 if (data.isLive && data.liveUrl) {
                     badge.classList.remove("hidden");
-
+                    
                     container.style.cursor = "pointer";
                     container.onclick = () => window.open(data.liveUrl, "_blank");
-
-                    logo.parentElement.classList.add("live-glow");
-                    logo.parentElement.classList.remove("border-neon-blue");
-                    logo.parentElement.classList.add("border-red-500");
+                    
+                    logo.parentElement.classList.add("pulse-animation");
+                    logo.parentElement.style.border = "3px solid #ff0000";
+                    logo.parentElement.style.boxShadow = "0 0 30px rgba(255, 0, 0, 0.7)";
 
                 } else {
                     badge.classList.add("hidden");
-
+                    
                     container.style.cursor = "default";
                     container.onclick = null;
-
-                    logo.parentElement.classList.remove("live-glow", "border-red-500");
-                    logo.parentElement.classList.add("border-neon-blue");
+                    
+                    logo.parentElement.classList.remove("pulse-animation");
+                    logo.parentElement.style.border = "";
+                    logo.parentElement.style.boxShadow = "";
                 }
 
             } catch (err) {
                 console.error("Live status error:", err);
+                badge.classList.add("hidden");
             }
         }
 
+        // MARQUEE NEWS
         async function loadNewsMarquee() {
             const marquee = document.getElementById("dynamic-marquee");
             const apiKey = "b162f72fadcc5c39885332a7dcfa90ce";
@@ -975,23 +1165,104 @@
                 const res = await fetch(`https://gnews.io/api/v4/search?q=gaming&lang=en&max=10&apikey=${apiKey}`);
                 const data = await res.json();
 
-                marquee.innerHTML = "";
-                data.articles.slice(0, 5).forEach(a => {
-                    marquee.innerHTML += `<span class="mx-8 text-neon-blue">📰 ${a.title} •</span>`;
+                let marqueeContent = "";
+                data.articles.slice(0, 8).forEach(article => {
+                    marqueeContent += `
+                        <span class="mx-8">
+                            🎮 ${article.title} •
+                        </span>
+                    `;
                 });
 
-            } catch {
-                marquee.innerHTML = `<span class='mx-8 text-gray-500'>⚠️ Failed to load news</span>`;
+                marquee.innerHTML = marqueeContent;
+
+            } catch (error) {
+                console.error("Failed to load news:", error);
+                marquee.innerHTML = `
+                    <span class="mx-8 gradient-text">🎮 Welcome to LeonGrayJ Gaming Blog • Stay tuned for updates •</span>
+                `;
             }
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
+        // SMOOTH SCROLLING FOR ANCHOR LINKS
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // ACTIVE NAV LINK ON SCROLL
+        const sections = document.querySelectorAll('section[id]');
+        
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+            
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 150;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-item').forEach(link => {
+                        link.classList.remove('active', 'text-white');
+                        link.classList.add('text-gray-300');
+                    });
+                    
+                    const activeLink = document.querySelector(`.nav-item[href="#${sectionId}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active', 'text-white');
+                        activeLink.classList.remove('text-gray-300');
+                    }
+                }
+            });
+        });
+
+        // PARALLAX EFFECT
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector('.hero-section');
+            
+            if (heroSection) {
+                const rate = scrolled * -0.5;
+                heroSection.style.backgroundPosition = `center ${rate}px`;
+            }
+        });
+
+        // INITIALIZE EVERYTHING
+        document.addEventListener('DOMContentLoaded', () => {
             checkLiveStatus();
             setInterval(checkLiveStatus, 30000);
-
+            
             loadNewsMarquee();
+            setInterval(loadNewsMarquee, 300000); // Update every 5 minutes
+            
+            // Initialize tooltips
+            const tooltips = document.querySelectorAll('[title]');
+            tooltips.forEach(tooltip => {
+                tooltip.setAttribute('data-title', tooltip.getAttribute('title'));
+                tooltip.removeAttribute('title');
+            });
         });
     </script>
-
 </body>
 </html>
