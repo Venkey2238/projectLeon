@@ -66,14 +66,28 @@
         }
 
         /* FIXED HEADER - NO GAP AT TOP */
-        header {
-            position: fixed;
-            top: 0 !important;
-            left: 0;
-            height: 70px;
-            width: 100%;
-            z-index: 1000;
-        }
+       header {
+    height: 80px !important;            /* stable header height so marquee aligns exactly */
+    display: flex !important;
+    align-items: center !important;    /* vertically center nav items */
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+        header .container {
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 100%;
+}
+
+/* Make the nav row use full height and center children */
+header nav {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between;
+}
 
         /* MAIN CONTENT - PUSHED BELOW HEADER */
         main {
@@ -81,12 +95,9 @@
         }
 
         /* MARQUEE POSITIONING - BELOW HEADER */
-        #news-marquee {
-            position: fixed;
-            top: 70px !important; /* Height of header */
-            left: 0;
-            width: 100%;
-            z-index: 999;
+       #news-marquee {
+            top: 80px !important;               /* match header height above */
+            margin: 0 !important;
         }
 
         /* PREMIUM GLASS EFFECT */
@@ -173,29 +184,14 @@
         }
 
         /* LIVE BADGE */
-        .live-badge {
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(45deg, #ff0000, #ff5555, #ff0000);
-            background-size: 200% 200%;
-            padding: 4px 16px;
-            font-size: 10px;
-            font-weight: 900;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: white;
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
-            z-index: 50;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            animation: live-pulse 1.5s ease-in-out infinite;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
+        #live-badge,
+.live-badge {
+    position: absolute !important;
+    bottom: -18px !important;           /* pushes the badge outside & below the circle */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 60 !important;
+}
         @keyframes live-pulse {
             0%, 100% { 
                 box-shadow: 0 0 25px rgba(255, 0, 0, 0.8); 
@@ -243,28 +239,15 @@
 
         /* LOGO CONTAINER */
         .logo-container {
-            padding-bottom: 20px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+    padding-bottom: 0 !important;
+    position: relative;                 /* keep the badge positioned relative to the container */
+    overflow: visible !important;
+}
 
-        .logo-circle {
-            display: block;
-            position: relative;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid transparent;
-            background: linear-gradient(var(--dark-bg), var(--dark-bg)) padding-box,
-                        var(--gradient-1) border-box;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+/* Allow the badge to escape the circle (prevent clipping) */
+.logo-circle {
+    overflow: visible !important;       /* previously was hidden and clipped the badge */
+}
 
         .logo-circle:hover {
             transform: scale(1.1) rotate(5deg);
@@ -272,12 +255,12 @@
         }
 
         .logo-circle img {
-            width: 85%;
-            height: 85%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
+    display: block !important;
+    margin: 0 !important;
+    width: 85% !important;              /* preserves your existing sizing */
+    height: 85% !important;
+    object-fit: cover !important;
+}
         /* NAVIGATION */
         .nav-item {
             position: relative;
