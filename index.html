@@ -66,27 +66,33 @@
         }
 
         /* FIXED HEADER - NO GAP AT TOP */
-       header {
-    height: 80px !important;            /* stable header height so marquee aligns exactly */
+      header {
+    height: 70px !important; /* Reduced height for tighter spacing */
     display: flex !important;
-    align-items: center !important;    /* vertically center nav items */
+    align-items: center !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
 }
 
-        header .container {
+header .container {
     height: 100% !important;
     display: flex !important;
     align-items: center !important;
     width: 100%;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 
-/* Make the nav row use full height and center children */
+/* NAVIGATION CONTAINER - CENTERED */
 header nav {
     width: 100% !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between;
+    height: 100% !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 
         /* MAIN CONTENT - PUSHED BELOW HEADER */
@@ -187,30 +193,44 @@ header nav {
         #live-badge,
 .live-badge {
     position: absolute !important;
-    bottom: -18px !important;           /* pushes the badge outside & below the circle */
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+    top: -10px !important; /* Position above the logo */
+    right: -15px !important; /* Position to the right of logo */
     z-index: 60 !important;
+    background: linear-gradient(135deg, #ff0000, #ff3333) !important;
+    color: white !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    padding: 2px 8px !important;
+    border-radius: 12px !important;
+    white-space: nowrap !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    border: 2px solid var(--darker-bg) !important;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8) !important;
+    animation: live-pulse 1.5s infinite !important;
+    transform: none !important; /* Remove previous transform */
+    left: auto !important; /* Reset left positioning */
+    bottom: auto !important; /* Reset bottom positioning */
 }
-        @keyframes live-pulse {
-            0%, 100% { 
-                box-shadow: 0 0 25px rgba(255, 0, 0, 0.8); 
-                transform: translateX(-50%) scale(1);
-            }
-            50% { 
-                box-shadow: 0 0 35px rgba(255, 0, 0, 1); 
-                transform: translateX(-50%) scale(1.05);
-            }
-        }
 
-        .live-dot {
-            width: 8px;
-            height: 8px;
-            background: #fff;
-            border-radius: 50%;
-            animation: live-dot-pulse 1s infinite;
-            box-shadow: 0 0 10px #ff0000;
-        }
+        @keyframes live-pulse {
+    0%, 100% { 
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.8); 
+    }
+    50% { 
+        box-shadow: 0 0 25px rgba(255, 0, 0, 1); 
+    }
+}
+
+.live-dot {
+    width: 6px !important;
+    height: 6px !important;
+    background: #fff !important;
+    border-radius: 50% !important;
+    animation: live-dot-pulse 1s infinite !important;
+    display: inline-block !important;
+}
 
         @keyframes live-dot-pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
@@ -218,12 +238,15 @@ header nav {
         }
 
         /* MARQUEE IMPROVEMENTS - NO GAP */
-        .marquee-container {
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-        }
+       .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    height: 35px !important; /* Fixed height */
+    display: flex !important;
+    align-items: center !important;
+}
 
         .marquee-content {
             display: inline-block;
@@ -240,13 +263,28 @@ header nav {
         /* LOGO CONTAINER */
         .logo-container {
     padding-bottom: 0 !important;
-    position: relative;                 /* keep the badge positioned relative to the container */
+    position: relative;
     overflow: visible !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    height: 100% !important;
 }
 
-/* Allow the badge to escape the circle (prevent clipping) */
+/* LOGO CIRCLE - FIXED FOR BADGE */
 .logo-circle {
-    overflow: visible !important;       /* previously was hidden and clipped the badge */
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: var(--gradient-1) !important;
+    padding: 3px !important;
+    position: relative !important;
+    overflow: visible !important; /* CRITICAL: Allows badge to escape */
+    margin: 0 !important;
+    flex-shrink: 0 !important;
 }
 
         .logo-circle:hover {
@@ -263,32 +301,34 @@ header nav {
 }
         /* NAVIGATION */
         .nav-item {
-            position: relative;
-            padding: 8px 0;
-            font-weight: 600;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-        }
+    position: relative;
+    padding: 8px 0 !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.3s ease !important;
+    white-space: nowrap !important;
+}
 
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-1);
-            transition: width 0.3s ease;
-        }
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-1);
+    transition: width 0.3s ease;
+}
 
-        .nav-item:hover::after {
-            width: 100%;
-        }
 
-        .nav-item.active::after {
-            width: 100%;
-        }
+       .nav-item:hover::after {
+    width: 100%;
+}
+
+.nav-item.active::after {
+    width: 100%;
+}
 
         /* HERO SECTION */
         .hero-section {
@@ -469,17 +509,25 @@ header nav {
             }
             
             main {
-                margin-top: 140px !important; /* Adjusted for mobile */
-            }
+    margin-top: 105px !important; /* Header (70px) + Marquee (35px) */
+}
+
+           .hero-section {
+    margin-top: 105px !important; /* Same as main */
+}
+
             
-            .hero-section {
-                margin-top: 140px !important; /* Adjusted for mobile */
-            }
+
             
-            #news-marquee {
-                top: 60px; /* Adjusted for mobile */
-            }
-        }
+           #news-marquee {
+    position: fixed !important;
+    top: 70px !important; /* Match header height */
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 900 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
 
         /* GRID BACKGROUND */
         .grid-bg {
@@ -495,6 +543,59 @@ header nav {
             z-index: -1;
             opacity: 0.3;
         }
+
+
+            /* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 768px) {
+    header {
+        height: 60px !important;
+    }
+    
+    .logo-circle {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .live-badge {
+        top: -8px !important;
+        right: -12px !important;
+        font-size: 8px !important;
+        padding: 1px 6px !important;
+    }
+    
+    #news-marquee {
+        top: 60px !important;
+        height: 30px !important;
+    }
+    
+    .marquee-container {
+        height: 30px !important;
+    }
+    
+    main {
+        margin-top: 90px !important; /* 60px + 30px */
+    }
+    
+    .hero-section {
+        margin-top: 90px !important;
+    }
+    
+    .nav-items-container {
+        gap: 12px !important;
+        left: -30px !important;
+    }
+    
+    .nav-item {
+        font-size: 0.8rem !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .nav-items-container {
+        gap: 20px !important;
+        left: -40px !important;
+    }
+}
     </style>
 </head>
 
@@ -521,16 +622,11 @@ header nav {
             <nav class="flex justify-between items-center">
                 <!-- LOGO -->
                 <div class="logo-container">
-                    <div class="logo-circle" id="logo-container">
-                        <img id="leongrayj-logo" 
-                             src="assets/images/logo.png"
-                             alt="LeongrayJ Logo"
-                             class="cursor-pointer"/>
-                        <div id="live-badge" class="live-badge hidden">
-                            <span class="live-dot"></span>
-                            LIVE NOW
-                        </div>
-                    </div>
+                   <!-- After the nav items container, add the watch live button separately -->
+                    <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" class="btn-secondary flex items-center gap-2 px-4 py-2 text-sm ml-auto">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <span class="hidden md:inline">WATCH LIVE</span>
+                    </a>
                     
                     <div>
                         <h1 class="text-xl md:text-2xl font-black tracking-tight">
@@ -541,21 +637,15 @@ header nav {
                 </div>
 
                 <!-- NAVIGATION -->
-                <ul class="hidden lg:flex items-center gap-6">
-                    <li><a href="#featured-playlists" class="nav-item active text-white">FEATURED</a></li>
-                    <li><a href="arcade.html" class="nav-item text-gray-300 hover:text-white">ARCADE</a></li>
-                    <li><a href="high_priority.html" class="nav-item text-gray-300 hover:text-white">HIGH PRIORITY</a></li>
-                    <li><a href="moderate_priority.html" class="nav-item text-gray-300 hover:text-white">MODERATE</a></li>
-                    <li><a href="low_priority.html" class="nav-item text-gray-300 hover:text-white">LOW PRIORITY</a></li>
-                    <li><a href="#about-me" class="nav-item text-gray-300 hover:text-white">ABOUT</a></li>
-                    <li>
-                        <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" 
-                           class="btn-secondary flex items-center gap-2 px-4 py-2 text-sm">
-                            <i class="fas fa-broadcast-tower"></i>
-                            <span class="hidden md:inline">WATCH LIVE</span>
-                        </a>
-                    </li>
-                </ul>
+                <!-- In your header section, replace the navigation UL with: -->
+                <div class="nav-items-container">
+                        <a href="#featured-playlists" class="nav-item active text-white">FEATURED</a>
+                        <a href="arcade.html" class="nav-item text-gray-300 hover:text-white">ARCADE</a>
+                        <a href="high_priority.html" class="nav-item text-gray-300 hover:text-white">HIGH PRIORITY</a>
+                        <a href="moderate_priority.html" class="nav-item text-gray-300 hover:text-white">MODERATE</a>
+                        <a href="low_priority.html" class="nav-item text-gray-300 hover:text-white">LOW PRIORITY</a>
+                        <a href="#about-me" class="nav-item text-gray-300 hover:text-white">ABOUT</a>
+                </div>
 
                 <!-- MOBILE MENU BUTTON -->
                 <button id="mobile-menu-btn" class="lg:hidden text-2xl">
