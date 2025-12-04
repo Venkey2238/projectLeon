@@ -46,6 +46,7 @@
             color: white;
             overflow-x: hidden;
             scroll-behavior: smooth;
+            padding-top: 0 !important;
         }
 
         /* SCROLLBAR STYLING */
@@ -62,6 +63,29 @@
 
         ::-webkit-scrollbar-thumb:hover {
             background: var(--gradient-2);
+        }
+
+        /* FIXED HEADER - NO GAP AT TOP */
+        header {
+            position: fixed;
+            top: 0 !important;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* MAIN CONTENT - PUSHED BELOW HEADER */
+        main {
+            margin-top: 80px !important; /* Height of header + marquee */
+        }
+
+        /* MARQUEE POSITIONING - BELOW HEADER */
+        #news-marquee {
+            position: fixed;
+            top: 70px; /* Height of header */
+            left: 0;
+            width: 100%;
+            z-index: 999;
         }
 
         /* PREMIUM GLASS EFFECT */
@@ -196,19 +220,12 @@
             50% { opacity: 0.5; transform: scale(0.8); }
         }
 
-        /* MARQUEE IMPROVEMENTS */
+        /* MARQUEE IMPROVEMENTS - NO GAP */
         .marquee-container {
             width: 100%;
             overflow: hidden;
             white-space: nowrap;
             position: relative;
-            mask-image: linear-gradient(
-                to right,
-                transparent 0%,
-                black 10%,
-                black 90%,
-                transparent 100%
-            );
         }
 
         .marquee-content {
@@ -295,6 +312,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            margin-top: 110px !important; /* Header + marquee height */
         }
 
         .hero-bg {
@@ -463,6 +481,18 @@
                 padding-left: 20px !important;
                 padding-right: 20px !important;
             }
+            
+            main {
+                margin-top: 140px !important; /* Adjusted for mobile */
+            }
+            
+            .hero-section {
+                margin-top: 140px !important; /* Adjusted for mobile */
+            }
+            
+            #news-marquee {
+                top: 60px; /* Adjusted for mobile */
+            }
         }
 
         /* GRID BACKGROUND */
@@ -482,7 +512,7 @@
     </style>
 </head>
 
-<body class="relative">
+<body class="relative" style="padding-top: 0 !important;">
     <!-- LOADING SCREEN -->
     <div id="loading-screen">
         <div class="loader mb-8"></div>
@@ -499,9 +529,9 @@
         <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-blue/5 rounded-full blur-3xl"></div>
     </div>
 
-    <!-- HEADER -->
-    <header class="glass-panel fixed w-full z-50 py-4 border-b border-white/5">
-        <div class="container mx-auto px-6">
+    <!-- HEADER - FIXED AT TOP -->
+    <header class="glass-panel fixed top-0 left-0 w-full z-1000 py-3 border-b border-white/5" style="top: 0 !important;">
+        <div class="container mx-auto px-4 md:px-6">
             <nav class="flex justify-between items-center">
                 <!-- LOGO -->
                 <div class="logo-container">
@@ -517,7 +547,7 @@
                     </div>
                     
                     <div>
-                        <h1 class="text-2xl font-black tracking-tight">
+                        <h1 class="text-xl md:text-2xl font-black tracking-tight">
                             <span class="gradient-text">LEONGRAYJ</span>
                         </h1>
                         <p class="text-xs text-gray-400 font-medium tracking-wider">PREMIUM GAMING BLOG</p>
@@ -525,7 +555,7 @@
                 </div>
 
                 <!-- NAVIGATION -->
-                <ul class="hidden lg:flex items-center gap-8">
+                <ul class="hidden lg:flex items-center gap-6">
                     <li><a href="#featured-playlists" class="nav-item active text-white">FEATURED</a></li>
                     <li><a href="arcade.html" class="nav-item text-gray-300 hover:text-white">ARCADE</a></li>
                     <li><a href="high_priority.html" class="nav-item text-gray-300 hover:text-white">HIGH PRIORITY</a></li>
@@ -534,9 +564,9 @@
                     <li><a href="#about-me" class="nav-item text-gray-300 hover:text-white">ABOUT</a></li>
                     <li>
                         <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" 
-                           class="btn-secondary flex items-center gap-2">
+                           class="btn-secondary flex items-center gap-2 px-4 py-2 text-sm">
                             <i class="fas fa-broadcast-tower"></i>
-                            <span>WATCH LIVE</span>
+                            <span class="hidden md:inline">WATCH LIVE</span>
                         </a>
                     </li>
                 </ul>
@@ -547,28 +577,10 @@
                 </button>
             </nav>
         </div>
-
-        <!-- MOBILE MENU -->
-        <div id="mobile-menu" class="lg:hidden glass-panel absolute top-full left-0 w-full mt-2 py-6 hidden">
-            <div class="container mx-auto px-6">
-                <div class="flex flex-col gap-4">
-                    <a href="#featured-playlists" class="nav-item text-white py-3">Featured</a>
-                    <a href="arcade.html" class="nav-item text-gray-300 py-3">Arcade</a>
-                    <a href="high_priority.html" class="nav-item text-gray-300 py-3">High Priority</a>
-                    <a href="moderate_priority.html" class="nav-item text-gray-300 py-3">Moderate</a>
-                    <a href="low_priority.html" class="nav-item text-gray-300 py-3">Low Priority</a>
-                    <a href="#about-me" class="nav-item text-gray-300 py-3">About</a>
-                    <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" 
-                       class="btn-primary mt-4 text-center">
-                        Watch Live
-                    </a>
-                </div>
-            </div>
-        </div>
     </header>
 
-    <!-- MARQUEE -->
-    <section class="marquee-container mt-20 bg-black/40 py-4 border-y border-white/10">
+    <!-- MARQUEE - FIXED BELOW HEADER -->
+    <section id="news-marquee" class="marquee-container bg-black/80 py-3 border-y border-white/10">
         <div id="dynamic-marquee" class="marquee-content text-sm font-semibold">
             <span class="mx-8">🚀 Welcome to LeonGrayJ Gaming Blog • Stay tuned for live streams •</span>
             <span class="mx-8 gradient-text">🎮 Loading latest gaming news...</span>
@@ -576,9 +588,9 @@
     </section>
 
     <!-- MAIN CONTENT -->
-    <main class="relative z-10">
+    <main class="relative z-10" style="margin-top: 110px;">
         <!-- HERO SECTION -->
-        <section class="hero-section section-padding" style="padding: 150px 40px 100px;">
+        <section class="hero-section section-padding" style="padding: 0 40px 100px;">
             <div class="hero-bg"></div>
             <div class="container mx-auto relative z-10">
                 <div class="max-w-4xl mx-auto text-center">
@@ -588,24 +600,24 @@
                         </span>
                     </div>
                     
-                    <h1 class="hero-title text-6xl lg:text-8xl font-black mb-8 leading-tight">
+                    <h1 class="hero-title text-5xl lg:text-7xl font-black mb-8 leading-tight">
                         <span class="gradient-text">CURATING THE</span>
                         <br>
                         <span class="gradient-text-2">FUTURE OF GAMING</span>
                     </h1>
                     
-                    <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+                    <p class="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
                         Welcome to the ultimate chronicle of gaming's most anticipated titles. 
                         Join me in exploring what's next on the horizon with exclusive content, 
                         live streams, and in-depth analysis.
                     </p>
                     
-                    <div class="flex flex-wrap justify-center gap-6">
-                        <a href="#featured-playlists" class="btn-primary">
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="#featured-playlists" class="btn-primary px-6 py-3">
                             <i class="fas fa-gamepad mr-2"></i>
                             EXPLORE GAMES
                         </a>
-                        <a href="https://www.youtube.com/@LeonGrayJ" target="_blank" class="btn-secondary">
+                        <a href="https://www.youtube.com/@LeonGrayJ" target="_blank" class="btn-secondary px-6 py-3">
                             <i class="fab fa-youtube mr-2"></i>
                             YOUTUBE CHANNEL
                         </a>
@@ -615,23 +627,23 @@
         </section>
 
         <!-- FEATURED SECTION -->
-        <section id="featured-playlists" class="section-padding py-24 relative">
+        <section id="featured-playlists" class="section-padding py-16 md:py-24 relative">
             <div class="container mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="section-title text-5xl font-black mb-6">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="section-title text-4xl md:text-5xl font-black mb-4 md:mb-6">
                         <span class="gradient-text">FEATURED PLAYLIST</span>
                     </h2>
-                    <p class="text-gray-400 text-lg max-w-3xl mx-auto">
+                    <p class="text-gray-400 text-base md:text-lg max-w-3xl mx-auto">
                         Dive into the most atmospheric and psychologically intense gaming experience
                     </p>
                 </div>
 
                 <!-- FEATURED GAME CARD -->
-                <div class="glass-panel rounded-3xl overflow-hidden max-w-6xl mx-auto glass-panel-hover transition-all duration-500">
+                <div class="glass-panel rounded-2xl md:rounded-3xl overflow-hidden max-w-6xl mx-auto glass-panel-hover transition-all duration-500">
                     <div class="md:flex">
                         <!-- Video Section -->
                         <div class="md:w-7/12 p-0 relative">
-                            <div class="relative h-full min-h-[400px] overflow-hidden">
+                            <div class="relative h-full min-h-[300px] md:min-h-[400px] overflow-hidden">
                                 <!-- Video Background -->
                                 <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
                                     <source src="./videos/sh2.webm" type="video/webm">
@@ -642,9 +654,9 @@
                                 <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
                                 
                                 <!-- Video Player -->
-                                <div class="relative z-10 p-8 h-full flex items-center">
+                                <div class="relative z-10 p-4 md:p-8 h-full flex items-center">
                                     <div class="w-full">
-                                        <div class="video-wrapper rounded-2xl overflow-hidden shadow-2xl">
+                                        <div class="video-wrapper rounded-xl md:rounded-2xl overflow-hidden shadow-2xl">
                                             <div class="relative pb-[56.25%]">
                                                 <iframe 
                                                     src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl10p6KfQdcMdmhr_XAVY14b" 
@@ -660,47 +672,47 @@
                         </div>
                         
                         <!-- Content Section -->
-                        <div class="md:w-5/12 p-10 bg-black/60">
-                            <div class="mb-6">
-                                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-900/50 to-pink-900/50 text-sm font-bold">
+                        <div class="md:w-5/12 p-6 md:p-10 bg-black/60">
+                            <div class="mb-4 md:mb-6">
+                                <span class="inline-flex items-center gap-2 px-3 md:px-4 py-1 md:py-2 rounded-full bg-gradient-to-r from-purple-900/50 to-pink-900/50 text-xs md:text-sm font-bold">
                                     <i class="fas fa-play-circle"></i>
                                     NOW FEATURING
                                 </span>
                             </div>
                             
-                            <h3 class="text-4xl font-black mb-6 gradient-text">SILENT HILL 2</h3>
+                            <h3 class="text-2xl md:text-4xl font-black mb-4 md:mb-6 gradient-text">SILENT HILL 2</h3>
                             
-                            <p class="text-gray-300 mb-8 leading-relaxed">
+                            <p class="text-gray-300 mb-6 md:mb-8 leading-relaxed text-sm md:text-base">
                                 Step into the fog‑shrouded town of Silent Hill, where fear sharpens into emotion 
                                 and every shadow hides the truth James Sunderland seeks. A haunting, atmospheric 
                                 journey into guilt, memory, and psychological terror.
                             </p>
                             
-                            <div class="grid grid-cols-3 gap-4 mb-10">
-                                <div class="bg-black/40 p-4 rounded-xl border border-white/10 text-center hover:border-purple-500/50 transition-all">
-                                    <div class="text-3xl mb-2">🌫️</div>
-                                    <div class="text-sm font-bold">Atmospheric</div>
+                            <div class="grid grid-cols-3 gap-2 md:gap-4 mb-6 md:mb-10">
+                                <div class="bg-black/40 p-2 md:p-4 rounded-lg md:rounded-xl border border-white/10 text-center hover:border-purple-500/50 transition-all">
+                                    <div class="text-2xl md:text-3xl mb-1 md:mb-2">🌫️</div>
+                                    <div class="text-xs md:text-sm font-bold">Atmospheric</div>
                                 </div>
-                                <div class="bg-black/40 p-4 rounded-xl border border-white/10 text-center hover:border-blue-500/50 transition-all">
-                                    <div class="text-3xl mb-2">🧠</div>
-                                    <div class="text-sm font-bold">Psychological</div>
+                                <div class="bg-black/40 p-2 md:p-4 rounded-lg md:rounded-xl border border-white/10 text-center hover:border-blue-500/50 transition-all">
+                                    <div class="text-2xl md:text-3xl mb-1 md:mb-2">🧠</div>
+                                    <div class="text-xs md:text-sm font-bold">Psychological</div>
                                 </div>
-                                <div class="bg-black/40 p-4 rounded-xl border border-white/10 text-center hover:border-green-500/50 transition-all">
-                                    <div class="text-3xl mb-2">🎵</div>
-                                    <div class="text-sm font-bold">Soundtrack</div>
+                                <div class="bg-black/40 p-2 md:p-4 rounded-lg md:rounded-xl border border-white/10 text-center hover:border-green-500/50 transition-all">
+                                    <div class="text-2xl md:text-3xl mb-1 md:mb-2">🎵</div>
+                                    <div class="text-xs md:text-sm font-bold">Soundtrack</div>
                                 </div>
                             </div>
                             
-                            <div class="space-y-4">
+                            <div class="space-y-3 md:space-y-4">
                                 <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl10p6KfQdcMdmhr_XAVY14b" 
                                    target="_blank"
-                                   class="btn-primary w-full text-center block">
+                                   class="btn-primary w-full text-center block py-2 md:py-3 text-sm md:text-base">
                                     <i class="fab fa-youtube mr-2"></i>
                                     WATCH FULL PLAYLIST
                                 </a>
                                 
                                 <a href="arcade.html" 
-                                   class="btn-secondary w-full text-center block">
+                                   class="btn-secondary w-full text-center block py-2 md:py-3 text-sm md:text-base">
                                     <i class="fas fa-arrow-right mr-2"></i>
                                     EXPLORE MORE GAMES
                                 </a>
@@ -712,19 +724,19 @@
         </section>
 
         <!-- ABOUT SECTION -->
-        <section id="about-me" class="section-padding py-24 relative">
+        <section id="about-me" class="section-padding py-16 md:py-24 relative">
             <div class="container mx-auto max-w-5xl">
-                <div class="glass-panel rounded-3xl p-12 relative overflow-hidden">
+                <div class="glass-panel rounded-2xl md:rounded-3xl p-6 md:p-12 relative overflow-hidden">
                     <!-- Decorative Elements -->
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-neon-purple/10 rounded-full -translate-y-32 translate-x-32 blur-3xl"></div>
-                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-neon-blue/10 rounded-full translate-y-32 -translate-x-32 blur-3xl"></div>
+                    <div class="absolute top-0 right-0 w-32 md:w-64 h-32 md:h-64 bg-neon-purple/10 rounded-full -translate-y-16 md:-translate-y-32 translate-x-16 md:translate-x-32 blur-3xl"></div>
+                    <div class="absolute bottom-0 left-0 w-32 md:w-64 h-32 md:h-64 bg-neon-blue/10 rounded-full translate-y-16 md:translate-y-32 -translate-x-16 md:-translate-x-32 blur-3xl"></div>
                     
-                    <div class="flex flex-col lg:flex-row items-center gap-12 relative z-10">
+                    <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-12 relative z-10">
                         <!-- Profile Image -->
                         <div class="lg:w-2/5">
                             <div class="relative">
-                                <div class="absolute -inset-4 bg-gradient-to-r from-neon-purple to-neon-pink rounded-full blur-xl opacity-30"></div>
-                                <div class="relative w-64 h-64 rounded-full overflow-hidden border-4 border-white/20">
+                                <div class="absolute -inset-2 md:-inset-4 bg-gradient-to-r from-neon-purple to-neon-pink rounded-full blur-xl opacity-30"></div>
+                                <div class="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white/20">
                                     <img src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj"
                                          alt="LeongrayJ Profile"
                                          class="w-full h-full object-cover"/>
@@ -734,44 +746,44 @@
                         
                         <!-- About Content -->
                         <div class="lg:w-3/5">
-                            <h2 class="text-4xl font-black mb-8 gradient-text">
+                            <h2 class="text-3xl md:text-4xl font-black mb-6 md:mb-8 gradient-text">
                                 Greetings, Fellow Gamers!
                             </h2>
                             
-                            <div class="space-y-6">
-                                <p class="text-gray-300 leading-relaxed">
+                            <div class="space-y-4 md:space-y-6">
+                                <p class="text-gray-300 leading-relaxed text-sm md:text-base">
                                     I'm <span class="font-bold text-white">LeonGrayJ</span>, your guide through the ever-expanding universe of video games. 
                                     This blog is my personal logbook, where I track, review, and share my journey through 
                                     the most exciting and anticipated titles—from high-octane action to deep narrative experiences.
                                 </p>
                                 
-                                <p class="text-gray-300 leading-relaxed">
+                                <p class="text-gray-300 leading-relaxed text-sm md:text-base">
                                     My passion lies in discovering games that truly push boundaries and offer unforgettable 
                                     experiences. Join me as we uncover hidden gems and celebrate the masterpieces that shape 
                                     our gaming world.
                                 </p>
                                 
-                                <p class="text-gray-300 leading-relaxed">
+                                <p class="text-gray-300 leading-relaxed text-sm md:text-base">
                                     Outside of gaming, I'm focused on building a welcoming and creative community. 
                                     Let's connect on Discord or catch up during one of my YouTube livestreams!
                                 </p>
                             </div>
                             
-                            <div class="flex flex-wrap gap-4 mt-10">
+                            <div class="flex flex-wrap gap-3 md:gap-4 mt-8 md:mt-10">
                                 <a href="https://discord.gg/XY66hCpFcB" target="_blank" 
-                                   class="flex items-center gap-3 px-6 py-3 rounded-full bg-indigo-600 hover:bg-indigo-700 transition-all">
+                                   class="flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full bg-indigo-600 hover:bg-indigo-700 transition-all text-sm md:text-base">
                                     <i class="fab fa-discord"></i>
                                     <span class="font-semibold">Join Discord</span>
                                 </a>
                                 
                                 <a href="https://www.youtube.com/@LeonGrayJ" target="_blank" 
-                                   class="flex items-center gap-3 px-6 py-3 rounded-full bg-red-600 hover:bg-red-700 transition-all">
+                                   class="flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full bg-red-600 hover:bg-red-700 transition-all text-sm md:text-base">
                                     <i class="fab fa-youtube"></i>
                                     <span class="font-semibold">YouTube</span>
                                 </a>
                                 
                                 <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" 
-                                   class="flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-red-600 to-pink-600 hover:opacity-90 transition-all">
+                                   class="flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full bg-gradient-to-r from-red-600 to-pink-600 hover:opacity-90 transition-all text-sm md:text-base">
                                     <i class="fas fa-broadcast-tower"></i>
                                     <span class="font-semibold">Live Streams</span>
                                 </a>
@@ -783,113 +795,113 @@
         </section>
 
         <!-- TESTIMONIALS -->
-        <section id="testimonials" class="section-padding py-24">
+        <section id="testimonials" class="section-padding py-16 md:py-24">
             <div class="container mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="section-title text-5xl font-black mb-6">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="section-title text-4xl md:text-5xl font-black mb-4 md:mb-6">
                         <span class="gradient-text">WHAT GAMERS SAY</span>
                     </h2>
-                    <p class="text-gray-400 text-lg max-w-3xl mx-auto">
+                    <p class="text-gray-400 text-base md:text-lg max-w-3xl mx-auto">
                         Hear from the community about their experience
                     </p>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                     <!-- Testimonial 1 -->
-                    <div class="glass-panel testimonial-card rounded-2xl p-8">
-                        <div class="mb-6">
-                            <div class="flex text-yellow-400 mb-4">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                    <div class="glass-panel testimonial-card rounded-xl md:rounded-2xl p-6 md:p-8">
+                        <div class="mb-4 md:mb-6">
+                            <div class="flex text-yellow-400 mb-3 md:mb-4">
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
                             </div>
-                            <p class="text-gray-300 italic">
+                            <p class="text-gray-300 italic text-sm md:text-base">
                                 "LeonGrayJ's insights are always spot-on! This blog helps me prioritize my gaming backlog perfectly."
                             </p>
                         </div>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center">
-                                <i class="fas fa-user text-white"></i>
+                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-sm md:text-base"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold">A Happy Gamer</h4>
+                                <h4 class="font-bold text-sm md:text-base">A Happy Gamer</h4>
                                 <p class="text-xs text-gray-400">Community Member</p>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Testimonial 2 -->
-                    <div class="glass-panel testimonial-card rounded-2xl p-8">
-                        <div class="mb-6">
-                            <div class="flex text-yellow-400 mb-4">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                    <div class="glass-panel testimonial-card rounded-xl md:rounded-2xl p-6 md:p-8">
+                        <div class="mb-4 md:mb-6">
+                            <div class="flex text-yellow-400 mb-3 md:mb-4">
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
                             </div>
-                            <p class="text-gray-300 italic">
+                            <p class="text-gray-300 italic text-sm md:text-base">
                                 "The live streams are fantastic, and the community is super welcoming. Highly recommend!"
                             </p>
                         </div>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center">
-                                <i class="fas fa-user text-white"></i>
+                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-sm md:text-base"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold">Stream Follower</h4>
+                                <h4 class="font-bold text-sm md:text-base">Stream Follower</h4>
                                 <p class="text-xs text-gray-400">Regular Viewer</p>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Testimonial 3 -->
-                    <div class="glass-panel testimonial-card rounded-2xl p-8">
-                        <div class="mb-6">
-                            <div class="flex text-yellow-400 mb-4">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                    <div class="glass-panel testimonial-card rounded-xl md:rounded-2xl p-6 md:p-8">
+                        <div class="mb-4 md:mb-6">
+                            <div class="flex text-yellow-400 mb-3 md:mb-4">
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
                             </div>
-                            <p class="text-gray-300 italic">
+                            <p class="text-gray-300 italic text-sm md:text-base">
                                 "Finally, a gaming blog that truly understands what makes a game special. Great content!"
                             </p>
                         </div>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 flex items-center justify-center">
-                                <i class="fas fa-user text-white"></i>
+                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-sm md:text-base"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold">Avid Reader</h4>
+                                <h4 class="font-bold text-sm md:text-base">Avid Reader</h4>
                                 <p class="text-xs text-gray-400">Blog Subscriber</p>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Testimonial 4 -->
-                    <div class="glass-panel testimonial-card rounded-2xl p-8">
-                        <div class="mb-6">
-                            <div class="flex text-yellow-400 mb-4">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                    <div class="glass-panel testimonial-card rounded-xl md:rounded-2xl p-6 md:p-8">
+                        <div class="mb-4 md:mb-6">
+                            <div class="flex text-yellow-400 mb-3 md:mb-4">
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
+                                <i class="fas fa-star text-sm md:text-base"></i>
                             </div>
-                            <p class="text-gray-300 italic">
+                            <p class="text-gray-300 italic text-sm md:text-base">
                                 "The design and features are top-notch. It's a pleasure to browse and discover new games here."
                             </p>
                         </div>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-orange-600 to-red-600 flex items-center justify-center">
-                                <i class="fas fa-user text-white"></i>
+                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-r from-orange-600 to-red-600 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-sm md:text-base"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold">Design Enthusiast</h4>
+                                <h4 class="font-bold text-sm md:text-base">Design Enthusiast</h4>
                                 <p class="text-xs text-gray-400">UI/UX Designer</p>
                             </div>
                         </div>
@@ -899,73 +911,73 @@
         </section>
 
         <!-- COMMUNITY SECTION -->
-        <section id="leongrayj-community" class="section-padding py-24">
+        <section id="leongrayj-community" class="section-padding py-16 md:py-24">
             <div class="container mx-auto max-w-6xl">
-                <div class="glass-panel rounded-3xl p-12 relative overflow-hidden">
+                <div class="glass-panel rounded-2xl md:rounded-3xl p-6 md:p-12 relative overflow-hidden">
                     <!-- Background Glow -->
-                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-96 bg-gradient-to-r from-purple-600/10 via-pink-600/10 to-blue-600/10 blur-3xl"></div>
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-64 md:h-96 bg-gradient-to-r from-purple-600/10 via-pink-600/10 to-blue-600/10 blur-3xl"></div>
                     
                     <div class="relative z-10">
-                        <div class="text-center mb-16">
-                            <h2 class="text-5xl font-black mb-6">
+                        <div class="text-center mb-12 md:mb-16">
+                            <h2 class="text-4xl md:text-5xl font-black mb-4 md:mb-6">
                                 <span class="gradient-text">JOIN THE</span>
                                 <span class="gradient-text-2"> COMMUNITY</span>
                             </h2>
-                            <p class="text-gray-400 text-lg max-w-3xl mx-auto">
+                            <p class="text-gray-400 text-base md:text-lg max-w-3xl mx-auto">
                                 Dive deeper into my gaming world. Here's how you can connect and be a part of the journey.
                             </p>
                         </div>
                         
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
                             <!-- YouTube Card -->
-                            <div class="glass-panel rounded-2xl p-8 border border-white/10 hover:border-purple-500/30 transition-all duration-500">
-                                <div class="text-center mb-8">
-                                    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-red-600 to-pink-600 flex items-center justify-center mx-auto mb-6">
-                                        <i class="fab fa-youtube text-3xl"></i>
+                            <div class="glass-panel rounded-xl md:rounded-2xl p-6 md:p-8 border border-white/10 hover:border-purple-500/30 transition-all duration-500">
+                                <div class="text-center mb-6 md:mb-8">
+                                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-r from-red-600 to-pink-600 flex items-center justify-center mx-auto mb-4 md:mb-6">
+                                        <i class="fab fa-youtube text-2xl md:text-3xl"></i>
                                     </div>
-                                    <h3 class="text-2xl font-bold mb-4">Your Support Fuels the Adventure!</h3>
-                                    <p class="text-gray-400 mb-6">
+                                    <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">Your Support Fuels the Adventure!</h3>
+                                    <p class="text-gray-400 text-sm md:text-base mb-4 md:mb-6">
                                         If you enjoy my content, please consider subscribing and liking videos! Your support helps create better content. ✨❤️
                                     </p>
                                 </div>
                                 <a href="https://www.youtube.com/@LeonGrayJ" target="_blank" 
-                                   class="btn-primary w-full text-center block">
+                                   class="btn-primary w-full text-center block py-2 md:py-3 text-sm md:text-base">
                                     <i class="fab fa-youtube mr-2"></i>
                                     SUBSCRIBE ON YOUTUBE
                                 </a>
                             </div>
                             
                             <!-- Live Streams Card -->
-                            <div class="glass-panel rounded-2xl p-8 border border-white/10 hover:border-red-500/30 transition-all duration-500">
-                                <div class="text-center mb-8">
-                                    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-red-700 to-orange-600 flex items-center justify-center mx-auto mb-6 pulse-animation">
-                                        <i class="fas fa-broadcast-tower text-3xl"></i>
+                            <div class="glass-panel rounded-xl md:rounded-2xl p-6 md:p-8 border border-white/10 hover:border-red-500/30 transition-all duration-500">
+                                <div class="text-center mb-6 md:mb-8">
+                                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-r from-red-700 to-orange-600 flex items-center justify-center mx-auto mb-4 md:mb-6 pulse-animation">
+                                        <i class="fas fa-broadcast-tower text-2xl md:text-3xl"></i>
                                     </div>
-                                    <h3 class="text-2xl font-bold mb-4">Catch Me Live & Say Hi!</h3>
-                                    <p class="text-gray-400 mb-6">
+                                    <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">Catch Me Live & Say Hi!</h3>
+                                    <p class="text-gray-400 text-sm md:text-base mb-4 md:mb-6">
                                         I livestream almost daily, playing a variety of games. Stop by, hang out, and say hi in the chat! 🐥
                                     </p>
                                 </div>
                                 <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" 
-                                   class="btn-primary w-full text-center block bg-gradient-to-r from-red-600 to-orange-600">
+                                   class="btn-primary w-full text-center block py-2 md:py-3 text-sm md:text-base" style="background: linear-gradient(135deg, #dc2626, #ea580c);">
                                     <i class="fas fa-play-circle mr-2"></i>
                                     WATCH LIVE STREAMS
                                 </a>
                             </div>
                             
                             <!-- Discord Card -->
-                            <div class="glass-panel rounded-2xl p-8 border border-white/10 hover:border-indigo-500/30 transition-all duration-500">
-                                <div class="text-center mb-8">
-                                    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center mx-auto mb-6">
-                                        <i class="fab fa-discord text-3xl"></i>
+                            <div class="glass-panel rounded-xl md:rounded-2xl p-6 md:p-8 border border-white/10 hover:border-indigo-500/30 transition-all duration-500">
+                                <div class="text-center mb-6 md:mb-8">
+                                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center mx-auto mb-4 md:mb-6">
+                                        <i class="fab fa-discord text-2xl md:text-3xl"></i>
                                     </div>
-                                    <h3 class="text-2xl font-bold mb-4">Join Our Discord Community!</h3>
-                                    <p class="text-gray-400 mb-6">
+                                    <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">Join Our Discord Community!</h3>
+                                    <p class="text-gray-400 text-sm md:text-base mb-4 md:mb-6">
                                         Connect directly with me and the community! Get updates, chat about games, and join events with fellow gamers.
                                     </p>
                                 </div>
                                 <a href="https://discord.gg/XY66hCpFcB" target="_blank" 
-                                   class="btn-primary w-full text-center block bg-gradient-to-r from-indigo-600 to-purple-600">
+                                   class="btn-primary w-full text-center block py-2 md:py-3 text-sm md:text-base" style="background: linear-gradient(135deg, #4f46e5, #7c3aed);">
                                     <i class="fab fa-discord mr-2"></i>
                                     JOIN DISCORD SERVER
                                 </a>
@@ -973,25 +985,25 @@
                         </div>
                         
                         <!-- Newsletter Section -->
-                        <div class="glass-panel rounded-2xl p-10 border border-white/10">
-                            <div class="text-center mb-8">
-                                <h3 class="text-3xl font-bold mb-4 gradient-text">Stay Updated</h3>
-                                <p class="text-gray-400 max-w-2xl mx-auto">
+                        <div class="glass-panel rounded-xl md:rounded-2xl p-6 md:p-10 border border-white/10">
+                            <div class="text-center mb-6 md:mb-8">
+                                <h3 class="text-2xl md:text-3xl font-bold mb-3 md:mb-4 gradient-text">Stay Updated</h3>
+                                <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
                                     Get notified about new content, live stream schedules, and gaming insights directly in your inbox.
                                 </p>
                             </div>
                             
                             <div class="max-w-xl mx-auto">
-                                <form class="flex flex-col sm:flex-row gap-4">
+                                <form class="flex flex-col sm:flex-row gap-3 md:gap-4">
                                     <input type="email" 
                                            placeholder="Enter your email address" 
-                                           class="flex-1 bg-black/30 border border-white/10 rounded-full px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-all">
-                                    <button type="submit" class="btn-primary whitespace-nowrap">
+                                           class="flex-1 bg-black/30 border border-white/10 rounded-full px-4 md:px-6 py-3 md:py-4 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-all text-sm md:text-base">
+                                    <button type="submit" class="btn-primary whitespace-nowrap py-3 md:py-4 text-sm md:text-base">
                                         <i class="fas fa-paper-plane mr-2"></i>
                                         SUBSCRIBE
                                     </button>
                                 </form>
-                                <p class="text-xs text-gray-500 text-center mt-4">
+                                <p class="text-xs text-gray-500 text-center mt-3 md:mt-4">
                                     No spam, ever. Unsubscribe at any time.
                                 </p>
                             </div>
@@ -1003,69 +1015,69 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="glass-panel border-t border-white/10 py-12">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row justify-between items-center gap-8">
+    <footer class="glass-panel border-t border-white/10 py-8 md:py-12 mt-16 md:mt-24">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-6 md:gap-8">
                 <!-- Logo & Info -->
                 <div class="text-center lg:text-left">
-                    <div class="flex items-center justify-center lg:justify-start gap-4 mb-4">
-                        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-purple-500">
+                    <div class="flex items-center justify-center lg:justify-start gap-3 md:gap-4 mb-3 md:mb-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-purple-500">
                             <img src="assets/images/logo.png" alt="Logo" class="w-full h-full object-cover">
                         </div>
                         <div>
-                            <h3 class="text-xl font-black gradient-text">LEONGRAYJ</h3>
+                            <h3 class="text-lg md:text-xl font-black gradient-text">LEONGRAYJ</h3>
                             <p class="text-xs text-gray-400">Premium Gaming Blog</p>
                         </div>
                     </div>
-                    <p class="text-gray-500 text-sm max-w-md">
+                    <p class="text-gray-500 text-xs md:text-sm max-w-md">
                         Curating the future of gaming with in-depth analysis, live streams, and community engagement.
                     </p>
                 </div>
                 
                 <!-- Links -->
-                <div class="flex flex-col sm:flex-row gap-8">
+                <div class="flex flex-col sm:flex-row gap-6 md:gap-8">
                     <div>
-                        <h4 class="font-bold mb-4">QUICK LINKS</h4>
-                        <ul class="space-y-2">
-                            <li><a href="#featured-playlists" class="text-gray-400 hover:text-white transition-colors">Featured</a></li>
-                            <li><a href="arcade.html" class="text-gray-400 hover:text-white transition-colors">Arcade</a></li>
-                            <li><a href="#about-me" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <h4 class="font-bold mb-2 md:mb-4 text-sm md:text-base">QUICK LINKS</h4>
+                        <ul class="space-y-1 md:space-y-2">
+                            <li><a href="#featured-playlists" class="text-gray-400 hover:text-white transition-colors text-xs md:text-sm">Featured</a></li>
+                            <li><a href="arcade.html" class="text-gray-400 hover:text-white transition-colors text-xs md:text-sm">Arcade</a></li>
+                            <li><a href="#about-me" class="text-gray-400 hover:text-white transition-colors text-xs md:text-sm">About</a></li>
                         </ul>
                     </div>
                     
                     <div>
-                        <h4 class="font-bold mb-4">PRIORITIES</h4>
-                        <ul class="space-y-2">
-                            <li><a href="high_priority.html" class="text-gray-400 hover:text-white transition-colors">High Priority</a></li>
-                            <li><a href="moderate_priority.html" class="text-gray-400 hover:text-white transition-colors">Moderate</a></li>
-                            <li><a href="low_priority.html" class="text-gray-400 hover:text-white transition-colors">Low Priority</a></li>
+                        <h4 class="font-bold mb-2 md:mb-4 text-sm md:text-base">PRIORITIES</h4>
+                        <ul class="space-y-1 md:space-y-2">
+                            <li><a href="high_priority.html" class="text-gray-400 hover:text-white transition-colors text-xs md:text-sm">High Priority</a></li>
+                            <li><a href="moderate_priority.html" class="text-gray-400 hover:text-white transition-colors text-xs md:text-sm">Moderate</a></li>
+                            <li><a href="low_priority.html" class="text-gray-400 hover:text-white transition-colors text-xs md:text-sm">Low Priority</a></li>
                         </ul>
                     </div>
                     
                     <div>
-                        <h4 class="font-bold mb-4">CONNECT</h4>
-                        <div class="flex gap-4">
+                        <h4 class="font-bold mb-2 md:mb-4 text-sm md:text-base">CONNECT</h4>
+                        <div class="flex gap-2 md:gap-4">
                             <a href="https://discord.gg/XY66hCpFcB" target="_blank" 
-                               class="w-10 h-10 rounded-full bg-indigo-600 hover:bg-indigo-700 flex items-center justify-center transition-all">
-                                <i class="fab fa-discord"></i>
+                               class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-indigo-600 hover:bg-indigo-700 flex items-center justify-center transition-all">
+                                <i class="fab fa-discord text-sm md:text-base"></i>
                             </a>
                             <a href="https://www.youtube.com/@LeonGrayJ" target="_blank" 
-                               class="w-10 h-10 rounded-full bg-red-600 hover:bg-red-700 flex items-center justify-center transition-all">
-                                <i class="fab fa-youtube"></i>
+                               class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-600 hover:bg-red-700 flex items-center justify-center transition-all">
+                                <i class="fab fa-youtube text-sm md:text-base"></i>
                             </a>
                             <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" 
-                               class="w-10 h-10 rounded-full bg-gradient-to-r from-red-600 to-pink-600 hover:opacity-90 flex items-center justify-center transition-all">
-                                <i class="fas fa-broadcast-tower"></i>
+                               class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-r from-red-600 to-pink-600 hover:opacity-90 flex items-center justify-center transition-all">
+                                <i class="fas fa-broadcast-tower text-sm md:text-base"></i>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="border-t border-white/10 mt-10 pt-8 text-center">
-                <p class="text-gray-500 text-sm">
+            <div class="border-t border-white/10 mt-6 md:mt-10 pt-6 md:pt-8 text-center">
+                <p class="text-gray-500 text-xs md:text-sm">
                     © 2025 LeonGrayJ Gaming Blog. All Rights Reserved. 
-                    <span class="block sm:inline mt-2 sm:mt-0">Made with ❤️ for the gaming community.</span>
+                    <span class="block sm:inline mt-1 md:mt-2 sm:mt-0">Made with ❤️ for the gaming community.</span>
                 </p>
             </div>
         </div>
@@ -1073,7 +1085,7 @@
 
     <!-- BACK TO TOP BUTTON -->
     <button id="backToTop" 
-            class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white shadow-2xl z-40 opacity-0 transition-opacity duration-300">
+            class="fixed bottom-6 right-6 w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white shadow-2xl z-40 opacity-0 transition-opacity duration-300">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -1092,12 +1104,14 @@
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         
-        if (mobileMenuBtn && mobileMenu) {
+        if (mobileMenuBtn) {
             mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                mobileMenuBtn.innerHTML = mobileMenu.classList.contains('hidden') 
-                    ? '<i class="fas fa-bars"></i>' 
-                    : '<i class="fas fa-times"></i>';
+                if (mobileMenu) {
+                    mobileMenu.classList.toggle('hidden');
+                    mobileMenuBtn.innerHTML = mobileMenu.classList.contains('hidden') 
+                        ? '<i class="fas fa-bars"></i>' 
+                        : '<i class="fas fa-times"></i>';
+                }
             });
         }
 
@@ -1105,19 +1119,23 @@
         const backToTopBtn = document.getElementById('backToTop');
         
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                backToTopBtn.style.opacity = '1';
-            } else {
-                backToTopBtn.style.opacity = '0';
+            if (backToTopBtn) {
+                if (window.scrollY > 500) {
+                    backToTopBtn.style.opacity = '1';
+                } else {
+                    backToTopBtn.style.opacity = '0';
+                }
             }
         });
         
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
-        });
+        }
 
         // LIVE STATUS CHECK
         async function checkLiveStatus() {
@@ -1130,29 +1148,37 @@
                 const data = await res.json();
 
                 if (data.isLive && data.liveUrl) {
-                    badge.classList.remove("hidden");
+                    if (badge) badge.classList.remove("hidden");
                     
-                    container.style.cursor = "pointer";
-                    container.onclick = () => window.open(data.liveUrl, "_blank");
+                    if (container) {
+                        container.style.cursor = "pointer";
+                        container.onclick = () => window.open(data.liveUrl, "_blank");
+                    }
                     
-                    logo.parentElement.classList.add("pulse-animation");
-                    logo.parentElement.style.border = "3px solid #ff0000";
-                    logo.parentElement.style.boxShadow = "0 0 30px rgba(255, 0, 0, 0.7)";
+                    if (logo && logo.parentElement) {
+                        logo.parentElement.classList.add("pulse-animation");
+                        logo.parentElement.style.border = "3px solid #ff0000";
+                        logo.parentElement.style.boxShadow = "0 0 30px rgba(255, 0, 0, 0.7)";
+                    }
 
                 } else {
-                    badge.classList.add("hidden");
+                    if (badge) badge.classList.add("hidden");
                     
-                    container.style.cursor = "default";
-                    container.onclick = null;
+                    if (container) {
+                        container.style.cursor = "default";
+                        container.onclick = null;
+                    }
                     
-                    logo.parentElement.classList.remove("pulse-animation");
-                    logo.parentElement.style.border = "";
-                    logo.parentElement.style.boxShadow = "";
+                    if (logo && logo.parentElement) {
+                        logo.parentElement.classList.remove("pulse-animation");
+                        logo.parentElement.style.border = "";
+                        logo.parentElement.style.boxShadow = "";
+                    }
                 }
 
             } catch (err) {
                 console.error("Live status error:", err);
-                badge.classList.add("hidden");
+                if (badge) badge.classList.add("hidden");
             }
         }
 
@@ -1161,6 +1187,8 @@
             const marquee = document.getElementById("dynamic-marquee");
             const apiKey = "b162f72fadcc5c39885332a7dcfa90ce";
 
+            if (!marquee) return;
+
             try {
                 const res = await fetch(`https://gnews.io/api/v4/search?q=gaming&lang=en&max=10&apikey=${apiKey}`);
                 const data = await res.json();
@@ -1168,7 +1196,7 @@
                 let marqueeContent = "";
                 data.articles.slice(0, 8).forEach(article => {
                     marqueeContent += `
-                        <span class="mx-8">
+                        <span class="mx-4 md:mx-8">
                             🎮 ${article.title} •
                         </span>
                     `;
@@ -1179,7 +1207,7 @@
             } catch (error) {
                 console.error("Failed to load news:", error);
                 marquee.innerHTML = `
-                    <span class="mx-8 gradient-text">🎮 Welcome to LeonGrayJ Gaming Blog • Stay tuned for updates •</span>
+                    <span class="mx-4 md:mx-8 gradient-text">🎮 Welcome to LeonGrayJ Gaming Blog • Stay tuned for updates •</span>
                 `;
             }
         }
@@ -1195,7 +1223,9 @@
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                    const marqueeHeight = document.querySelector('#news-marquee').offsetHeight;
+                    const totalOffset = headerHeight + marqueeHeight + 20;
+                    const targetPosition = targetElement.offsetTop - totalOffset;
                     
                     window.scrollTo({
                         top: targetPosition,
@@ -1254,14 +1284,7 @@
             setInterval(checkLiveStatus, 30000);
             
             loadNewsMarquee();
-            setInterval(loadNewsMarquee, 300000); // Update every 5 minutes
-            
-            // Initialize tooltips
-            const tooltips = document.querySelectorAll('[title]');
-            tooltips.forEach(tooltip => {
-                tooltip.setAttribute('data-title', tooltip.getAttribute('title'));
-                tooltip.removeAttribute('title');
-            });
+            setInterval(loadNewsMarquee, 300000);
         });
     </script>
 </body>
