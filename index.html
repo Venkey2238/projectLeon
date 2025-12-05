@@ -619,38 +619,43 @@ header nav {
     <!-- HEADER - FIXED AT TOP -->
     <header class="glass-panel fixed top-0 left-0 w-full z-1000 py-3 border-b border-white/5" style="top: 0 !important;">
         <div class="container mx-auto px-4 md:px-6">
-            <!-- <nav class="flex justify-between items-center">
+            <nav class="flex items-center justify-between">
                 <!-- LOGO -->
-                <div class="logo-container">                    
-                    <div>
-                        <h1 class="text-xl md:text-2xl font-black tracking-tight">
+                    <div class="logo-container">                    
+                        <div>
+                            <h1 class="text-xl md:text-2xl font-black tracking-tight">
                             <span class="gradient-text">LEONGRAYJ</span>
-                        </h1>
-                        <p class="text-xs text-gray-400 font-medium tracking-wider">PREMIUM GAMING BLOG</p>
+                            </h1>
+                            <p class="text-xs text-gray-400 font-medium tracking-wider">PREMIUM GAMING BLOG</p>
+                        </div>
                     </div>
-                </div>
 
-                <!-- NAVIGATION -->
-                <!-- In your header section, replace the navigation UL with: -->
-                <div class="nav-items-container flex gap-6">
-                        <a href="#featured-playlists" class="nav-item active text-white">FEATURED</a>
-                        <a href="arcade.html" class="nav-item text-gray-300 hover:text-white">ARCADE</a>
-                        <a href="high_priority.html" class="nav-item text-gray-300 hover:text-white">HIGH PRIORITY</a>
-                        <a href="moderate_priority.html" class="nav-item text-gray-300 hover:text-white">MODERATE</a>
-                        <a href="low_priority.html" class="nav-item text-gray-300 hover:text-white">LOW PRIORITY</a>
-                        <a href="#about-me" class="nav-item text-gray-300 hover:text-white">ABOUT</a>
-                </div>
+    <!-- NAV ITEMS + WATCH BUTTON (Right side) -->
+    <div class="flex items-center gap-8 ml-auto">
+        <!-- NAV ITEMS -->
+        <div class="nav-items-container flex gap-6">
+            <a href="#featured-playlists" class="nav-item active text-white">FEATURED</a>
+            <a href="arcade.html" class="nav-item text-gray-300 hover:text-white">ARCADE</a>
+            <a href="high_priority.html" class="nav-item text-gray-300 hover:text-white">HIGH PRIORITY</a>
+            <a href="moderate_priority.html" class="nav-item text-gray-300 hover:text-white">MODERATE</a>
+            <a href="low_priority.html" class="nav-item text-gray-300 hover:text-white">LOW PRIORITY</a>
+            <a href="#about-me" class="nav-item text-gray-300 hover:text-white">ABOUT</a>
+        </div>
 
-                <!-- MOBILE MENU BUTTON -->
-                <!-- <button id="mobile-menu-btn" class="lg:hidden text-2xl">
-                    <i class="fas fa-bars"></i>
-                </button> -->
-            </nav> -->
-            <!-- After the nav items container, add the watch live button separately -->
-            <!-- <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" class="btn-secondary flex items-center gap-2 px-4 py-2 text-sm ml-auto">
-                <i class="fas fa-broadcast-tower"></i>
-                <span class="hidden md:inline">WATCH LIVE</span>
-            </a> -->
+        <!-- WATCH LIVE BUTTON -->
+        <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank"
+           class="btn-secondary flex items-center gap-2 px-4 py-2 text-sm">
+            <i class="fas fa-broadcast-tower"></i>
+            <span class="hidden md:inline">WATCH LIVE</span>
+        </a>
+    </div>
+
+    <!-- MOBILE MENU BUTTON -->
+    <button id="mobile-menu-btn" class="lg:hidden text-2xl ml-4">
+        <i class="fas fa-bars"></i>
+    </button>
+</nav>
+
         </div>
     </header>
 
